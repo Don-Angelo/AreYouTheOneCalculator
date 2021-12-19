@@ -1,0 +1,26 @@
+
+
+Checked  combinations: 106432644
+Possible combinations: 859584
+Calculation duration: 0:07:50.850863
+
+Process: 0  Calculations: 13265895  Possible combinations found: 209664
+Process: 1  Calculations: 13298988  Possible combinations found: 209952
+Process: 2  Calculations: 13320023  Possible combinations found: 76176
+Process: 3  Calculations: 13372908  Possible combinations found: 19152
+Process: 4  Calculations: 13311018  Possible combinations found: 104880
+Process: 5  Calculations: 13488704  Possible combinations found: 17280
+Process: 6  Calculations: 13290056  Possible combinations found: 18288
+Process: 7  Calculations: 13085052  Possible combinations found: 204192
+
+             Dana   Estelle  Isabelle   Jessica   Joelina   Kerstin     Marie    Monami  Raphaela     Zaira   Desiree
+  Andre   73,60 %    2,01 %                                                     24,39 %                              
+Antonio   24,39 %   49,17 %    2,01 %                                                                         24,42 %
+ Dustin             48,82 %   12,06 %   12,06 %   11,56 %   10,05 %    4,29 %    1,16 %                              
+  Jordi                       24,11 %   14,21 %   13,07 %   14,07 %    4,17 %    4,41 %    6,82 %    9,60 %    9,55 %
+   Leon                        2,01 %   61,91 %    1,51 %    3,74 %    1,51 %    4,24 %    8,64 %    9,57 %    6,89 %
+ Marius                       44,68 %    1,53 %    1,59 %    1,59 %    1,59 %    5,44 %   23,62 %   11,44 %    8,51 %
+    Max                        2,01 %    1,55 %    1,51 %   59,83 %    1,51 %    4,94 %    9,84 %   10,86 %    7,95 %
+   Mike    2,01 %              2,01 %             59,43 %    1,51 %    1,52 %    4,94 %    9,83 %   10,84 %    7,91 %
+    Tim                        0,19 %    0,02 %    2,30 %    0,17 %   74,16 %    3,21 %    7,01 %    7,57 %    5,37 %
+William                        4,71 %    3,61 %    3,77 %    3,77 %    4,62 %   35,51 %   14,50 %   17,44 %   12,08 %

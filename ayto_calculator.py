@@ -188,18 +188,24 @@ def process_function(data):
     initial_pairs = copy.deepcopy(data[2])
     total_possible_pairs = copy.deepcopy(data[3])
     
-
+    print("process started")
 
     mn = matching_night_calculator.matching_night_calculator(original_data["men"],original_data["women"],original_data["perfect_matches"],original_data["no_matches"],original_data["matching_nights"],process_number,callback_queue)
+    pair = initial_pairs[i]
     
-    for i in range(len(initial_pairs)):
-        pair = initial_pairs[i]
+    possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
     
-        possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
-        
-        mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
-        
-        print("Process: " + process_number + " init combinations finished: " + str(i) + "/" + str(len(initial_pairs)))
+    mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
+
+
+    #for i in range(len(initial_pairs)):
+    #    pair = initial_pairs[i]
+    #
+    #    possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
+    #    
+    #    mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
+    #    
+    #    print("Process: " + process_number + " init combinations finished: " + str(i) + "/" + str(len(initial_pairs)))
 
     process_results = mn.get_results()
     callback_queue.put(process_results)

@@ -1,3 +1,6 @@
+from numpy.lib.twodim_base import triu_indices_from
+
+
 def no_double_names_in_pair_combination(pair_combination):
     includet_men = []
     includet_women = []
@@ -20,6 +23,16 @@ def print_list(list):
     for entry in list:
         print(entry,end=" ")
     print("")
+
+def one_of_pair_is_in_pair_list(input_pair,input_pair_list):
+    input_pair_men,input_pair_women = input_pair.split("+")
+    return_pair_list=[]
+    for pair in input_pair_list:
+        pair_men,pair_women = pair.split("+")
+        if (pair_men == input_pair_men) and (pair_women == input_pair_women):
+            return True
+
+    return False
 
 def remove_each_of_pair_from_pair_list(input_pair,input_pair_list):
     input_pair_men,input_pair_women = input_pair.split("+")

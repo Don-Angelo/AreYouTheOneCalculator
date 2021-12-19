@@ -1,0 +1,18 @@
+
+
+Checked  combinations: 0
+Possible combinations: 0
+Calculation duration: 0:00:33.003086
+
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo                                                                                                                         
+Salvatore                                                                                                                         
+    Tommy                                                                                                                         
+   Manuel                                                                                                                         
+Francesco                                                                                                                         
+    Josua                                                                                                                         
+Alexander                                                                                                                         
+   Danilo                                                                                                                         
+    Eugen                                                                                                                         
+    Jamie                                                                                                                         
