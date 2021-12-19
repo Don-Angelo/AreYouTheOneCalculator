@@ -63,7 +63,7 @@ def print_results():
     lines.append("")
     for i in range(len(process_result_dict)):
         if len(process_result_dict[i])>0:
-            lines.append("Process: " + str(i) + "  Calculations: " +str(process_result_dict[i]["calculations"])+ "  Possible combinations found: " + str(process_result_dict[i]["possible_combinations_cnt"]))
+            lines.append("Process: " + str(i) +" Init Pair: " + str(process_result_dict[i]["init_pair_cnt"]) + "/" + str(process_result_dict[i]["max_init_pairs"]) +"  Calculations: " +str(process_result_dict[i]["calculations"])+ "  Possible combinations found: " + str(process_result_dict[i]["possible_combinations_cnt"]))
     lines.append("")
 
     men_list = []
@@ -149,19 +149,6 @@ def print_results():
         f.write("\n")
     
 
-    
-
-
-    #for i in range(len(process_result_dict)):
-    #    if len(process_result_dict[i])>0:
-    #        print("Process: " + str(i) + "  Calculations: " +str(process_result_dict[i]["calculations"])+ "  Possible combinations: " + str(process_result_dict[i]["possible_combinations_cnt"]))
-    #print("")
-    #for men in original_data["men"]:
-    #    for pair in result_pairs:
-    #        men_name,women_name = pair.split("+")
-    #        if men == men_name:
-    #            calc_val = round(((result_pairs[pair]/possible_combinations_cnt)*100),2)
-    #            print(pair + " (" + str(calc_val) + "%)")
 
 def update_values():
     #print("proc num")
@@ -188,24 +175,9 @@ def process_function(data):
     initial_pairs = copy.deepcopy(data[2])
     total_possible_pairs = copy.deepcopy(data[3])
     
-    print("process started")
 
     mn = matching_night_calculator.matching_night_calculator(original_data["men"],original_data["women"],original_data["perfect_matches"],original_data["no_matches"],original_data["matching_nights"],process_number,callback_queue)
-    pair = initial_pairs[i]
-    
-    possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
-    
-    mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
-
-
-    #for i in range(len(initial_pairs)):
-    #    pair = initial_pairs[i]
-    #
-    #    possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
-    #    
-    #    mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
-    #    
-    #    print("Process: " + process_number + " init combinations finished: " + str(i) + "/" + str(len(initial_pairs)))
+    mn.iterate_combinations(initial_pairs,total_possible_pairs)
 
     process_results = mn.get_results()
     callback_queue.put(process_results)
@@ -279,6 +251,7 @@ if __name__ == "__main__":
     system_info_dict["missing_matches_cnt"] = missing_matches_cnt
 
     process_count = mp.cpu_count()
+    #process_count = 1
     print("Paralel processes: " +str(process_count))
     system_info_dict["process_count"] = process_count
 
@@ -326,134 +299,4 @@ if __name__ == "__main__":
     print("Calculation done")
     print("")
     print_results()
-    
-
-    #for pair in total_possible_pairs:
-    #    print(pair)
-    #pair_combination_calculator(total_possible_pairs,min(len(original_data["men"]),len(original_data["women"])))
-
-    #result = n_length_combo(["a","b","c","d","e","f","g","h"],3)
-    #for r in result:
-    #    print(r)
-    #comb = combinations(total_possible_pairs, missing_matches_cnt)
-    #possible_combination_list = list(comb)
-
-    #print(len(possible_combination_list))
-
-
-
- 
-
-
-    """
-
-    mnc = matching_night_calculator.matching_night_calculator(original_data["men"],original_data["women"],original_data["perfect_matches"],original_data["no_matches"],original_data["matching_nights"])
-    init_combinations, init_results = mnc.search_init_combinations()
-    print(str(len(init_combinations))+ " init combinations")
-
-    process_count = mp.cpu_count()
-    combinations_per_process = math.floor(len(init_combinations)/process_count)
-    print(str(combinations_per_process) + " combinations per process")
-
-
-    
-
-    #print(str(results["calculations"]) + " calculations")
-
-    process_arguments = []
-    if False:
-        for combination in init_combinations:
-            process_data = (original_data,combination)
-            process_arguments.append(process_data)
-
-
-    if True:
-        # creating all the data packages for all processes
-        combination_offset = 0
-        for i in range(process_count):
-            
-
-            combination_start = combination_offset
-            combination_end = combination_start + combinations_per_process 
-            if len(init_combinations) - (combination_end) < combinations_per_process:
-                combination_end = len(init_combinations) 
-
-            #print("Trhead " + str(i))
-            #print("Start =" + str(combination_offset))
-            #print("End = " + str(combination_end))
-            combination_offset = combination_end 
-            process_combinations = init_combinations[combination_start:combination_end]
-            #print(len(process_combinations))
-            
-            process_data = (original_data,process_combinations)
-
-            process_arguments.append(process_data)
-    #print(len(process_arguments))
-
-    pool = mp.Pool(process_count)
-    a = ("b","d")
-    result_list = pool.map(process_function, process_arguments)
-
-    
-  
-    calculations = init_results["calculations"]
-    for result in result_list:
-        calculations += result["calculations"]
-        
-    possible_combinations = init_results["possible_combinations"]
-    for result in result_list:
-        possible_combinations += result["possible_combinations"]
-
-
-    result_pairs = {}
-    for pair in init_results["pairs"]:
-        if _key_is_in_dict(result_pairs,pair):
-            result_pairs[pair] += 1
-        else:
-            result_pairs[pair] = init_results["pairs"][pair]
-
-
-    i = 0
-    for result in result_list:
-        i += 1
-        for pair in result["pairs"]:
-            
-            if _key_is_in_dict(result_pairs,pair):
-                result_pairs[pair] += result["pairs"][pair]
-            else:
-                result_pairs[pair] = result["pairs"][pair]
-
-
-    print("")
-    print("Calculation complete")
-    print("Number of calculations:" + str(calculations))
-    print("Possible combinations:" + str(possible_combinations))
-    print("")
-    for men in original_data["men"]:
-        for pair in result_pairs:
-            men_name,women_name = pair.split("+")
-            if men == men_name:
-                calc_val = round(((result_pairs[pair]/possible_combinations)*100),2)
-                print(pair + " (" + str(calc_val) + "%)")
-
-        
-    time = datetime.datetime.now()
-    date = time.strftime("%Y-%m-%d")
-    folder = time.strftime("%Y")
-    filename = "./results/"+folder+"/"+season_info+"_"+"result_"+date+".txt"
-
-    f = open(filename, "w")
-    f.write("Calculation complete\n")
-    f.write("Number of calculations:" + str(calculations)+"\n")
-    f.write("Possible combinations:" + str(possible_combinations)+"\n\n")
-    for men in original_data["men"]:
-        for pair in result_pairs:
-            men_name,women_name = pair.split("+")
-            if men == men_name:
-                calc_val = round(((result_pairs[pair]/possible_combinations)*100),2)
-                f.write(pair + " (" + str(calc_val) + "%)\n")
-
-    
-    """
-
     

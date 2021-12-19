@@ -18,6 +18,8 @@ class matching_night_calculator:
         self.callback_queue = callback_queue
 
         self.calc_results = {   "process_number":self.process_number,
+                                "init_pair_cnt":0,
+                                "max_init_pairs":0,
                                 "results":{
                                     "calculations":0,
                                     "possible_combinations_cnt":0,
@@ -27,43 +29,35 @@ class matching_night_calculator:
         self.calc_cnt = 0
         
         
-    def iterate_combinations(self,initial_pair,total_possible_pairs):
-        selected_pairs = [initial_pair]
+    def iterate_combinations(self,initial_pairs,total_possible_pairs):
+        self.calc_results["max_init_pairs"] = len(initial_pairs)
         
-        self._select_pairs(copy.deepcopy(total_possible_pairs),copy.deepcopy(selected_pairs))
-
-    def test_callback(self):
-        self.callback_queue.put(self.get_results())
-
-    def run_callback(self):
-        ret_list = []
-        ret_list.append(self.get_results())  
-
-        #print(self.callback_queue.qsize())
-
-        self.callback_queue.put(self.get_results())
-        self.process_callback()
-        del ret_list
+        for pair in initial_pairs:
+            self.calc_results["init_pair_cnt"] += 1
+            selected_pairs = [pair]
+            possible_pairs = copy.deepcopy(total_possible_pairs)
+            possible_pairs = remove_each_of_pair_from_pair_list(pair,possible_pairs)
+            self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(selected_pairs),0)
 
     def get_results(self):
         return self.calc_results
 
-    def _select_pairs(self,input_possible_pairs,already_selected_pairs):
-
+    def _select_pairs(self,input_possible_pairs,already_selected_pairs,depth):
+        depth += 1
         #print_list(selected_pairs)
         #for pair in selected_pairs:
         #    men,women = pair.split("+")
         #    del men_dict[men]
         #    del women_dict[women]
 
-        
         possible_pairs = copy.deepcopy(input_possible_pairs)
-        
+        #print(str(depth)+" Already selected: " +str(already_selected_pairs))
+        #print(str(depth)+" Possible: "+str(input_possible_pairs))
 
         for pair in possible_pairs:
             selected_pairs = copy.deepcopy(already_selected_pairs)
             selected_pairs.append(pair)
-            
+            #print(str(depth)+ " Appending " + pair)
             if len(selected_pairs) < self.pairs_per_matching_night:
                 possible_pairs_copy = copy.deepcopy(possible_pairs)
 
@@ -72,7 +66,7 @@ class matching_night_calculator:
                 selected_pairs_copy = copy.deepcopy(selected_pairs)
             
 
-                self._select_pairs(possible_pairs_copy,selected_pairs_copy)
+                self._select_pairs(possible_pairs_copy,selected_pairs_copy,depth)
             else:
                 self._check_combination(selected_pairs)
 
