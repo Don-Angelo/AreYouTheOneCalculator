@@ -197,7 +197,7 @@ def process_function(data):
     
         possible_pairs = remove_each_of_pair_from_pair_list(pair,total_possible_pairs)
         
-        mn.iterate_combinations(pair,possible_pairs)
+        mn.iterate_combinations(pair,copy.deepcopy(possible_pairs))
         
         print("Process: " + process_number + " init combinations finished: " + str(i) + "/" + str(len(initial_pairs)))
 
