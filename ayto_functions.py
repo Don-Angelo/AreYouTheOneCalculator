@@ -1,5 +1,4 @@
-from numpy.lib.twodim_base import triu_indices_from
-
+import os
 
 def no_double_names_in_pair_combination(pair_combination):
     includet_men = []
@@ -87,3 +86,8 @@ def percent_string(double_val):
     result = pre+","+after+" %"
     return result
 
+def clear_console():
+    if os.name in ('nt', 'dos'): 
+        os.system('cls')
+    else:
+        os.system('clear')

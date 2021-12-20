@@ -1,28 +1,16 @@
-import itertools
 import json
 import copy
-import math
 import datetime
+import time
 import multiprocessing as mp
 from multiprocessing import Queue
-from itertools import combinations
-import multiprocessing
-import numpy
-import time
-
-
-from ayto_functions import no_double_names_in_pair_combination,remove_each_of_pair_from_pair_list,fixed_string,key_is_in_dict,percent_string
-
 
 import matching_night_calculator
+from ayto_functions import fixed_string,percent_string,clear_console,key_is_in_dict
 
 
-# copy that shit
-# data = {}
-# data["men_dict"] = copy.deepcopy(season_data["men"])
 
-# Function to create combinations
-# without itertools
+
 
 original_data = None
 process_result_dict = {}
@@ -30,7 +18,10 @@ system_info_dict = {}
 callback_queue = Queue()
 start_time = None
 
+
+
 def print_results():
+    clear_console()
     actual_time = datetime.datetime.now()
     delta_time = actual_time - start_time
     men_dict = original_data["men"]
@@ -51,13 +42,11 @@ def print_results():
             possible_combinations_cnt += result_dict["possible_combinations_cnt"]
 
             for pair in result_dict["pairs"]:
-                if _key_is_in_dict(pair,result_pairs):
+                if key_is_in_dict(pair,result_pairs):
                     result_pairs[pair] += result_dict["pairs"][pair]
                 else:
                     result_pairs[pair] = result_dict["pairs"][pair]
     lines = []
-    lines.append("")
-    lines.append("")
     lines.append("Checked  combinations: " + str(total_calculations_cnt))
     lines.append("Possible combinations: " + str(possible_combinations_cnt))
     lines.append("Calculation duration: "  + str(delta_time))
@@ -148,6 +137,8 @@ def print_results():
     for line in lines:
         f.write(line)
         f.write("\n")
+
+    
     
 
 
@@ -186,21 +177,6 @@ def process_function(data):
     return process_results
 
 
-
-    
-
-
-
-     
-
-
-
-
-def _key_is_in_dict(input_key,input_dict):
-        for key in input_dict:
-            if key == input_key:
-                return True
-        return False  
 
 if __name__ == "__main__":
     start_time = datetime.datetime.now()
@@ -293,14 +269,14 @@ if __name__ == "__main__":
     else:
         process_function(process_arguments[0])
 
-    loading_bar = "##########"
+    timer = 5
     while True:
-        print(loading_bar)
+        print(" Update in: "+ str(timer),end="\r")
         time.sleep(1)
-        loading_bar = loading_bar[:-1]
+        timer -= 1
         
-        if len(loading_bar) == 0:
-            loading_bar = "##########"
+        if timer == 0:
+            timer = 5
             if not callback_queue.empty():
             
                 update_values()
