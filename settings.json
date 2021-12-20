@@ -1,3 +1,4 @@
 {
-    "datafile":"2021-2"
+    "datafile":"2021-2",
+    "multiprocessing":true
 }

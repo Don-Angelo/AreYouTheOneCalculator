@@ -6,6 +6,7 @@ import datetime
 import multiprocessing as mp
 from multiprocessing import Queue
 from itertools import combinations
+import multiprocessing
 import numpy
 import time
 
@@ -132,7 +133,7 @@ def print_results():
 
         lines.append(men_line)
 
-    
+    lines.append("")
 
 
     for line in lines:
@@ -151,20 +152,21 @@ def print_results():
 
 
 def update_values():
-    #print("proc num")
+
+    callback_dict = None
     try: 
         callback_dict = callback_queue.get()
-        process_number = callback_dict["process_number"]
-        process_results = callback_dict["results"]
-        process_result_dict[process_number] = process_results
-        #print(process_result_dict)
-        if callback_queue.empty():
-            print_results()
-            pass
-        else:
-            update_values()
     except:
-        pass
+        print("callback_queue.get() error")
+
+    process_number = callback_dict["process_number"]
+    process_results = callback_dict["results"]
+    process_result_dict[process_number] = process_results
+    if callback_queue.empty():
+        print_results()
+    else:
+        update_values()
+    
     
     
 
@@ -207,6 +209,7 @@ if __name__ == "__main__":
     f = open("settings.json")
     settings = json.load(f)
     season_info = settings["datafile"]
+    multiprocessing_status = settings["multiprocessing"]
     f.close()
     data_filename = "./data/"+season_info+".json"
 
@@ -250,7 +253,10 @@ if __name__ == "__main__":
     print("Missing perfect matches: " +str(missing_matches_cnt))
     system_info_dict["missing_matches_cnt"] = missing_matches_cnt
 
-    process_count = mp.cpu_count()
+    if multiprocessing_status:
+        process_count = mp.cpu_count()
+    else:
+        process_count = 1
     #process_count = 1
     print("Paralel processes: " +str(process_count))
     system_info_dict["process_count"] = process_count
@@ -275,25 +281,33 @@ if __name__ == "__main__":
         #print(len(initial_pairs))
 
         process_data = (i,original_data,initial_pairs,total_possible_pairs)
+       
         process_arguments.append(process_data)
 
         
     
+    if multiprocessing_status:
+        pool = mp.Pool(process_count)
+        result_list = pool.map_async(process_function,process_arguments)
+        pool.close()
+    else:
+        process_function(process_arguments[0])
 
-    pool = mp.Pool(process_count)
-    result_list = pool.map_async(process_function,process_arguments)
-    pool.close()
-
-    #pool.join()
-
+    loading_bar = "##########"
     while True:
-        #
-        time.sleep(5)
-        if not callback_queue.empty():
-            update_values()
-        if result_list.ready():
-            update_values()
-            break
+        print(loading_bar)
+        time.sleep(1)
+        loading_bar = loading_bar[:-1]
+        
+        if len(loading_bar) == 0:
+            loading_bar = "##########"
+            if not callback_queue.empty():
+            
+                update_values()
+            if result_list.ready():
+                update_values()
+                break
+        
 
     print("")
     print("Calculation done")
