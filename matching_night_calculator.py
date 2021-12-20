@@ -80,18 +80,6 @@ class matching_night_calculator:
             self.callback_queue.put(self.get_results())
 
 
-
-        #if self.possible_output:
-        #    print("Calculations: " + str(self.calc_results["calculations"]),end="\r")
-
-        #if self.possible_output:
-        #    print("Start check")
-    #    for entry in selected_pairs:
-        #        print(entry,end=" ")
-        #    pass   
-        #    print("")
-
-
         valid_matching_nights = 0
 
         for matching_night_id in self.matching_nights:
@@ -105,34 +93,9 @@ class matching_night_calculator:
                 if pair_is_in_pair_list(pair_entry,matching_night_pairs):
                     hit_spots += 1
 
-            #if self.possible_output:
-                #print("Hit Spots: " + str(hit_spots),end="    ")
-                #for pair in selected_pairs:
-                #    print(pair,end=" ")
-                #print("")
-
             if hit_spots == matching_night_spots:
                 valid_matching_nights += 1
 
-            #if self.possible_output and valid_matching_nights >0:
-            #    line = "Matching night: " +str(matching_night_id)
-            #    line = line + " Hit Spots: " + str(hit_spots) +"/"+str(matching_night_spots)+ " Valid matching night: " + str(valid_matching_nights) + "/1   "
-            
-           ##     for pair in selected_pairs:
-            #        line = line + pair + " "
-            #    print(line)
-               
-          
-
-            #if self.possible_output:
-
-                #line = "Hit Spots: " + str(hit_spots) +"/"+str(matching_night_spots)+ " Valid matching night: " + str(valid_matching_nights) + "/1   "
-                
-                #for pair in selected_pairs:
-                #    line = line + pair + " "
-                #print(line,end="\r")
-        #if self.possible_output:
-        #    print(" test")
         if valid_matching_nights == len(self.matching_nights):
             
             self._combination_valid(selected_pairs)
@@ -140,20 +103,6 @@ class matching_night_calculator:
     
     def _combination_valid(self,selected_pairs):
         self.calc_results["results"]["possible_combinations_cnt"] += 1
-        
-
-        #line = "Process: "+str(self.process_number)+ " Valid combinations: "
-        #for pair in selected_pairs:
-        #        line = line + pair + " "
-        #print(line)
-            
-            
-        #if self.possible_output:
-        #    print("Possible: ",end="")
-        #    for pair_entry in selected_pairs:
-        #            print(pair_entry, end="  ")
-        #    print("")
-
         
 
         for pair_entry in selected_pairs:

@@ -2,7 +2,6 @@ import json
 import copy
 import datetime
 import time
-import math
 import multiprocessing as mp
 from multiprocessing import Queue
 
@@ -219,12 +218,6 @@ def create_seeding_information():
                 maximum_name = str(name)
         primary_person = maximum_name
 
-
-    
-
-    
-
-
     total_possible_pairs = []
     for men in original_data["men"]:
         for women in original_data["women"]:
@@ -261,8 +254,6 @@ def create_seeding_information():
         if process_number > (process_count - 1):
             process_number = 0 
     
-    
-
     process_arguments = []
     for i in range(process_count):
         initial_pairs = pairs_per_process[i]
@@ -299,9 +290,6 @@ def create_seeding_information():
     print("Calculation done")
     print("")
     print_results()
-    
-
-     
 
 if __name__ == "__main__":
     start_time = datetime.datetime.now()
@@ -331,78 +319,4 @@ if __name__ == "__main__":
 
     create_seeding_information()
 
-    """
-    total_possible_pairs = []
-    for men in original_data["men"]:
-        for women in original_data["women"]:
-            pair = men + "+" + women
-            if pair not in original_data["no_matches"]:
-
-                total_possible_pairs.append(pair)
-
-    total_possible_pairs_cnt = len(total_possible_pairs)
-    print("Total possible pairs: "+str(total_possible_pairs_cnt))
-    system_info_dict["total_possible_pairs_cnt"] = total_possible_pairs_cnt
-
-    total_possible_perfect_matches_cnt = max(len(original_data["men"]),len(original_data["women"]))
-    print("Total possible perfect matches: "+ str(total_possible_perfect_matches_cnt))
-    system_info_dict["total_possible_perfect_matches_cnt"] = total_possible_perfect_matches_cnt
-
-    found_perfect_matches_cnt = len(original_data["perfect_matches"])
-    print("Already found perfect matches: " + str(found_perfect_matches_cnt))
-    system_info_dict["found_perfect_matches_cnt"] = found_perfect_matches_cnt
-
-    missing_matches_cnt = total_possible_perfect_matches_cnt-found_perfect_matches_cnt
-    print("Missing perfect matches: " +str(missing_matches_cnt))
-    system_info_dict["missing_matches_cnt"] = missing_matches_cnt
-
-    if multiprocessing_status:
-        process_count = mp.cpu_count()
-    else:
-        process_count = 1
-    print("Paralel processes: " +str(process_count))
-    system_info_dict["process_count"] = process_count
-
-    initial_pairs_per_process = int(round((total_possible_pairs_cnt/process_count),0))
-
-    process_arguments = []
-    combination_offset = 0
-    for i in range(process_count):
-        combination_start = combination_offset
-        combination_end = combination_start + initial_pairs_per_process 
-        if i == process_count-1:
-            combination_end = total_possible_pairs_cnt
-        combination_offset = combination_end 
-        initial_pairs = total_possible_pairs[combination_start:combination_end]
-        process_data = (i,original_data,initial_pairs,total_possible_pairs)
-        process_arguments.append(process_data)
-
-    if multiprocessing_status:
-        pool = mp.Pool(process_count)
-        result_list = pool.map_async(process_function,process_arguments)
-        pool.close()
-    else:
-        process_function(process_arguments[0])
-
-    timer = 5
-    while True:
-        print(" Update in: "+ str(timer),end="\r")
-        time.sleep(1)
-        timer -= 1
-        
-        if timer == 0:
-            timer = 5
-            if not callback_queue.empty():
-            
-                update_values()
-            if result_list.ready():
-                update_values()
-                break
-        
-
-    print("")
-    print("Calculation done")
-    print("")
-    print_results()
     
-    """
