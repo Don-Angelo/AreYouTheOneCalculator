@@ -4,7 +4,7 @@ import copy
 from itertools import combinations
 
 from numpy.core.numeric import outer
-from ayto_functions import remove_each_of_pair_from_pair_list,one_of_pair_is_in_pair_list
+from ayto_functions import remove_each_of_pair_from_pair_list,one_of_pair_is_in_pair_list,key_is_in_dict,pair_is_in_pair_list
 
 class matching_night_calculator:
     def __init__(self,men_dict,women_dict,perfect_matches,no_matches,matching_nights,process_number,callback_queue):
@@ -36,7 +36,6 @@ class matching_night_calculator:
         
         for pair in initial_pairs:
             self.calc_results["results"]["init_pair_cnt"] += 1
-            #selected_pairs = [pair]
             
             possible_pairs = copy.deepcopy(total_possible_pairs)
             possible_pairs = remove_each_of_pair_from_pair_list(pair,possible_pairs)
@@ -74,35 +73,6 @@ class matching_night_calculator:
             else:
                 self._check_combination(selected_pairs)
     
-    """
-    def _select_pairs(self,input_possible_pairs,already_selected_pairs,depth):
-        depth += 1
-        #for pair in selected_pairs:
-        #    men,women = pair.split("+")
-        #    del men_dict[men]
-        #    del women_dict[women]
-
-        possible_pairs = copy.deepcopy(input_possible_pairs)
-        #print(str(depth)+" Already selected: " +str(already_selected_pairs))
-        #print(str(depth)+" Possible: "+str(input_possible_pairs))
-        pair = possible_pairs[0]
-        
-        selected_pairs = copy.deepcopy(already_selected_pairs)
-        selected_pairs.append(pair)
-            #print(str(depth)+ " Appending " + pair)
-        if len(selected_pairs) < self.pairs_per_matching_night:
-            possible_pairs_copy = copy.deepcopy(possible_pairs)
-
-            possible_pairs_copy = remove_each_of_pair_from_pair_list(pair,possible_pairs_copy)
-                
-            selected_pairs_copy = copy.deepcopy(selected_pairs)
-            
-
-            self._select_pairs(possible_pairs_copy,selected_pairs_copy,depth)
-        else:
-            print("check")
-            self._check_combination(selected_pairs)
-    """
          
     
     def _check_combination(self,selected_pairs):
@@ -137,7 +107,7 @@ class matching_night_calculator:
 
             hit_spots = 0
             for pair_entry in selected_pairs:
-                if self._pair_is_in_pair_list(pair_entry,matching_night_pairs):
+                if pair_is_in_pair_list(pair_entry,matching_night_pairs):
                     hit_spots += 1
 
             #if self.possible_output:
@@ -199,7 +169,7 @@ class matching_night_calculator:
 
     def _add_pair_to_result(self,input_pair):
         output = False
-        if self._key_is_in_dict(input_pair,self.calc_results["results"]["pairs"]):
+        if key_is_in_dict(input_pair,self.calc_results["results"]["pairs"]):
             
             self.calc_results["results"]["pairs"][input_pair] += 1
             if output:
@@ -211,28 +181,3 @@ class matching_night_calculator:
                 print(self.calc_results["results"]["pairs"][input_pair])
 
 
-    def _pair_is_in_pair_list(self,input_pair, input_pair_list):
-        for pair_entry in input_pair_list:
-            if pair_entry == input_pair:
-                return True
-        return False
-
-    def _one_of_pair_is_in_pair_list(self,input_pair,input_pair_list):
-        input_pair_men,input_pair_women = input_pair.split("+")
-        for pair in input_pair_list:
-            pair_men,pair_women = pair.split("+")
-            if pair_men == input_pair_men or pair_women == input_pair_women:
-                return True
-        return False
-
-    
-        
-
-       
-     
-
-    def _key_is_in_dict(self,input_key, input_dict):
-        for key in input_dict:
-            if key == input_key:
-                return True
-        return False

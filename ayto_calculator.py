@@ -135,10 +135,6 @@ def print_results():
         f.write(line)
         f.write("\n")
 
-    
-    
-
-
 def update_values():
 
     callback_dict = None
@@ -155,10 +151,6 @@ def update_values():
     else:
         update_values()
     
-    
-    
-
-
 def process_function(data):
     process_number = copy.deepcopy(data[0])
     original_data = copy.deepcopy(data[1])
@@ -230,7 +222,6 @@ if __name__ == "__main__":
         process_count = mp.cpu_count()
     else:
         process_count = 1
-    #process_count = 1
     print("Paralel processes: " +str(process_count))
     system_info_dict["process_count"] = process_count
 
@@ -239,26 +230,15 @@ if __name__ == "__main__":
     process_arguments = []
     combination_offset = 0
     for i in range(process_count):
-        
-
         combination_start = combination_offset
         combination_end = combination_start + initial_pairs_per_process 
         if i == process_count-1:
             combination_end = total_possible_pairs_cnt
-
-        #print("Process " + str(i),end=" ")
-        #print("Start =" + str(combination_offset),end=" ")
-        #print("End = " + str(combination_end))
         combination_offset = combination_end 
         initial_pairs = total_possible_pairs[combination_start:combination_end]
-        #print(len(initial_pairs))
-
         process_data = (i,original_data,initial_pairs,total_possible_pairs)
-       
         process_arguments.append(process_data)
 
-        
-    
     if multiprocessing_status:
         pool = mp.Pool(process_count)
         result_list = pool.map_async(process_function,process_arguments)

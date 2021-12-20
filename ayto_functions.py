@@ -23,6 +23,12 @@ def print_list(list):
         print(entry,end=" ")
     print("")
 
+def pair_is_in_pair_list(self,input_pair, input_pair_list):
+        for pair_entry in input_pair_list:
+            if pair_entry == input_pair:
+                return True
+        return False
+
 def one_of_pair_is_in_pair_list(input_pair,input_pair_list):
     input_pair_men,input_pair_women = input_pair.split("+")
     return_pair_list=[]
