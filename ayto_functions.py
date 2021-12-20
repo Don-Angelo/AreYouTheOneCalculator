@@ -31,7 +31,6 @@ def pair_is_in_pair_list(self,input_pair, input_pair_list):
 
 def one_of_pair_is_in_pair_list(input_pair,input_pair_list):
     input_pair_men,input_pair_women = input_pair.split("+")
-    return_pair_list=[]
     for pair in input_pair_list:
         pair_men,pair_women = pair.split("+")
         if (pair_men == input_pair_men) and (pair_women == input_pair_women):
@@ -49,11 +48,10 @@ def remove_each_of_pair_from_pair_list(input_pair,input_pair_list):
 
     return return_pair_list
 
-def person_is_not_selected(input_pair,input_pair_list):
-    input_pair_men,input_pair_women = input_pair.split("+")
+def person_is_not_in_pair_list(input_person,input_pair_list):
     for pair in input_pair_list:
         pair_men,pair_women = pair.split("+")
-        if pair_men == input_pair_men or pair_women == input_pair_women:
+        if pair_men == input_person or pair_women == input_person:
             return False
 
     return True

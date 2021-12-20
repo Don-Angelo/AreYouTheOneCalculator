@@ -2,11 +2,12 @@ import json
 import copy
 import datetime
 import time
+import math
 import multiprocessing as mp
 from multiprocessing import Queue
 
 import matching_night_calculator
-from ayto_functions import fixed_string,percent_string,clear_console,key_is_in_dict
+from ayto_functions import fixed_string,percent_string,clear_console,key_is_in_dict, person_is_not_in_pair_list
 
 
 original_data = None
@@ -165,7 +166,98 @@ def process_function(data):
     callback_queue.put(process_results)
     return process_results
 
+def create_seeding_information():
+    if multiprocessing_status:
+        process_count = mp.cpu_count()
+    else:
+        process_count = 1
+    print("Paralel processes: " +str(process_count))
+    system_info_dict["process_count"] = process_count
 
+    men_cnt = len(original_data["men"])
+    women_cnt = len(original_data["women"])
+
+
+    person_dict = {}
+    
+    for men in original_data["men"]:
+        person_dict[men] = original_data["men"][men]
+        person_dict[men]["possible_pairs"] = women_cnt            
+
+    for women in original_data["women"]:
+        person_dict[women] = original_data["women"][women]
+        person_dict[women]["possible_pairs"] = men_cnt
+
+    for pair in original_data["perfect_matches"]:
+        men_name,women_name = str(pair).split("+")
+        person_dict[men_name]["possible_pairs"] -= 1
+        person_dict[women_name]["possible_pairs"] -= 1
+
+    for pair in original_data["no_matches"]:
+        men_name,women_name = str(pair).split("+")
+        person_dict[men_name]["possible_pairs"] -= 1
+        person_dict[women_name]["possible_pairs"] -= 1
+
+    for name in person_dict:
+        person_dict[name]["pair_delta"] = person_dict[name]["possible_pairs"] - system_info_dict["process_count"]
+    
+    #look for a perfect delta
+    primary_person = None
+    if primary_person == None:    
+        for name in person_dict:
+            if person_dict[name]["possible_pairs"] == system_info_dict["process_count"]:
+                primary_person = str(name)
+                break
+    
+    #look for a highest delta
+    if primary_person == None:
+        maximum_delta = 0
+        maximum_name = None
+        for name in person_dict:
+            if person_dict[name]["pair_delta"] > maximum_delta:
+                maximum_delta = person_dict[name]["pair_delta"]
+                maximum_name = str(name)
+        primary_person = maximum_name
+
+    print(primary_person)
+    possible_primary_matches = person_dict[name]["possible_pairs"]
+    remaining_primary_matches = possible_primary_matches
+    assigned_primary_matches = 0
+
+
+    total_possible_pairs = []
+    for men in original_data["men"]:
+        for women in original_data["women"]:
+            pair = men + "+" + women
+            if pair not in original_data["no_matches"]:
+
+                total_possible_pairs.append(pair)
+
+    total_possible_pairs_cnt = len(total_possible_pairs)
+    print("Total possible pairs: "+str(total_possible_pairs_cnt))
+    system_info_dict["total_possible_pairs_cnt"] = total_possible_pairs_cnt
+
+    initial_pairs_per_process = int(round((person_dict[primary_person]["possible_pairs"]/process_count),0))
+    #print(initial_pairs_per_process)
+    #print(person_dict[primary_person]["possible_pairs"])
+
+    process_arguments = []
+    combination_offset = 0
+    for i in range(process_count):
+        pairs_for_process = math.ceil(remaining_primary_matches/process_count)
+        print(pairs_for_process)
+
+
+        combination_start = combination_offset
+        combination_end = combination_start + initial_pairs_per_process 
+        if i == process_count-1:
+            combination_end = total_possible_pairs_cnt
+        combination_offset = combination_end 
+        initial_pairs = total_possible_pairs[combination_start:combination_end]
+        process_data = (i,original_data,initial_pairs,total_possible_pairs)
+        process_arguments.append(process_data)
+
+     
 
 if __name__ == "__main__":
     start_time = datetime.datetime.now()
@@ -193,7 +285,9 @@ if __name__ == "__main__":
         if original_data["women"][women_name]["possible_matches"] == 0:
             original_data["women"][women_name]["all_matches_found"] = True
 
+    create_seeding_information()
 
+    """
     total_possible_pairs = []
     for men in original_data["men"]:
         for women in original_data["women"]:
@@ -267,3 +361,4 @@ if __name__ == "__main__":
     print("")
     print_results()
     
+    """
