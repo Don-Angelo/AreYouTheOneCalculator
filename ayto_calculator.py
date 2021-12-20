@@ -9,9 +9,6 @@ import matching_night_calculator
 from ayto_functions import fixed_string,percent_string,clear_console,key_is_in_dict
 
 
-
-
-
 original_data = None
 process_result_dict = {}
 system_info_dict = {}
