@@ -1,25 +1,25 @@
-Checked  combinations: 3432701213
-Possible combinations: 83003908
-Calculation duration: 3:56:33.983083
+Checked  combinations: 1600921
+Possible combinations: 15120
+Calculation duration: 0:00:10.065091
 
-Process: 0 Init Pair: 1/14  Calculations: 434800152  Possible combinations found: 4568048
-Process: 1 Init Pair: 1/14  Calculations: 434600155  Possible combinations found: 4144320
-Process: 2 Init Pair: 1/14  Calculations: 431800150  Possible combinations found: 4648116
-Process: 3 Init Pair: 1/14  Calculations: 428900156  Possible combinations found: 6523200
-Process: 4 Init Pair: 1/14  Calculations: 430900155  Possible combinations found: 6248880
-Process: 5 Init Pair: 1/14  Calculations: 432600155  Possible combinations found: 4352400
-Process: 6 Init Pair: 1/14  Calculations: 433700156  Possible combinations found: 8398080
-Process: 7 Init Pair: 1/11  Calculations: 405400134  Possible combinations found: 44120864
+Process: 0 Init Pair: 0/2  Calculations: 200116  Possible combinations found: 0
+Process: 1 Init Pair: 0/2  Calculations: 200112  Possible combinations found: 0
+Process: 2 Init Pair: 0/2  Calculations: 200118  Possible combinations found: 0
+Process: 3 Init Pair: 0/1  Calculations: 200113  Possible combinations found: 0
+Process: 4 Init Pair: 0/1  Calculations: 200117  Possible combinations found: 2880
+Process: 5 Init Pair: 0/1  Calculations: 200117  Possible combinations found: 2880
+Process: 6 Init Pair: 0/1  Calculations: 200114  Possible combinations found: 2880
+Process: 7 Init Pair: 0/1  Calculations: 200114  Possible combinations found: 6480
 
              Dana   Estelle  Isabelle   Jessica   Joelina   Kerstin     Marie    Monami  Raphaela     Zaira   Desiree
-  Andre   46,84 %   53,16 %                                                                                          
-Antonio             19,35 %   40,29 %   36,58 %    3,78 %                                                            
- Dustin              3,11 %    7,48 %    5,35 %    6,21 %    5,17 %   10,43 %    9,22 %    8,29 %   35,66 %    9,08 %
-  Jordi              9,91 %    4,82 %    4,79 %    7,83 %    8,35 %    7,76 %   13,49 %   12,15 %   17,38 %   13,50 %
-   Leon              0,81 %    4,33 %   34,76 %    6,18 %    6,42 %    6,01 %   11,73 %   10,71 %    7,35 %   11,70 %
- Marius              8,92 %   27,40 %    4,40 %    6,34 %    6,60 %    6,00 %   11,48 %   10,12 %    7,26 %   11,48 %
-    Max              0,37 %    2,47 %    2,57 %    9,82 %   48,85 %    4,32 %    9,10 %    8,17 %    5,19 %    9,12 %
-   Mike              0,43 %    2,81 %             41,74 %    5,33 %    4,65 %    9,76 %   19,89 %    5,58 %    9,81 %
-    Tim              0,58 %    2,66 %    2,87 %    4,93 %    5,02 %   48,52 %   10,14 %    9,22 %    5,88 %   10,17 %
-William   53,16 %    1,68 %    2,27 %    2,73 %    3,91 %    4,18 %    3,21 %    8,58 %    6,78 %    4,91 %    8,60 %
+  Andre                                           19,05 %   19,05 %   19,05 %   42,86 %                              
+Antonio  100,00 %                                                                                                    
+ Dustin            100,00 %                                                                                          
+  Jordi                      100,00 %                                                                                
+   Leon                                100,00 %                                                                      
+ Marius                                            4,76 %    4,76 %    4,76 %   14,29 %   23,81 %   23,81 %   23,81 %
+    Max                                                     66,67 %              4,76 %    9,52 %    9,52 %    9,52 %
+   Mike                                           66,67 %                        4,76 %    9,52 %    9,52 %    9,52 %
+    Tim                                                               66,67 %    4,76 %    9,52 %    9,52 %    9,52 %
+William                                            4,76 %    4,76 %    4,76 %   14,29 %   23,81 %   23,81 %   23,81 %
 

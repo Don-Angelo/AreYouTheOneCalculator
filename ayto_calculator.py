@@ -219,10 +219,10 @@ def create_seeding_information():
                 maximum_name = str(name)
         primary_person = maximum_name
 
-    print(primary_person)
-    possible_primary_matches = person_dict[name]["possible_pairs"]
-    remaining_primary_matches = possible_primary_matches
-    assigned_primary_matches = 0
+
+    
+
+    
 
 
     total_possible_pairs = []
@@ -233,29 +233,73 @@ def create_seeding_information():
 
                 total_possible_pairs.append(pair)
 
+    pairs_of_primary_person = []
+    for pair in total_possible_pairs:
+        men_name,women_name = pair.split("+")
+        if men_name == primary_person or women_name == primary_person:
+            pairs_of_primary_person.append(str(pair))
+
+    possible_pairs = copy.deepcopy(total_possible_pairs)
+    for pair in pairs_of_primary_person:
+        possible_pairs.remove(pair)
+
     total_possible_pairs_cnt = len(total_possible_pairs)
     print("Total possible pairs: "+str(total_possible_pairs_cnt))
     system_info_dict["total_possible_pairs_cnt"] = total_possible_pairs_cnt
 
-    initial_pairs_per_process = int(round((person_dict[primary_person]["possible_pairs"]/process_count),0))
-    #print(initial_pairs_per_process)
-    #print(person_dict[primary_person]["possible_pairs"])
+    pairs_per_process = {}
+    for i in range(process_count):
+        pairs_per_process[i] = []
+
+    process_number = 0
+    while len(pairs_of_primary_person) > 0:
+        pair = pairs_of_primary_person[0]
+        pairs_per_process[process_number].append(pair)
+        pairs_of_primary_person.remove(pair)
+
+        process_number += 1
+        if process_number > (process_count - 1):
+            process_number = 0 
+    
+    
 
     process_arguments = []
-    combination_offset = 0
     for i in range(process_count):
-        pairs_for_process = math.ceil(remaining_primary_matches/process_count)
-        print(pairs_for_process)
+        initial_pairs = pairs_per_process[i]
 
-
-        combination_start = combination_offset
-        combination_end = combination_start + initial_pairs_per_process 
-        if i == process_count-1:
-            combination_end = total_possible_pairs_cnt
-        combination_offset = combination_end 
-        initial_pairs = total_possible_pairs[combination_start:combination_end]
-        process_data = (i,original_data,initial_pairs,total_possible_pairs)
+        process_data = (i,original_data,initial_pairs,possible_pairs)
         process_arguments.append(process_data)
+
+
+
+    if multiprocessing_status:
+        pool = mp.Pool(process_count)
+        result_list = pool.map_async(process_function,process_arguments)
+        pool.close()
+    else:
+        process_function(process_arguments[0])
+
+    timer = 5
+    while True:
+        print(" Update in: "+ str(timer),end="\r")
+        time.sleep(1)
+        timer -= 1
+        
+        if timer == 0:
+            timer = 5
+            if not callback_queue.empty():
+            
+                update_values()
+            if result_list.ready():
+                update_values()
+                break
+        
+
+    print("")
+    print("Calculation done")
+    print("")
+    print_results()
+    
 
      
 

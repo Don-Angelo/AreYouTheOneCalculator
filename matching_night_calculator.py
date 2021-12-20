@@ -30,11 +30,11 @@ class matching_night_calculator:
         self.calc_results["results"]["max_init_pairs"] = len(initial_pairs)
         
         for pair in initial_pairs:
-            self.calc_results["results"]["init_pair_cnt"] += 1
             
             possible_pairs = copy.deepcopy(total_possible_pairs)
             possible_pairs = remove_each_of_pair_from_pair_list(pair,possible_pairs)
             self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy([pair]),0)
+            self.calc_results["results"]["init_pair_cnt"] += 1
 
     def get_results(self):
         return self.calc_results
