@@ -14,7 +14,7 @@ class matching_night_calculator:
 
         self.calc_results = {   "process_number":self.process_number,
                                 
-                                "callback_value":10000,
+                                "callback_value":100000,
                                 "results":{
                                     "init_pair_cnt":0,
                                     "max_init_pairs":0,
@@ -76,7 +76,7 @@ class matching_night_calculator:
         #print(str(self.calc_results["results"]["calculations"]) + " " +str(self.calc_results["callback_value"])+ " " +str(selected_pairs))
         self.calc_results["callback_value"] -= 1
         if self.calc_results["callback_value"] <= 0:
-            self.calc_results["callback_value"] = 10000
+            self.calc_results["callback_value"] = 100000
             self.callback_queue.put(self.get_results())
 
 
