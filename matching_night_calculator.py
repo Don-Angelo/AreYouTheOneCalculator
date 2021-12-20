@@ -1,10 +1,5 @@
-import numpy
 import copy
-
-from itertools import combinations
-
-from numpy.core.numeric import outer
-from ayto_functions import remove_each_of_pair_from_pair_list,one_of_pair_is_in_pair_list,key_is_in_dict,pair_is_in_pair_list
+from ayto_functions import remove_each_of_pair_from_pair_list,key_is_in_dict,pair_is_in_pair_list
 
 class matching_night_calculator:
     def __init__(self,men_dict,women_dict,perfect_matches,no_matches,matching_nights,process_number,callback_queue):
@@ -139,10 +134,8 @@ class matching_night_calculator:
         #if self.possible_output:
         #    print(" test")
         if valid_matching_nights == len(self.matching_nights):
-            #print("valid\n\n\n\n\n\n\n")
             
             self._combination_valid(selected_pairs)
-            #exit()
      
     
     def _combination_valid(self,selected_pairs):
