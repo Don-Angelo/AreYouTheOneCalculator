@@ -1,4 +1,18 @@
 import os
+import json
+
+def load_settings():
+    f = open("settings.json")
+    settings = json.load(f)
+    f.close()
+    return settings
+
+def load_season_data(filename):
+    filename_full = "./data/"+filename+".json"
+    f = open(filename_full)
+    season_data = json.load(f)
+    f.close()
+    return season_data
 
 def no_double_names_in_pair_combination(pair_combination):
     includet_men = []
@@ -23,7 +37,7 @@ def print_list(list):
         print(entry,end=" ")
     print("")
 
-def pair_is_in_pair_list(self,input_pair, input_pair_list):
+def pair_is_in_pair_list(input_pair, input_pair_list):
         for pair_entry in input_pair_list:
             if pair_entry == input_pair:
                 return True

@@ -1,4 +1,6 @@
 {
-    "datafile":"2021-2",
+    "logging":"debug",
+    "season_data_name":"2021-2",
+    "server_ip":"",
     "multiprocessing":true
 }
