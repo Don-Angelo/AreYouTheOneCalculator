@@ -14,6 +14,9 @@ def load_season_data(filename):
     f.close()
     return season_data
 
+
+
+
 def no_double_names_in_pair_combination(pair_combination):
     includet_men = []
     includet_women = []
