@@ -1,6 +1,6 @@
 import logging
 import time
-import requests
+import multiprocessing as mp
 
 
 import ayto_functions as ayto
@@ -27,19 +27,46 @@ class ayto_client:
 
         self.logger.debug("Client started")
 
-        server_url = 'http://127.0.0.1:50000/'
-        self.calculation_data_url = server_url + 'calculation_data'
+        self.calculation_data_url = 'http://127.0.0.1:50000/calculation_data'
 
         self._start_client()
 
-    def _process_function(self):
-        # get calculation data
-        calculation_data = rc.get_data(self.calculation_data_url)
-        
-        # run calculation
+    def _process_function(self,data):
+        process_number = data
+        self.logger.debug("Process " + str(process_number) + " started")
+        comm = rc.rest_communication()
 
-        # return results
+        run = True
+        while run:
+            # get calculation data
+            calculation_data = comm.get_data(self.calculation_data_url)
+            print(str(process_number) + " " + str(calculation_data))
+            if calculation_data["finished"]:
+                run = False
+            else:
+                pass
+
+            # run calculation
+
+            # return results
+
+        self.logger.debug("Process " + str(process_number) + " finished")
+        return True
 
     def _start_client(self):
-        pass
+        print()
+
+        process_count = mp.cpu_count()
+        process_arguments = []
+        for i in range(process_count):
+            process_data = (i)
+            process_arguments.append(process_data)
+
+        print(process_arguments)
+
+        if self.settings["multiprocessing"]:
+            
+            pool = mp.Pool(process_count)
+            result_list = pool.map_async(self._process_function,process_arguments)
+            pool.close()
         

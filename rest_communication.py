@@ -13,7 +13,7 @@ class rest_communication:
         #print('Post:', responseStatus, responseMessage)
 
     def get_data(self,data_url):
-        response = requests.get(self.calculation_data_url)
+        response = requests.get(data_url)
         json_response = response.json()
         return json_response
     
