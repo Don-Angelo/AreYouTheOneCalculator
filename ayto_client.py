@@ -30,6 +30,10 @@ class ayto_client:
 
         self.calculation_data_url = 'http://127.0.0.1:50000/calculation_data'
 
+        self.season_data = ayto.load_season_data(self.settings["season_data_name"])
+        self.total_possible_pairs = ayto.get_total_possible_pairs(self.season_data)
+
+
         self._start_client()
 
     def _process_function(self,data):
@@ -38,10 +42,7 @@ class ayto_client:
 
         comm = rest_communication.rest_communication()
 
-        season_data = ayto.load_season_data(self.settings["season_data_name"])
-        total_possible_pairs = ayto.get_total_possible_pairs(season_data)
-
-        mnc = matching_night_calculator.matching_night_calculator(season_data,process_number)
+        mnc = matching_night_calculator.matching_night_calculator(self.season_data,process_number,self.logger)
         
         while True:
             # get calculation data
@@ -55,7 +56,7 @@ class ayto_client:
             if calculation_data["finished"]:
                 break
            
-            mnc.iterate_combinations(calculation_data["seeding_combination"],total_possible_pairs)
+            mnc.iterate_combinations(calculation_data["seeding_combination"],self.total_possible_pairs)
             # run calculation
             self.logger.debug(str(process_number) + " calculation finished")
 
@@ -64,11 +65,12 @@ class ayto_client:
 
             comm.post_data(results)
 
+            break
+
         self.logger.debug("Process " + str(process_number) + " finished")
         return True
 
     def _start_client(self):
-        print()
 
         process_count = mp.cpu_count()
         process_arguments = []
@@ -76,7 +78,6 @@ class ayto_client:
             process_data = (i)
             process_arguments.append(process_data)
 
-        print(process_arguments)
 
         if self.settings["multiprocessing"]:
             

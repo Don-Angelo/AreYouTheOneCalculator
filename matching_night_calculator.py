@@ -1,9 +1,11 @@
 import copy
+import logging
+import time
 import ayto_functions as ayto
 
 
 class matching_night_calculator:
-    def __init__(self,season_data,process_number):
+    def __init__(self,season_data,process_number,client_logger):
         self.men_dict = season_data["men"]
         self.women_dict = season_data["women"]
         self.perfect_matches = season_data["perfect_matches"]
@@ -13,9 +15,9 @@ class matching_night_calculator:
         self.pairs_per_matching_night = min(len(self.men_dict),len(self.women_dict))
         self.process_number = process_number
 
-        self.calc_results = {   "process_number":self.process_number,
-                                
-                                "callback_value":100000,
+        self.logger = client_logger
+
+        self.calc_results = {
                                 "results":{
                                     "calculations":0,
                                     "possible_combinations_cnt":0,
@@ -30,7 +32,10 @@ class matching_night_calculator:
         possible_pairs = copy.deepcopy(total_possible_pairs)
         for pair in initial_combination:
             possible_pairs = ayto.remove_each_of_pair_from_pair_list(pair,possible_pairs)
-            self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(initial_combination),0)
+        
+        self.logger.debug("Process " + str(self.process_number) + " start iteraring")
+        self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(initial_combination),0)
+
 
     def get_results(self):
         return self.calc_results
@@ -38,6 +43,7 @@ class matching_night_calculator:
     
     def _select_pairs(self,input_possible_pairs,already_selected_pairs,depth):
         depth += 1
+        print(already_selected_pairs)
         #print_list(selected_pairs)
         #for pair in selected_pairs:
         #    men,women = pair.split("+")
@@ -70,10 +76,10 @@ class matching_night_calculator:
         
         self.calc_results["results"]["calculations"] += 1
         #print(str(self.calc_results["results"]["calculations"]) + " " +str(self.calc_results["callback_value"])+ " " +str(selected_pairs))
-        self.calc_results["callback_value"] -= 1
-        if self.calc_results["callback_value"] <= 0:
-            self.calc_results["callback_value"] = 100000
-            self.callback_queue.put(self.get_results())
+        #self.calc_results["callback_value"] -= 1
+        #if self.calc_results["callback_value"] <= 0:
+        #    self.calc_results["callback_value"] = 100000
+        #    self.callback_queue.put(self.get_results())
 
 
         valid_matching_nights = 0

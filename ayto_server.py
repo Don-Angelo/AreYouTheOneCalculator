@@ -67,7 +67,7 @@ class ayto_server:
         self.logger.debug("request cnt: " + str(self.request_counter))
         
         data_handler = calculation_data_handler.calculation_data_handler()
-        rest = rest_service.rest_service(data_handler)
+        rest = rest_service.rest_service(data_handler,self.logger)
         rest.start_service()
         data_handler.check_queues()
 

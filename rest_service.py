@@ -13,12 +13,13 @@ api = Api(app)
 
 
 class rest_service:
-    def __init__(self,data_handler):
+    def __init__(self,data_handler,logger):
         
         self.port = 50000
         self.url = 'http://127.0.0.1:50000/'
 
-        cdh = data_handler     
+        cdh = data_handler    
+         
 
         #=============================================
         #calculation
@@ -26,7 +27,9 @@ class rest_service:
         class calculation_data(Resource):
             def get(self):
                 print("get request")
+
                 request_data = cdh.get_calculation_data()
+                logger.debug(request_data)
                 return request_data
 
 
