@@ -1,6 +1,7 @@
 import os
 import json
 
+
 def load_settings():
     f = open("settings.json")
     settings = json.load(f)
@@ -14,7 +15,47 @@ def load_season_data(filename):
     f.close()
     return season_data
 
+def write_server_data(server_data):
+    f = open("./cache/server_data.txt", "w")
+    json_file = json.dumps(server_data)
+    f.write(json_file)
+    f.close()
 
+def load_server_data():
+    f = open("./cache/server_data.txt", "r")
+    data_str = f.read()
+    json_data = json.loads(data_str)
+    f.close()
+    return json_data
+
+
+def get_calculation_data():
+    f = open("./cache/server_data.txt", "r")
+    data_str = f.read()
+    json_data = json.loads(data_str)
+    f.close()
+
+    calculation_data = {
+        "finished":False
+    }
+    if len(json_data["seeding_pairs"]) == 0:
+        calculation_data["finished"] = True
+    else:
+        request_counter = json_data["request_counter"]
+        seeding_combination = json_data["seeding_pairs"][request_counter]
+        
+        calculation_data["seeding_combination"] = seeding_combination
+        request_counter += 1
+        if request_counter >= len(json_data["seeding_pairs"]):
+            request_counter = 0
+    
+        json_data["request_counter"] = request_counter
+
+        write_server_data(json_data)
+        
+    return calculation_data
+
+    
 
 
 def no_double_names_in_pair_combination(pair_combination):

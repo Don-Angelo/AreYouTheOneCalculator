@@ -2,6 +2,7 @@ import json
 import logging
 import time
 import ayto_functions as ayto
+import rest_service
 
 class ayto_server:
     def __init__(self):
@@ -43,23 +44,31 @@ class ayto_server:
             self.season_data["women"][women_name]["possible_matches"] -= 1
             if self.season_data["women"][women_name]["possible_matches"] == 0:
                 self.season_data["women"][women_name]["all_matches_found"] = True
-
+        self.server_data = {
+            "seeding_pairs":[],
+            "finished_pairs":[],
+            "request_counter":0
+        }
         try:
-            self.seeding_pairs = self._load_seeding_pairs()
-            self.logger.debug("Seeding pairs loaded")
+            self.server_data = ayto.load_server_data()
+            self.server_data.debug("Server status loaded")
         except:
-            self.seeding_pairs = self._create_seeding_information()
-            self._write_seeding_pairs()
+            self.server_data["seeding_pairs"] = self._create_seeding_information()
+            ayto.write_server_data(self.server_data)
             self.logger.debug("Seeding pairs created and wrote")
 
-        self.seeding_pairs_cnt = len(self.seeding_pairs)
+        self.seeding_pairs_cnt = len(self.server_data["seeding_pairs"])
         self.logger.debug("Seeding pairs cnt: " + str(self.seeding_pairs_cnt))
+        self.finished_pairs_cnt = len(self.server_data["finished_pairs"])
+        self.logger.debug("Finished pairs cnt: " + str(self.finished_pairs_cnt))
 
+        self.request_counter = 0 # by request +1 by result -1
+        self.logger.debug("request cnt: " + str(self.request_counter))
         
+        rest = rest_service.rest_service()
+        rest.start_service()
         
 
-        for entry in self.seeding_pairs:
-            print(entry)
 
 
     def _create_seeding_information(self):
@@ -162,15 +171,4 @@ class ayto_server:
 
         return seeding_pairs
 
-    def _write_seeding_pairs(self):
-        f = open("./cache/seeding_pairs.txt", "w")
-        json_file = json.dumps(self.seeding_pairs)
-        f.write(json_file)
-        f.close()
 
-    def _load_seeding_pairs(self):
-        f = open("./cache/seeding_pairs.txt", "r")
-        data_str = f.read()
-        json_data = json.loads(data_str)
-        f.close()
-        return json_data
