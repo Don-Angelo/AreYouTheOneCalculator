@@ -10,37 +10,15 @@ app = Flask(__name__)
 
 api = Api(app)
 
-class calculation_data_handler:
-    def __init__(self):
-        self.calculation_data = Queue()
-        f = open("./cache/server_data.txt", "r")
-        data_str = f.read()
-        json_data = json.loads(data_str)
-        f.close()
 
-
-        for entry in json_data["seeding_pairs"]:
-            self.calculation_data.put(entry)
-
-    def get_calculation_data(self):
-        return_data = {}
-        if self.calculation_data.empty():
-            return_data["finished"] = True
-        else:
-            return_data["finished"] = False
-            return_data["seeding_combination"] = self.calculation_data.get()
-        return return_data
-
-    def insert_result_data(self):
-        pass
 
 class rest_service:
-    def __init__(self):
+    def __init__(self,data_handler):
         
         self.port = 50000
         self.url = 'http://127.0.0.1:50000/'
 
-        cdh = calculation_data_handler()       
+        cdh = data_handler     
 
         #=============================================
         #calculation
@@ -57,10 +35,11 @@ class rest_service:
         #=============================================
         class result(Resource):
             def post(self):
-                jsonMessage = request.get_json()
+                json_data = request.get_json()
                 print('Incomming message:')
-                print(jsonMessage)
+                print(json_data)
 
+                cdh.insert_result_data(json_data)
 
                 response = {}
                 response['received'] = True

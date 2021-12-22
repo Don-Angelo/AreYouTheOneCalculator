@@ -3,6 +3,7 @@ import logging
 import time
 import ayto_functions as ayto
 import rest_service
+import calculation_data_handler
 
 class ayto_server:
     def __init__(self):
@@ -65,9 +66,10 @@ class ayto_server:
         self.request_counter = 0 # by request +1 by result -1
         self.logger.debug("request cnt: " + str(self.request_counter))
         
-        rest = rest_service.rest_service()
+        data_handler = calculation_data_handler.calculation_data_handler()
+        rest = rest_service.rest_service(data_handler)
         rest.start_service()
-        
+        data_handler.check_queues()
 
 
 

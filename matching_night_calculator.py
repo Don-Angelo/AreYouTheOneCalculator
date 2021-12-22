@@ -1,23 +1,22 @@
 import copy
-from ayto_functions import remove_each_of_pair_from_pair_list,key_is_in_dict,pair_is_in_pair_list
+import ayto_functions as ayto
+
 
 class matching_night_calculator:
-    def __init__(self,men_dict,women_dict,perfect_matches,no_matches,matching_nights,process_number,callback_queue):
-        self.men_dict = men_dict
-        self.women_dict = women_dict
-        self.perfect_matches = perfect_matches
-        self.no_matches = no_matches
-        self.matching_nights = matching_nights
+    def __init__(self,season_data,process_number):
+        self.men_dict = season_data["men"]
+        self.women_dict = season_data["women"]
+        self.perfect_matches = season_data["perfect_matches"]
+        self.no_matches = season_data["no_matches"]
+        self.matching_nights = season_data["matching_nights"]
+
         self.pairs_per_matching_night = min(len(self.men_dict),len(self.women_dict))
         self.process_number = process_number
-        self.callback_queue = callback_queue
 
         self.calc_results = {   "process_number":self.process_number,
                                 
                                 "callback_value":100000,
                                 "results":{
-                                    "init_pair_cnt":0,
-                                    "max_init_pairs":0,
                                     "calculations":0,
                                     "possible_combinations_cnt":0,
                                     "pairs":{}
@@ -26,15 +25,12 @@ class matching_night_calculator:
         self.calc_cnt = 0
         
         
-    def iterate_combinations(self,initial_pairs,total_possible_pairs):
-        self.calc_results["results"]["max_init_pairs"] = len(initial_pairs)
-        
-        for pair in initial_pairs:
-            
-            possible_pairs = copy.deepcopy(total_possible_pairs)
-            possible_pairs = remove_each_of_pair_from_pair_list(pair,possible_pairs)
-            self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy([pair]),0)
-            self.calc_results["results"]["init_pair_cnt"] += 1
+    def iterate_combinations(self,initial_combination,total_possible_pairs):
+        #self.calc_results["results"]["max_init_pairs"] = len(initial_pairs)
+        possible_pairs = copy.deepcopy(total_possible_pairs)
+        for pair in initial_combination:
+            possible_pairs = ayto.remove_each_of_pair_from_pair_list(pair,possible_pairs)
+            self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(initial_combination),0)
 
     def get_results(self):
         return self.calc_results
@@ -59,7 +55,7 @@ class matching_night_calculator:
             if len(selected_pairs) < self.pairs_per_matching_night:
                 possible_pairs_copy = copy.deepcopy(possible_pairs)
 
-                possible_pairs_copy = remove_each_of_pair_from_pair_list(pair,possible_pairs_copy)
+                possible_pairs_copy = ayto.remove_each_of_pair_from_pair_list(pair,possible_pairs_copy)
                 
                 selected_pairs_copy = copy.deepcopy(selected_pairs)
             
@@ -90,7 +86,7 @@ class matching_night_calculator:
 
             hit_spots = 0
             for pair_entry in selected_pairs:
-                if pair_is_in_pair_list(pair_entry,matching_night_pairs):
+                if ayto.pair_is_in_pair_list(pair_entry,matching_night_pairs):
                     hit_spots += 1
 
             if hit_spots == matching_night_spots:
@@ -111,7 +107,7 @@ class matching_night_calculator:
 
     def _add_pair_to_result(self,input_pair):
         output = False
-        if key_is_in_dict(input_pair,self.calc_results["results"]["pairs"]):
+        if ayto.key_is_in_dict(input_pair,self.calc_results["results"]["pairs"]):
             
             self.calc_results["results"]["pairs"][input_pair] += 1
             if output:

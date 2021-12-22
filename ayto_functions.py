@@ -8,8 +8,8 @@ def load_settings():
     f.close()
     return settings
 
-def load_season_data(filename):
-    filename_full = "./data/"+filename+".json"
+def load_season_data(season_data_name):
+    filename_full = "./data/"+season_data_name+".json"
     f = open(filename_full)
     season_data = json.load(f)
     f.close()
@@ -56,7 +56,15 @@ def get_calculation_data():
     return calculation_data
 
     
+def get_total_possible_pairs(season_data):
+    total_possible_pairs = []
+    for men in season_data["men"]:
+        for women in season_data["women"]:
+            pair = men + "+" + women
+            if pair not in season_data["no_matches"]:
 
+                total_possible_pairs.append(pair)
+    return total_possible_pairs
 
 def no_double_names_in_pair_combination(pair_combination):
     includet_men = []
