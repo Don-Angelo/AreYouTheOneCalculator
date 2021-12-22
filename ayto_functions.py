@@ -1,5 +1,6 @@
 import os
 import json
+import copy
 
 
 def load_settings():
@@ -55,6 +56,12 @@ def get_calculation_data():
         
     return calculation_data
 
+def remove_person_from_person_list(person_name_input,person_list_input):
+    person_list = []
+    for person_name in person_list_input:
+        if person_name != person_name_input:
+            person_list.append(person_name)
+    return person_list    
     
 def get_total_possible_pairs(season_data):
     total_possible_pairs = []

@@ -20,7 +20,7 @@ class ayto_client:
         #logging_level = logging.ERROR
         #logging_level = logging.CRITICAL
 
-        timecode = time.strftime("%Y-%m-%d-%H-%M")
+        timecode = time.strftime("%Y-%m-%d_%H:%M")
         logging_filename = "./logs/client_"+timecode+".log"
         logging.basicConfig(filename=logging_filename,level=logging_level,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger('Client')
@@ -42,7 +42,7 @@ class ayto_client:
 
         comm = rest_communication.rest_communication()
 
-        mnc = matching_night_calculator.matching_night_calculator(self.season_data,process_number,self.logger)
+        mnc = matching_night_calculator.matching_night_calculator(self.season_data,self.total_possible_pairs,process_number,self.logger)
         
         while True:
             # get calculation data
@@ -53,19 +53,21 @@ class ayto_client:
                 break
 
             self.logger.debug("Process " + str(process_number) + " calculating " + str(calculation_data))
+            print("Process " + str(process_number) + " calculating " + str(calculation_data))
             if calculation_data["finished"]:
                 break
            
-            mnc.iterate_combinations(calculation_data["seeding_combination"],self.total_possible_pairs)
+            mnc.iterate_combinations(calculation_data["seeding_combination"],self.season_data["men"],self.season_data["women"])
             # run calculation
-            self.logger.debug(str(process_number) + " calculation finished")
+            self.logger.debug("Process "+str(process_number) + " calculation finished")
+            print("Process "+str(process_number) + " calculation finished")
 
             # return results
             results = mnc.get_results()
 
             comm.post_data(results)
 
-            break
+            
 
         self.logger.debug("Process " + str(process_number) + " finished")
         return True
@@ -84,6 +86,7 @@ class ayto_client:
             pool = mp.Pool(process_count)
             result_list = pool.map_async(self._process_function,process_arguments)
             pool.close()
+            pool.join()
         else:
             self._process_function(0)
 

@@ -2,5 +2,5 @@
     "logging":"debug",
     "season_data_name":"2021-2",
     "server_ip":"",
-    "multiprocessing":false
+    "multiprocessing":true
 }

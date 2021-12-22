@@ -5,7 +5,7 @@ import ayto_functions as ayto
 
 
 class matching_night_calculator:
-    def __init__(self,season_data,process_number,client_logger):
+    def __init__(self,season_data,total_possible_pairs,process_number,client_logger):
         self.men_dict = season_data["men"]
         self.women_dict = season_data["women"]
         self.perfect_matches = season_data["perfect_matches"]
@@ -14,6 +14,8 @@ class matching_night_calculator:
 
         self.pairs_per_matching_night = min(len(self.men_dict),len(self.women_dict))
         self.process_number = process_number
+
+        self.total_possible_pairs = total_possible_pairs
 
         self.logger = client_logger
 
@@ -27,48 +29,62 @@ class matching_night_calculator:
         self.calc_cnt = 0
         
         
-    def iterate_combinations(self,initial_combination,total_possible_pairs):
+    def iterate_combinations(self,initial_combination,possible_men_dict,possible_women_dict):
         #self.calc_results["results"]["max_init_pairs"] = len(initial_pairs)
-        possible_pairs = copy.deepcopy(total_possible_pairs)
+        selected_pairs = copy.deepcopy(initial_combination)
+        possible_men = []
+        possible_women = []
+
+        for men_name in possible_men_dict:
+            possible_men.append(str(men_name))
+
+        for women_name in possible_women_dict:
+            possible_women.append(str(women_name))
+
         for pair in initial_combination:
-            possible_pairs = ayto.remove_each_of_pair_from_pair_list(pair,possible_pairs)
-        
-        self.logger.debug("Process " + str(self.process_number) + " start iteraring")
-        self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(initial_combination),0)
+            men_name,women_name = str(pair).split("+")
+            possible_men = ayto.remove_person_from_person_list(men_name,possible_men)
+            possible_women = ayto.remove_person_from_person_list(women_name,possible_women)
+
+        self._select_pairs(selected_pairs,possible_men,possible_women,0)
+        #self.logger.debug("Process " + str(self.process_number) + " start iteraring")
+        #self._select_pairs(copy.deepcopy(possible_pairs),copy.deepcopy(initial_combination),0)
 
 
     def get_results(self):
         return self.calc_results
 
     
-    def _select_pairs(self,input_possible_pairs,already_selected_pairs,depth):
+    def _select_pairs(self,already_selected_pairs,possible_men_input,possible_women_input,depth):
         depth += 1
-        print(already_selected_pairs)
         #print_list(selected_pairs)
         #for pair in selected_pairs:
         #    men,women = pair.split("+")
         #    del men_dict[men]
         #    del women_dict[women]
 
-        possible_pairs = copy.deepcopy(input_possible_pairs)
+        possible_men = copy.deepcopy(possible_men_input)
+        possible_women = copy.deepcopy(possible_women_input)
         #print(str(depth)+" Already selected: " +str(already_selected_pairs))
         #print(str(depth)+" Possible: "+str(input_possible_pairs))
+        men_name = possible_men[0]
+        for women_name in possible_women:
+            pair = str(men_name)+"+"+str(women_name)
+            if pair in self.total_possible_pairs:
+                selected_pairs = copy.deepcopy(already_selected_pairs)
+                selected_pairs.append(pair)
+                if len(selected_pairs) < self.pairs_per_matching_night:
+                    possible_men_copy = copy.deepcopy(possible_men)
+                    possible_women_copy = copy.deepcopy(possible_women)
+                    possible_men_copy = ayto.remove_person_from_person_list(men_name,possible_men_copy)
+                    possible_women_copy = ayto.remove_person_from_person_list(women_name,possible_women_copy)
+                    selected_pairs_copy = copy.deepcopy(selected_pairs)
+                    self._select_pairs(selected_pairs_copy,possible_men_copy,possible_women_copy,depth)
+                else:
+                    #print(selected_pairs)
+                    self._check_combination(selected_pairs)
 
-        for pair in possible_pairs:
-            selected_pairs = copy.deepcopy(already_selected_pairs)
-            selected_pairs.append(pair)
-            #print(str(depth)+ " Appending " + pair)
-            if len(selected_pairs) < self.pairs_per_matching_night:
-                possible_pairs_copy = copy.deepcopy(possible_pairs)
 
-                possible_pairs_copy = ayto.remove_each_of_pair_from_pair_list(pair,possible_pairs_copy)
-                
-                selected_pairs_copy = copy.deepcopy(selected_pairs)
-            
-
-                self._select_pairs(possible_pairs_copy,selected_pairs_copy,depth)
-            else:
-                self._check_combination(selected_pairs)
     
          
     

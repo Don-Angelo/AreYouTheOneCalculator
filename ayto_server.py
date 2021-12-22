@@ -19,7 +19,7 @@ class ayto_server:
         #logging_level = logging.ERROR
         #logging_level = logging.CRITICAL
 
-        timecode = time.strftime("%Y-%m-%d-%H-%M")
+        timecode = time.strftime("%Y-%m-%d_%H:%M")
         logging_filename = "./logs/server_"+timecode+".log"
         logging.basicConfig(filename=logging_filename,level=logging_level,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger('Server')
@@ -114,14 +114,11 @@ class ayto_server:
         first_person_possible_pairs = 0
         second_person = None
         second_person_possible_pairs = 0
-        third_person = None
-        third_person_possible_pairs = 0
+
 
         for person in primary_dict:
             possible_pairs_of_person = primary_dict[person]["possible_pairs"]
             if possible_pairs_of_person > first_person_possible_pairs:
-                third_person = second_person
-                third_person_possible_pairs = second_person_possible_pairs
 
                 second_person = first_person
                 second_person_possible_pairs = first_person_possible_pairs
@@ -130,19 +127,13 @@ class ayto_server:
                 first_person_possible_pairs = possible_pairs_of_person
 
             elif possible_pairs_of_person > second_person_possible_pairs:
-                third_person = second_person
-                third_person_possible_pairs = second_person_possible_pairs
 
                 second_person = str(person)
                 second_person_possible_pairs = possible_pairs_of_person
             
-            elif possible_pairs_of_person > third_person_possible_pairs:
-                third_person = str(person)
-                third_person_possible_pairs = possible_pairs_of_person
 
         self.logger.debug("First person: " + first_person)
         self.logger.debug("Second person: " + second_person)
-        self.logger.debug("Third person: " + third_person)
 
         seeding_pairs = []
         for person_1 in self.season_data[secondary_gender]:
@@ -161,15 +152,7 @@ class ayto_server:
                     
                     if (person_2 != person_1) and (not ayto.pair_is_in_pair_list(second_pair,self.season_data["perfect_matches"])):
 
-                        for person_3 in self.season_data[secondary_gender]:
-                            third_pair = ""
-                            if primary_gender == "men":
-                                third_pair = third_person+"+"+str(person_3)
-                            else:
-                                third_pair = str(person_3)+"+"+third_person
-
-                            if (person_3 != person_2) and (person_3 != person_1) and (not ayto.pair_is_in_pair_list(second_pair,self.season_data["perfect_matches"])):
-                                seeding_pairs.append([first_pair,second_pair,third_pair])
+                        seeding_pairs.append([first_pair,second_pair])
 
         return seeding_pairs
 
