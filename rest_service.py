@@ -26,7 +26,7 @@ class rest_service:
         #=============================================
         class calculation_data(Resource):
             def get(self):
-                print("get request")
+                #print("get request")
 
                 request_data = cdh.get_calculation_data()
                 logger.debug(request_data)

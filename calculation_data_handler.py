@@ -15,7 +15,6 @@ class calculation_data_handler:
 
         self.server_data = ayto.load_server_data()
 
-        print("Seeding pairs cnt: " + str(len(self.server_data["seeding_pairs"])))
 
         for entry in self.server_data["seeding_pairs"]:
             if entry not in self.server_data["finished_pairs"]:
@@ -52,7 +51,7 @@ class calculation_data_handler:
 
     def _update_results(self):
         client_response = self.result_data_queue.get()
-        print(client_response)
+        #print(client_response)
         client_result = client_response["results"]
         self.result_data["calculations"] += client_result["calculations"]
         self.result_data["possible_combinations_cnt"] += client_result["possible_combinations_cnt"]
@@ -64,7 +63,6 @@ class calculation_data_handler:
 
         self.server_data["finished_pairs"].append(client_response["init_combination"])
         self.server_data["seeding_pairs"].remove(client_response["init_combination"])
-        print("Seeding pairs cnt: " + str(len(self.server_data["seeding_pairs"])))
         
 
         ayto.write_server_data(self.server_data)
@@ -79,7 +77,6 @@ class calculation_data_handler:
             self._update_results()
 
         if self.calculation_running == False:
-            
             os.remove("./cache/result_data.txt")
             os.remove("./cache/server_data.txt")
             
@@ -89,6 +86,7 @@ class calculation_data_handler:
         result_pairs = self.result_data["pairs"]
 
         lines = []
+        lines.append("Seeding pairs cnt: " + str(len(self.server_data["seeding_pairs"]))+"/"+str(len(self.server_data["seeding_pairs"])+len(self.server_data["finished_pairs"])))
         lines.append("Checked  combinations: " + str(self.result_data["calculations"]))
         lines.append("Possible combinations: " + str(self.result_data["possible_combinations_cnt"]))
         lines.append("")
@@ -159,6 +157,7 @@ class calculation_data_handler:
 
         lines.append("")
 
+        ayto.clear_console()
         for line in lines:
             print(line)
 
@@ -172,13 +171,6 @@ class calculation_data_handler:
             for line in lines:
                 f.write(line)
                 f.write("\n")
-
-    def check_queues(self):
-        print("checking queue")
-        if not self.result_data_queue.empty():
-            self._update_results()
-        if not self.result_data_queue.empty():
-            self.check_queues()
 
   
         

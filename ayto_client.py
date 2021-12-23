@@ -10,6 +10,7 @@ import ayto_functions as ayto
 class ayto_client:
     def __init__(self):
         self.settings = ayto.load_settings()
+        
         # =========================================================
         # logger configuration
         logging_level = logging.INFO
