@@ -39,9 +39,9 @@ class rest_service:
         class result(Resource):
             def post(self):
                 json_data = request.get_json()
-                print('Incomming message:')
-                print(json_data)
-
+                #print('Incomming message:')
+                #print(json_data)
+                json_data = json.loads(json_data)
                 cdh.insert_result_data(json_data)
 
                 response = {}

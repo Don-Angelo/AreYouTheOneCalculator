@@ -71,6 +71,7 @@ class ayto_server:
 
         while data_handler.calculation_running:
             time.sleep(1)
+            print("checking quene")
             data_handler.check_queues()
 
         print("Calculation finished")

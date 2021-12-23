@@ -1,4 +1,5 @@
 import json
+import os
 import datetime
 import ayto_functions as ayto
 from multiprocessing import Queue
@@ -14,6 +15,7 @@ class calculation_data_handler:
 
         self.server_data = ayto.load_server_data()
 
+        print("Seeding pairs cnt: " + str(len(self.server_data["seeding_pairs"])))
 
         for entry in self.server_data["seeding_pairs"]:
             if entry not in self.server_data["finished_pairs"]:
@@ -46,9 +48,11 @@ class calculation_data_handler:
 
     def insert_result_data(self,data):
         self.result_data_queue.put(data)
+        self._update_results()
 
     def _update_results(self):
         client_response = self.result_data_queue.get()
+        print(client_response)
         client_result = client_response["results"]
         self.result_data["calculations"] += client_result["calculations"]
         self.result_data["possible_combinations_cnt"] += client_result["possible_combinations_cnt"]
@@ -58,10 +62,26 @@ class calculation_data_handler:
             else:
                 self.result_data["pairs"][pair] = client_result["pairs"][pair]
 
-        self.server_data["seeding_pairs"].remove(client_response["init_combination"])
         self.server_data["finished_pairs"].append(client_response["init_combination"])
-        if len(self.server_data["seeding_pairss"]) == 0:
+        self.server_data["seeding_pairs"].remove(client_response["init_combination"])
+        print("Seeding pairs cnt: " + str(len(self.server_data["seeding_pairs"])))
+        
+
+        ayto.write_server_data(self.server_data)
+        ayto.write_result_data(self.result_data)
+
+        if len(self.server_data["seeding_pairs"]) == 0:
             self.calculation_running = False
+            print("Calculation finished \n")
+        self.print_results()
+
+        if not self.result_data_queue.empty():
+            self._update_results()
+
+        if self.calculation_running == False:
+            
+            os.remove("./cache/result_data.txt")
+            os.remove("./cache/server_data.txt")
             
     def print_results(self):
         men_dict = self.season_data["men"]
@@ -154,10 +174,11 @@ class calculation_data_handler:
                 f.write("\n")
 
     def check_queues(self):
+        print("checking queue")
         if not self.result_data_queue.empty():
             self._update_results()
         if not self.result_data_queue.empty():
             self.check_queues()
 
-        self.print_results()
+  
         
