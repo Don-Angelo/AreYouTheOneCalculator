@@ -20,6 +20,7 @@ class matching_night_calculator:
         self.logger = client_logger
 
         self.calc_results = {
+                                "init_combination":[],
                                 "results":{
                                     "calculations":0,
                                     "possible_combinations_cnt":0,
@@ -32,6 +33,7 @@ class matching_night_calculator:
     def iterate_combinations(self,initial_combination,possible_men_dict,possible_women_dict):
         #self.calc_results["results"]["max_init_pairs"] = len(initial_pairs)
         selected_pairs = copy.deepcopy(initial_combination)
+        self.calc_results["init_combination"] = selected_pairs
         possible_men = []
         possible_women = []
 

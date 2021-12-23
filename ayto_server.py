@@ -47,12 +47,11 @@ class ayto_server:
                 self.season_data["women"][women_name]["all_matches_found"] = True
         self.server_data = {
             "seeding_pairs":[],
-            "finished_pairs":[],
-            "request_counter":0
+            "finished_pairs":[]
         }
         try:
             self.server_data = ayto.load_server_data()
-            self.server_data.debug("Server status loaded")
+            self.logger.debug("Server status loaded")
         except:
             self.server_data["seeding_pairs"] = self._create_seeding_information()
             ayto.write_server_data(self.server_data)
@@ -69,7 +68,15 @@ class ayto_server:
         data_handler = calculation_data_handler.calculation_data_handler()
         rest = rest_service.rest_service(data_handler,self.logger)
         rest.start_service()
-        data_handler.check_queues()
+
+        while data_handler.calculation_running:
+            time.sleep(1)
+            data_handler.check_queues()
+
+        print("Calculation finished")
+        self.logger.info("Calculation finished")
+
+        data_handler.print_results()
 
 
 

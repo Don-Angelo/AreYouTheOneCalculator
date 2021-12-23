@@ -29,6 +29,18 @@ def load_server_data():
     f.close()
     return json_data
 
+def load_result_data():
+    f = open("./cache/result_data.txt", "r")
+    data_str = f.read()
+    json_data = json.loads(data_str)
+    f.close()
+    return json_data
+
+def write_result_data(result_data):
+    f = open("./cache/result_data.txt", "w")
+    json_file = json.dumps(result_data)
+    f.write(json_file)
+    f.close()
 
 def get_calculation_data():
     f = open("./cache/server_data.txt", "r")

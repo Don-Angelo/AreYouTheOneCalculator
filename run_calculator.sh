@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 ayto_calculator.py
+python3 are_you_the_one_calculator.py
