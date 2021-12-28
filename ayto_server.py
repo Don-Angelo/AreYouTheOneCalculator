@@ -34,7 +34,8 @@ class ayto_server:
         except:
             self.logger.critical("Loading season data failed - exit")
             exit()
-        
+
+        """
         for perfect_match in self.season_data["perfect_matches"]:
             men_name,women_name = perfect_match.split("+")
 
@@ -45,6 +46,8 @@ class ayto_server:
             self.season_data["women"][women_name]["possible_matches"] -= 1
             if self.season_data["women"][women_name]["possible_matches"] == 0:
                 self.season_data["women"][women_name]["all_matches_found"] = True
+        """
+        
         self.server_data = {
             "seeding_pairs":[],
             "finished_pairs":[]
