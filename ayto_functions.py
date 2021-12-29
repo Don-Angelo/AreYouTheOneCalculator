@@ -17,27 +17,27 @@ def load_season_data(season_data_name):
     return season_data
 
 def write_server_data(server_data):
-    f = open("./cache/server_data.txt", "w")
+    f = open("./cache/server_data.cache", "w")
     json_file = json.dumps(server_data)
     f.write(json_file)
     f.close()
 
 def load_server_data():
-    f = open("./cache/server_data.txt", "r")
+    f = open("./cache/server_data.cache", "r")
     data_str = f.read()
     json_data = json.loads(data_str)
     f.close()
     return json_data
 
 def load_result_data():
-    f = open("./cache/result_data.txt", "r")
+    f = open("./cache/result_data.cache", "r")
     data_str = f.read()
     json_data = json.loads(data_str)
     f.close()
     return json_data
 
 def write_result_data(result_data):
-    f = open("./cache/result_data.txt", "w")
+    f = open("./cache/result_data.cache", "w")
     json_file = json.dumps(result_data)
     f.write(json_file)
     f.close()
