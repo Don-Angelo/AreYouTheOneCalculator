@@ -94,6 +94,8 @@ class calculation_data_handler:
         men_list = []
         women_list = []
         pair_list = []
+        no_match_list = []
+        perfect_match_list = []
 
         for men in men_dict:
             men_name = str(men)
@@ -106,6 +108,14 @@ class calculation_data_handler:
         for pair in result_pairs:
             pair_name = str(pair)
             pair_list.append(pair_name)
+
+        for pair in self.season_data["no_matches"]:
+            pair_name = str(pair)
+            no_match_list.append(pair_name)
+
+        for pair in self.season_data["perfect_matches"]:
+            pair_name = str(pair)
+            perfect_match_list.append(pair_name)
 
 
         max_table_entry = "100.00%"
@@ -145,13 +155,16 @@ class calculation_data_handler:
             for women in women_list:
 
                 pair = men+"+"+women
-                
-                if pair in pair_list:
+                if pair in perfect_match_list:
+                    men_line = men_line + "  " + ayto.fixed_string("PM  ",max_len_women)
+                elif pair in no_match_list:
+                    men_line = men_line + "  " + ayto.fixed_string("NM  ",max_len_women)
+                elif pair in pair_list:
                     calc_val = round(((result_pairs[pair]/self.result_data["possible_combinations_cnt"])*100),2)
                     value_string = ayto.percent_string(calc_val)
                     men_line = men_line + "  " + ayto.fixed_string(value_string,max_len_women)
                 else:
-                    men_line = men_line + "  " + ayto.fixed_string(" ", max_len_women)
+                    men_line = men_line + "  " + ayto.fixed_string("X  ", max_len_women)
 
             lines.append(men_line)
 
