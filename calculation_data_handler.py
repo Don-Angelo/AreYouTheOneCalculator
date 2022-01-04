@@ -77,8 +77,8 @@ class calculation_data_handler:
             self._update_results()
 
         if self.calculation_running == False:
-            os.remove("./cache/result_data.txt")
-            os.remove("./cache/server_data.txt")
+            os.remove("./cache/result_data.cache")
+            os.remove("./cache/server_data.cache")
             
     def print_results(self):
         men_dict = self.season_data["men"]
@@ -178,7 +178,13 @@ class calculation_data_handler:
             time = datetime.datetime.now()
             date = time.strftime("%Y-%m-%d")
             folder = time.strftime("%Y")
-            filename = "./results/"+folder+"/"+self.settings["season_data_name"]+"_"+"result_"+date+".txt"
+            result_folder = "./results/"+folder
+            filename = result_folder+"/"+self.settings["season_data_name"]+"_"+"result_"+date+".txt"
+
+            try:
+                os.mkdir(result_folder)
+            except OSError:
+                print ("Creation of the directory %s failed" % result_folder)
 
             f = open(filename, "w")
             for line in lines:

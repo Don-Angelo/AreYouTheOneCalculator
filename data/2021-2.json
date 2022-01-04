@@ -141,6 +141,21 @@
                 "William+Dana"
             ],
             "spots":2
+        },
+        "4":{
+            "pairs":[
+                "Andre+Isabelle",
+                "Antonino+Monami",
+                "Dustin+Zaira",
+                "Jordi+Raphaela",
+                "Leon+Estelle",
+                "Marius+Jessica",
+                "Max+Marie",
+                "Mike+Joelina",
+                "Tim+Kerstin",
+                "William+Dana"
+            ],
+            "spots":3
         }
     }
 }
