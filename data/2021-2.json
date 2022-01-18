@@ -95,7 +95,8 @@
         "Mike+Jessica",
         "Leon+Monami",
         "Andre+Raphaela",
-        "Antonino+Monami"
+        "Antonino+Monami",
+        "Max+Jessica"
     ],
     "matching_nights":{
         "1":{
@@ -172,6 +173,21 @@
                 "William+Dana"
             ],
             "spots":2
+        },
+        "6":{
+            "pairs":[
+                "Andre+Marie",
+                "Antonino+Dana",
+                "Dustin+Isabelle",
+                "Jordi+Desiree",
+                "Leon+Jessica",
+                "Marius+Zaira",
+                "Max+Kerstin",
+                "Mike+Estelle",
+                "Tim+Joelina",
+                "William+Raphaela"
+            ],
+            "spots":4
         }
     }
 }
