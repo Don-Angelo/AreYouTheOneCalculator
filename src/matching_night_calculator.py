@@ -19,14 +19,8 @@ class matching_night_calculator:
 
         self.logger = client_logger
 
-        self.calc_results = {
-                                "init_combination":[],
-                                "results":{
-                                    "calculations":0,
-                                    "possible_combinations_cnt":0,
-                                    "pairs":{}
-                                }
-                            }
+        self.calc_results = {}
+        self.reset_results()
         self.calc_cnt = 0
         
         
@@ -56,7 +50,16 @@ class matching_night_calculator:
     def get_results(self):
         return self.calc_results
 
-    
+    def reset_results(self):
+        self.calc_results = {
+                                "init_combination":[],
+                                "results":{
+                                    "calculations":0,
+                                    "possible_combinations_cnt":0,
+                                    "pairs":{}
+                                }
+                            }
+
     def _select_pairs(self,already_selected_pairs,possible_men_input,possible_women_input,depth):
         depth += 1
         #print_list(selected_pairs)

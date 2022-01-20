@@ -67,6 +67,7 @@ class ayto_client:
             results = mnc.get_results()
 
             comm.post_data(results)
+            mnc.reset_results()
 
             
 

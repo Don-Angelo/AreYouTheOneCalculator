@@ -1,0 +1,16 @@
+Seeding pairs cnt: 0/110
+Checked  combinations: 24514560
+Possible combinations: 4
+
+              Dana   Estelle  Isabelle   Jessica   Joelina   Kerstin     Marie    Monami  Raphaela     Zaira   Desiree
+   Andre   25,00 %       X     75,00 %       X         X         X         X         X        NM         X         X  
+Antonino   50,00 %       X         X     25,00 %   25,00 %       X         X        NM         X         X         X  
+  Dustin       X         X         X         X         X         X     25,00 %       X         X     50,00 %   25,00 %
+   Jordi       X     50,00 %       X         X         X         X         X         X         X         X     50,00 %
+    Leon       X         X         X     75,00 %       X         X         X        NM     25,00 %       X         X  
+  Marius       X         X     25,00 %       X         X         X     25,00 %       X         X     50,00 %       X  
+     Max       X         X         X        NM         X     25,00 %   25,00 %   50,00 %       X         X         X  
+    Mike       X     50,00 %       X        NM     50,00 %       X         X         X         X         X         X  
+     Tim       X         X         X         X     25,00 %   75,00 %       X         X         X         X         X  
+ William   25,00 %       X         X         X         X         X         X         X     75,00 %       X         X  
+
