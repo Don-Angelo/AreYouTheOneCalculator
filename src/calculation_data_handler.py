@@ -184,8 +184,8 @@ class calculation_data_handler:
             try:
                 os.mkdir(result_folder)
             except OSError:
-                print ("Creation of the directory %s failed" % result_folder)
-
+                pass
+            
             f = open(filename, "w")
             for line in lines:
                 f.write(line)
