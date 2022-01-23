@@ -1,12 +1,8 @@
 import os
-import ayto_client
-import datetime
-import json
 import logging
 import time
 import ayto_functions as ayto
-import rest_service
-import calculation_data_handler
+from calculator_process_handler import calculator_process_handler
 
 class ayto_calculator:
     def __init__(self):
@@ -23,7 +19,7 @@ class ayto_calculator:
         #logging_level = logging.CRITICAL
 
         timecode = time.strftime("%Y-%m-%d_%H:%M")
-        logging_filename = "./logs/server_"+timecode+".log"
+        logging_filename = "./logs/"+timecode+".log"
         logging.basicConfig(filename=logging_filename,level=logging_level,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger('ayto_calculator')
         # =========================================================
@@ -38,36 +34,22 @@ class ayto_calculator:
             exit()
 
         
-        self.server_data = {
-            "seeding_pairs":[],
-            "finished_pairs":[]
-        }
-        try:
-            self.server_data = ayto.load_server_data()
-            self.logger.debug("Server status loaded")
-        except:
-            self.server_data["seeding_pairs"] = self._create_seeding_information()
-            ayto.write_server_data(self.server_data)
-            self.logger.debug("Seeding pairs created and wrote")
-
-        self.seeding_pairs_cnt = len(self.server_data["seeding_pairs"])
-        self.logger.debug("Seeding pairs cnt: " + str(self.seeding_pairs_cnt))
-        self.finished_pairs_cnt = len(self.server_data["finished_pairs"])
-        self.logger.debug("Finished pairs cnt: " + str(self.finished_pairs_cnt))
         
-        data_handler = calculation_data_handler.calculation_data_handler()
         
-        self._start_calculation_processes()
-
+        self.seeding_pairs = self._create_seeding_information()
+        self.seeding_pairs = self._add_PM_to_seeding_information(self.seeding_pairs)
         
 
-        print("Calculation finished")
+        
+        process_handler = calculator_process_handler(self.settings,self.season_data,self.seeding_pairs)
+
+        process_handler.start_clalculation()
+
         self.logger.info("Calculation finished")
 
-        data_handler.print_results()
+        #data_handler.print_results(write_to_file=True)
 
-    def _start_calculation_processes(self):
-        pass
+   
 
     def _create_seeding_information(self):
         primary_gender = None
@@ -151,18 +133,18 @@ class ayto_calculator:
 
         return seeding_pairs
 
-
+    def _add_PM_to_seeding_information(self,seeding_pairs):
+        seeding_pair_list = []
+        for pair_combination in seeding_pairs:
+            for pair in self.season_data["perfect_matches"]:
+                pair_combination.append(pair)
+            seeding_pair_list.append(pair_combination)
+        return seeding_pair_list
 
 
 
 if __name__ == "__main__":
-    cache_folder = "./cache"
     logs_folder = "./logs"
-
-    try:
-        os.mkdir(cache_folder)
-    except OSError:
-        pass
         
     try:
         os.mkdir(logs_folder)

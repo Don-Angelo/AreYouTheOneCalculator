@@ -81,8 +81,28 @@ def get_total_possible_pairs(season_data):
         for women in season_data["women"]:
             pair = men + "+" + women
             if pair not in season_data["no_matches"]:
-
                 total_possible_pairs.append(pair)
+    
+    for men in season_data["additional_men"]:
+        for women in season_data["women"]:
+            pair = men + "+" + women
+            if pair not in season_data["no_matches"]:
+                total_possible_pairs.append(pair)
+        for women in season_data["additional_women"]:
+            pair = men + "+" + women
+            if pair not in season_data["no_matches"]:
+                total_possible_pairs.append(pair)
+
+    for women in season_data["additional_women"]:
+        for men in season_data["men"]:
+            pair = men + "+" + women
+            if pair not in season_data["no_matches"]:
+                total_possible_pairs.append(pair)
+        for men in season_data["additional_men"]:
+            pair = men + "+" + women
+            if pair not in season_data["no_matches"]:
+                total_possible_pairs.append(pair)
+
     return total_possible_pairs
 
 def no_double_names_in_pair_combination(pair_combination):

@@ -1,0 +1,15 @@
+Checked  combinations: 488691
+Possible combinations: 9
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo        X          X          X          X          X         NM      88,89 %    11,11 %        X          X         NM  
+Salvatore        X          X          X     100,00 %        X         NM         NM         NM          X          X      11,11 %
+    Tommy        X      22,22 %       NM          X         NM         NM          X      77,78 %       NM          X      11,11 %
+   Manuel   100,00 %        X          X          X          X         NM         NM          X          X          X      11,11 %
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM      11,11 %
+    Josua        X      77,78 %        X          X         NM         NM      11,11 %    11,11 %        X         NM          X  
+Alexander        X          X          X          X          X         NM          X          X         NM     100,00 %    11,11 %
+   Danilo        X         NM          X          X          X         NM         NM          X     100,00 %        X      11,11 %
+    Eugen        X          X         NM         NM     100,00 %       NM         NM          X          X          X      11,11 %
+    Jamie        X          X     100,00 %        X          X         NM          X          X          X         NM      22,22 %
+

@@ -1,0 +1,15 @@
+Checked  combinations: 21168000
+Possible combinations: 19
+
+              Dana   Estelle  Isabelle   Jessica   Joelina   Kerstin     Marie    Monami  Raphaela     Zaira   Desiree
+   Andre    5,26 %       X     68,42 %       X         X         X     21,05 %    5,26 %      NM         X      5,26 %
+Antonino   57,89 %       X      5,26 %   10,53 %   10,53 %   10,53 %    5,26 %      NM         X         X      5,26 %
+  Dustin   10,53 %       X         X         X         X         X     42,11 %    5,26 %       X     42,11 %    5,26 %
+   Jordi       X     57,89 %    5,26 %       X         X         X         X     21,05 %   15,79 %       X     42,11 %
+    Leon       X         X     10,53 %   73,68 %   10,53 %       X         X        NM      5,26 %       X      5,26 %
+  Marius       X      5,26 %    5,26 %    5,26 %       X         X     10,53 %   15,79 %       X     57,89 %    5,26 %
+     Max       X      5,26 %    5,26 %      NM         X     26,32 %   15,79 %   47,37 %       X         X      5,26 %
+    Mike       X     31,58 %       X        NM     68,42 %       X         X         X         X         X      5,26 %
+     Tim    5,26 %       X         X     10,53 %   10,53 %   63,16 %    5,26 %    5,26 %       X         X     15,79 %
+ William   21,05 %       X         X         X         X         X         X         X     78,95 %       X      5,26 %
+
