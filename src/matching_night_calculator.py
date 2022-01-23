@@ -74,7 +74,7 @@ class matching_night_calculator:
 
     def _select_pairs(self,already_selected_pairs,possible_men_input,possible_additional_men_input,possible_women_input,possible_additional_women_input,depth):
         depth += 1
-        #print_list(selected_pairs)
+
         #for pair in selected_pairs:
         #    men,women = pair.split("+")
         #    del men_dict[men]
