@@ -7,8 +7,8 @@ def load_settings():
     f.close()
     return settings
 
-def load_season_data(season_data_name):
-    filename_full = "./data/"+season_data_name+".json"
+def load_season_data(season_name,matching_night_data):
+    filename_full = "./data/"+season_name+"/"+matching_night_data+".json"
     f = open(filename_full)
     season_data = json.load(f)
     f.close()

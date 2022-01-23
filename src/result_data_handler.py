@@ -122,8 +122,8 @@ class result_data_handler:
             time = datetime.datetime.now()
             date = time.strftime("%Y-%m-%d")
             folder = time.strftime("%Y")
-            result_folder = "./results/"+folder
-            filename = result_folder+"/"+self.settings["season_data_name"]+"_"+"result_"+date+".txt"
+            result_folder = "./results/"+self.settings["season_name"]
+            filename = result_folder+"/"+self.settings["season_name"]+"_"+"result_"+self.settings["matching_night_data"]+".txt"
 
             try:
                 os.mkdir(result_folder)

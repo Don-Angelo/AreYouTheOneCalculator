@@ -1,6 +1,6 @@
 {
     "logging":"debug",
-    "season_data_name":"2021-2",
-    "server_ip":"",
+    "season_name":"season3-2021",
+    "matching_night_data":"mn6",
     "multiprocessing":true
 }

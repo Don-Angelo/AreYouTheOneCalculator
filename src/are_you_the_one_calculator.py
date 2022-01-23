@@ -23,11 +23,9 @@ class ayto_calculator:
         logging.basicConfig(filename=logging_filename,level=logging_level,format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger('ayto_calculator')
         # =========================================================
-
-
         # loading the season data
         try:
-            self.season_data = ayto.load_season_data(self.settings["season_data_name"])
+            self.season_data = ayto.load_season_data(self.settings["season_name"],self.settings["matching_night_data"])
             self.logger.debug("Season data loaded")
         except:
             self.logger.critical("Loading season data failed - exit")
