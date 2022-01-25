@@ -30,14 +30,32 @@
         "Desiree"
     ],
     "perfect_matches":[
-        
+        "Marius+Zaira"
     ],
     "no_matches":[
         "Mike+Jessica",
         "Leon+Monami",
         "Andre+Raphaela",
         "Antonino+Monami",
-        "Max+Jessica"
+        "Max+Jessica",
+        "Marius+Dana",
+        "Marius+Estelle",
+        "Marius+Isabelle",
+        "Marius+Jessica",
+        "Marius+Joelina",
+        "Marius+Kerstin",
+        "Marius+Marie",
+        "Marius+Monami",
+        "Marius+Raphaela",
+        "Andre+Zaira",
+        "Antonino+Zaira",
+        "Dustin+Zaira",
+        "Jordi+Zaira",
+        "Leon+Zaira",
+        "Max+Zaira",
+        "Mike+Zaira",
+        "Tim+Zaira",
+        "William+Zaira"
     ],
     "matching_nights":{
         "1":{
@@ -129,6 +147,21 @@
                 "William+Raphaela"
             ],
             "spots":4
+        },
+        "7":{
+            "pairs":[
+                "Andre+Desiree",
+                "Antonino+Dana",
+                "Dustin+Isabelle",
+                "Jordi+Monami",
+                "Leon+Jessica",
+                "Marius+Zaira",
+                "Max+Marie",
+                "Mike+Joelina",
+                "Tim+Kerstin",
+                "William+Raphaela"
+            ],
+            "spots":6
         }
     }
 }
