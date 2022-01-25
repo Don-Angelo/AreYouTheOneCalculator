@@ -1,3 +1,4 @@
+Calculation time: 0:03:02.259326
 Checked  combinations: 21168000
 Possible combinations: 19
 

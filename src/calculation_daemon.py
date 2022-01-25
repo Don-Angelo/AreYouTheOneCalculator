@@ -1,3 +1,4 @@
+from datetime import date, datetime
 import os
 import logging
 import ayto_functions as ayto
@@ -5,15 +6,17 @@ import multiprocessing as mp
 from matching_night_calculator import matching_night_calculator
 from result_data_handler import result_data_handler
 
-class calculator_process_handler:
+class calculation_daemon:
     def __init__(self,settings,season_data,seeding_pairs):
         self.settings = settings
         self.season_data = season_data
         self.seeding_pairs = seeding_pairs
         self.total_possible_pairs = ayto.get_total_possible_pairs(self.season_data)
 
-        self.logger = logging.getLogger("process_handler")
+        self.logger = logging.getLogger("calculation_daemon")
 
+        self.start_time = None
+        self.finishing_time = None
 
     def _process_function(self,process_arguments):
         process_id = os.getpid()
@@ -34,7 +37,7 @@ class calculator_process_handler:
 
 
     def start_clalculation(self):
-
+        self.start_time = datetime.now()
         process_count = mp.cpu_count()
         self.logger.debug("Running with " + str(process_count) + " processes")
         
@@ -56,7 +59,9 @@ class calculator_process_handler:
       
         else:
             result_list.append(self._process_function(self.seeding_pairs[0]))
-        print(result_list)
-        rdh = result_data_handler(self.settings,self.season_data,result_list)
+        self.logger.debug(result_list)
+        self.finishing_time = datetime.now()
+        calculation_time = self.finishing_time - self.start_time
+        rdh = result_data_handler(self.settings,self.season_data,result_list,calculation_time)
         rdh.calcutlating_results()
         rdh.print_results(write_to_file=True)

@@ -1,8 +1,9 @@
+from datetime import datetime
 import os
 import logging
 import time
 import ayto_functions as ayto
-from calculator_process_handler import calculator_process_handler
+from calculation_daemon import calculation_daemon
 
 class ayto_calculator:
     def __init__(self):
@@ -39,10 +40,9 @@ class ayto_calculator:
         
 
         
-        process_handler = calculator_process_handler(self.settings,self.season_data,self.seeding_pairs)
-
-        process_handler.start_clalculation()
-
+        daemon = calculation_daemon(self.settings,self.season_data,self.seeding_pairs)
+        self.logger.info("Starting calculation")
+        daemon.start_clalculation()
         self.logger.info("Calculation finished")
 
         #data_handler.print_results(write_to_file=True)

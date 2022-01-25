@@ -3,10 +3,11 @@ import datetime
 import ayto_functions as ayto
 
 class result_data_handler:
-    def __init__(self,settings,season_data,result_data_list):
+    def __init__(self,settings,season_data,result_data_list,calculation_time):
         self.settings = settings
         self.season_data = season_data
         self.result_data_list = result_data_list
+        self.calculation_time = calculation_time
         self.calculations = 0
         self.possible_combinations = 0
         self.result_data = {
@@ -39,6 +40,7 @@ class result_data_handler:
         result_pairs = self.result_data["pairs"]
 
         lines = []
+        lines.append("Calculation time: " + str(self.calculation_time))
         lines.append("Checked  combinations: " + str(self.result_data["calculations"]))
         lines.append("Possible combinations: " + str(self.result_data["possible_combinations"]))
         lines.append("")
