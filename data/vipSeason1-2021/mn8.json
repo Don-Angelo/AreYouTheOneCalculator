@@ -65,9 +65,7 @@
         "Alexander+Melina",
         "Danilo+Aurelia",
         "Eugen+Jacky",
-        "Jamie+Sarah",
-        "Tommy+Melina",
-        "Josua+Sarah"
+        "Jamie+Sarah"
     ],
     "matching_nights":{
         "1":{
@@ -174,21 +172,6 @@
                 "Jamie+Sarah"
             ],
             "spots":1
-        },
-        "9":{
-            "pairs":[
-                "Diogo+Aurelia",
-                "Salvatore+Walentina",
-                "Tommy+Finnja",
-                "Manuel+Kathleen",
-                "Francesco+Julia",
-                "Josua+Vanessa",
-                "Alexander+Sarah",
-                "Danilo+Jill",
-                "Eugen+Melina",
-                "Jamie+Steffi"
-            ],
-            "spots":4
         }
     }
 }

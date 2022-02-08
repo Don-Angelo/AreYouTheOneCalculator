@@ -53,21 +53,7 @@
         "Danilo+Julia",
         "Eugen+Julia",
         "Jamie+Julia",
-        "Tommy+Walentina",
-        "Salvatore+Finnja",
-        "Eugen+Finnja",
-        "Eugen+Steffi",
-        "Diogo+Vanessa",
-        "Salvatore+Jill",
-        "Tommy+Steffi",
-        "Manuel+Finnja",
-        "Josua+Walentina",
-        "Alexander+Melina",
-        "Danilo+Aurelia",
-        "Eugen+Jacky",
-        "Jamie+Sarah",
-        "Tommy+Melina",
-        "Josua+Sarah"
+        "Tommy+Walentina"
     ],
     "matching_nights":{
         "1":{
@@ -129,66 +115,6 @@
                 "Jamie+Steffi"
             ],
             "spots":3
-        },
-        "6":{
-            "pairs":[
-                "Diogo+Aurelia",
-                "Salvatore+Jacky",
-                "Tommy+Melina",
-                "Manuel+Kathleen",
-                "Francesco+Julia",
-                "Josua+Walentina",
-                "Alexander+Steffi",
-                "Danilo+Jill",
-                "Eugen+Finnja",
-                "Jamie+Sarah"
-            ],
-            "spots":3
-        },
-        "7":{
-            "pairs":[
-                "Diogo+Vanessa",
-                "Salvatore+Walentina",
-                "Tommy+Melina",
-                "Manuel+Kathleen",
-                "Francesco+Julia",
-                "Josua+Sarah",
-                "Alexander+Jacky",
-                "Danilo+Aurelia",
-                "Eugen+Jill",
-                "Jamie+Finnja"
-            ],
-            "spots":2
-        },
-        "8":{
-            "pairs":[
-                "Diogo+Vanessa",
-                "Salvatore+Jill",
-                "Tommy+Steffi",
-                "Manuel+Finnja",
-                "Francesco+Julia",
-                "Josua+Walentina",
-                "Alexander+Melina",
-                "Danilo+Aurelia",
-                "Eugen+Jacky",
-                "Jamie+Sarah"
-            ],
-            "spots":1
-        },
-        "9":{
-            "pairs":[
-                "Diogo+Aurelia",
-                "Salvatore+Walentina",
-                "Tommy+Finnja",
-                "Manuel+Kathleen",
-                "Francesco+Julia",
-                "Josua+Vanessa",
-                "Alexander+Sarah",
-                "Danilo+Jill",
-                "Eugen+Melina",
-                "Jamie+Steffi"
-            ],
-            "spots":4
         }
     }
 }
