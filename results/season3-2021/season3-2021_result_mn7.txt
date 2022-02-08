@@ -1,4 +1,21 @@
-Calculation time: 0:00:19.207392
+10 Pair calculation
+Checked  combinations: 2116800
+Possible combinations: 2
+
+              Dana   Estelle  Isabelle   Jessica   Joelina   Kerstin     Marie    Monami  Raphaela     Zaira   Desiree
+   Andre       X         X    100,00 %       X         X         X         X         X        NM        NM         X  
+Antonino  100,00 %       X         X         X         X         X         X        NM         X        NM         X  
+  Dustin       X         X         X         X         X         X     50,00 %       X         X        NM     50,00 %
+   Jordi       X    100,00 %       X         X         X         X         X         X         X        NM         X  
+    Leon       X         X         X    100,00 %       X         X         X        NM         X        NM         X  
+  Marius      NM        NM        NM        NM        NM        NM        NM        NM        NM        PM         X  
+     Max       X         X         X        NM         X         X         X    100,00 %       X        NM         X  
+    Mike       X         X         X        NM    100,00 %       X         X         X         X        NM         X  
+     Tim       X         X         X         X         X    100,00 %       X         X         X        NM         X  
+ William       X         X         X         X         X         X         X         X    100,00 %      NM         X  
+
+
+11 Pair calculation
 Checked  combinations: 1987200
 Possible combinations: 7
 
@@ -13,4 +30,5 @@ Antonino  100,00 %       X         X         X         X         X         X    
     Mike       X         X         X        NM    100,00 %       X         X         X         X        NM     14,29 %
      Tim       X         X         X         X         X    100,00 %       X         X         X        NM         X  
  William       X         X         X         X         X         X         X         X    100,00 %      NM     14,29 %
+
 

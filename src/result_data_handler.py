@@ -3,11 +3,9 @@ import datetime
 import ayto_functions as ayto
 
 class result_data_handler:
-    def __init__(self,settings,season_data,result_data_list,calculation_time):
+    def __init__(self,settings):
         self.settings = settings
-        self.season_data = season_data
-        self.result_data_list = result_data_list
-        self.calculation_time = calculation_time
+        self.season_data = ayto.load_season_data(self.settings["season_name"],self.settings["matching_night_data"])
         self.calculations = 0
         self.possible_combinations = 0
         self.result_data = {
@@ -16,33 +14,44 @@ class result_data_handler:
             "pairs":{}
         }
 
-    def calcutlating_results(self):
-        for result_entry in self.result_data_list:
+    def calcutlating_results(self,result_data_list):
+        result_data = {
+            "calculations": 0,
+            "possible_combinations":0,
+            "pairs":{}
+        }
+        for result_entry in result_data_list:
             result = result_entry["results"]
 
-            self.result_data["calculations"] += result["calculations"]
-            self.result_data["possible_combinations"] += result["possible_combinations"]
+            result_data["calculations"] += result["calculations"]
+            result_data["possible_combinations"] += result["possible_combinations"]
 
             for pair in result["pairs"]:
-                if ayto.key_is_in_dict(pair,self.result_data["pairs"]):
-                    self.result_data["pairs"][pair] += result["pairs"][pair]
+                if ayto.key_is_in_dict(pair,result_data["pairs"]):
+                    result_data["pairs"][pair] += result["pairs"][pair]
                 else:
-                    self.result_data["pairs"][pair] = result["pairs"][pair]
+                    result_data["pairs"][pair] = result["pairs"][pair]
 
-    def print_results(self,write_to_file = False):
+        return result_data
+
+    def build_results(self,result_data,pre_lines=[""],after_lines=[""]):
         men_list = self.season_data["men"]
         for men in self.season_data["additional_men"]:
-            men_list.append(men)
+            if men not in men_list:
+                men_list.append(men)
         women_list = self.season_data["women"]
         for women in self.season_data["additional_women"]:
-            women_list.append(women)
+            if women not in women_list:
+                women_list.append(women)
 
-        result_pairs = self.result_data["pairs"]
+        result_pairs = result_data["pairs"]
 
         lines = []
-        lines.append("Calculation time: " + str(self.calculation_time))
-        lines.append("Checked  combinations: " + str(self.result_data["calculations"]))
-        lines.append("Possible combinations: " + str(self.result_data["possible_combinations"]))
+        for line in pre_lines:
+            lines.append(line)
+        
+        lines.append("Checked  combinations: " + str(result_data["calculations"]))
+        lines.append("Possible combinations: " + str(result_data["possible_combinations"]))
         lines.append("")
 
         pair_list = []
@@ -106,34 +115,38 @@ class result_data_handler:
                 elif pair in no_match_list:
                     men_line = men_line + "  " + ayto.fixed_string("NM  ",max_len_women)
                 elif pair in pair_list:
-                    calc_val = round(((result_pairs[pair]/self.result_data["possible_combinations"])*100),2)
+                    calc_val = round(((result_pairs[pair]/result_data["possible_combinations"])*100),2)
                     value_string = ayto.percent_string(calc_val)
                     men_line = men_line + "  " + ayto.fixed_string(value_string,max_len_women)
                 else:
                     men_line = men_line + "  " + ayto.fixed_string("X  ", max_len_women)
 
             lines.append(men_line)
-
+        for line in after_lines:
+            lines.append(line)
         lines.append("")
 
-        ayto.clear_console()
-        for line in lines:
+        return lines
+
+        
+        
+    def print_results(self,result_lines):
+        for line in result_lines:
             print(line)
 
-        if write_to_file:
-            time = datetime.datetime.now()
-            date = time.strftime("%Y-%m-%d")
-            folder = time.strftime("%Y")
-            result_folder = "./results/"+self.settings["season_name"]
-            filename = result_folder+"/"+self.settings["season_name"]+"_"+"result_"+self.settings["matching_night_data"]+".txt"
+    def write_results(self,result_lines):
+        time = datetime.datetime.now()
+        date = time.strftime("%Y-%m-%d")
+        folder = time.strftime("%Y")
+        result_folder = "./results/"+self.settings["season_name"]
+        filename = result_folder+"/"+self.settings["season_name"]+"_"+"result_"+self.settings["matching_night_data"]+".txt"
 
-            try:
-                os.mkdir(result_folder)
-            except OSError:
-                pass
-            
-            f = open(filename, "w")
-            for line in lines:
-                f.write(line)
-                f.write("\n")
+        try:
+            os.mkdir(result_folder)
+        except OSError:
+            pass
         
+        f = open(filename, "a")
+        for line in result_lines:
+            f.write(line)
+            f.write("\n")
