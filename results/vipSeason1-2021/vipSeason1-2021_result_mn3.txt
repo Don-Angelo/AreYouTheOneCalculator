@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 2943360
+Possible combinations: 46913
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo     5,46 %    37,34 %     6,97 %     5,46 %     8,17 %       NM      10,01 %     5,46 %     5,06 %     7,49 %     8,57 %
+Salvatore     5,46 %     5,46 %     6,97 %    37,34 %     8,17 %       NM      10,01 %     5,46 %     5,06 %     7,49 %     8,57 %
+    Tommy     5,79 %     5,79 %     7,35 %     5,79 %       NM         NM      10,90 %     5,79 %    41,29 %     7,99 %     9,30 %
+   Manuel    37,34 %     5,46 %     6,97 %     5,46 %     8,17 %       NM      10,01 %     5,46 %     5,06 %     7,49 %     8,57 %
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM          X  
+    Josua     7,49 %     7,49 %     5,22 %     7,49 %        X         NM      13,07 %     7,49 %     7,17 %    34,15 %    10,43 %
+Alexander     8,65 %     8,65 %    10,99 %     8,65 %    12,94 %       NM       9,33 %     8,65 %     8,12 %    11,71 %    12,32 %
+   Danilo     8,58 %     8,58 %    38,86 %     8,58 %     6,59 %       NM         NM       8,58 %     8,31 %        X      11,93 %
+    Eugen     7,20 %     7,20 %        X       7,20 %    36,32 %       NM      12,43 %     7,20 %     6,72 %     5,77 %     9,97 %
+    Jamie     5,46 %     5,46 %     6,97 %     5,46 %     8,17 %       NM      10,01 %    37,34 %     5,06 %     7,49 %     8,57 %
+
+
+11 Pair calculation
+Checked  combinations: 2872800
+Possible combinations: 55220
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo     6,34 %    36,82 %     8,19 %     6,34 %     9,92 %       NM      11,41 %     6,34 %     5,81 %     8,84 %    10,00 %
+Salvatore     6,34 %     6,34 %     8,19 %    36,82 %     9,92 %       NM      11,41 %     6,34 %     5,81 %     8,84 %    10,00 %
+    Tommy     6,85 %     6,85 %     8,73 %     6,85 %       NM         NM      12,71 %     6,85 %    41,58 %     9,60 %    10,00 %
+   Manuel    36,82 %     6,34 %     8,19 %     6,34 %     9,92 %       NM      11,41 %     6,34 %     5,81 %     8,84 %    10,00 %
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM      10,00 %
+    Josua     8,84 %     8,84 %     5,98 %     8,84 %        X         NM      15,68 %     8,84 %     8,40 %    34,59 %    10,00 %
+Alexander     9,51 %     9,51 %    12,75 %     9,51 %    15,57 %       NM      11,16 %     9,51 %     8,80 %    13,69 %    10,00 %
+   Danilo    10,52 %    10,52 %    39,80 %    10,52 %     7,97 %       NM         NM      10,52 %    10,14 %        X      10,00 %
+    Eugen     8,46 %     8,46 %        X       8,46 %    36,76 %       NM      14,81 %     8,46 %     7,82 %     6,77 %    10,00 %
+    Jamie     6,34 %     6,34 %     8,19 %     6,34 %     9,92 %       NM      11,41 %    36,82 %     5,81 %     8,84 %    10,00 %
+
+

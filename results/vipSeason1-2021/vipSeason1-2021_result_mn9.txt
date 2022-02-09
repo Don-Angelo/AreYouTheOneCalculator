@@ -1,3 +1,21 @@
+10 Pair calculation
+Checked  combinations: 606837
+Possible combinations: 1
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo        X          X          X          X          X         NM     100,00 %        X          X          X         NM  
+Salvatore        X          X          X     100,00 %        X         NM         NM         NM          X          X          X  
+    Tommy        X          X         NM          X         NM         NM          X     100,00 %       NM          X          X  
+   Manuel   100,00 %        X          X          X          X         NM         NM          X          X          X          X  
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM          X  
+    Josua        X     100,00 %        X          X         NM         NM          X          X          X         NM          X  
+Alexander        X          X          X          X          X         NM          X          X         NM     100,00 %        X  
+   Danilo        X         NM          X          X          X         NM         NM          X     100,00 %        X          X  
+    Eugen        X          X         NM         NM     100,00 %       NM         NM          X          X          X          X  
+    Jamie        X          X     100,00 %        X          X         NM          X          X          X         NM          X  
+
+
+11 Pair calculation
 Checked  combinations: 488691
 Possible combinations: 9
 
@@ -12,4 +30,5 @@ Alexander        X          X          X          X          X         NM       
    Danilo        X         NM          X          X          X         NM         NM          X     100,00 %        X      11,11 %
     Eugen        X          X         NM         NM     100,00 %       NM         NM          X          X          X      11,11 %
     Jamie        X          X     100,00 %        X          X         NM          X          X          X         NM      22,22 %
+
 

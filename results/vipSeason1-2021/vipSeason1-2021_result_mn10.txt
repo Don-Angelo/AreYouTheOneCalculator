@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 107226
+Possible combinations: 0
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo        X          X          X          X          X         NM          X          X          X          X         NM  
+Salvatore        X         NM          X          X          X         NM         NM         NM          X          X          X  
+    Tommy        X         NM         NM          X         NM         NM          X          X         NM          X          X  
+   Manuel        X         NM          X          X          X         NM         NM          X          X          X          X  
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM          X  
+    Josua       NM         PM         NM         NM         NM         NM         NM         NM         NM         NM          X  
+Alexander        X         NM          X          X          X         NM          X          X         NM          X          X  
+   Danilo        X         NM          X          X          X         NM         NM          X          X          X          X  
+    Eugen        X         NM         NM         NM          X         NM         NM          X          X          X          X  
+    Jamie        X         NM          X          X          X         NM          X          X          X         NM          X  
+
+
+11 Pair calculation
+Checked  combinations: 123120
+Possible combinations: 1
+
+            Kathleen    Aurelia     Steffi      Jacky  Walentina      Julia     Finnja       Jill     Melina      Sarah    Vanessa
+    Diogo        X          X          X          X          X         NM     100,00 %        X          X          X         NM  
+Salvatore        X         NM          X     100,00 %        X         NM         NM         NM          X          X          X  
+    Tommy        X         NM         NM          X         NM         NM          X     100,00 %       NM          X          X  
+   Manuel   100,00 %       NM          X          X          X         NM         NM          X          X          X          X  
+Francesco       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM          X  
+    Josua       NM         PM         NM         NM         NM         NM         NM         NM         NM         NM          X  
+Alexander        X         NM          X          X          X         NM          X          X         NM     100,00 %   100,00 %
+   Danilo        X         NM          X          X          X         NM         NM          X     100,00 %        X          X  
+    Eugen        X         NM         NM         NM     100,00 %       NM         NM          X          X          X          X  
+    Jamie        X         NM     100,00 %        X          X         NM          X          X          X         NM          X  
+
+

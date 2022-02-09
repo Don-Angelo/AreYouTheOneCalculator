@@ -30,7 +30,8 @@
         "Vanessa"
     ],
     "perfect_matches":[
-        "Francesco+Julia"
+        "Francesco+Julia",
+        "Josua+Aurelia"
     ],
    
     "no_matches":[
@@ -55,7 +56,31 @@
         "Jamie+Julia",
         "Tommy+Walentina",
         "Salvatore+Finnja",
-        "Eugen+Finnja"
+        "Eugen+Finnja",
+        "Eugen+Steffi",
+        "Diogo+Vanessa",
+        "Salvatore+Jill",
+        "Tommy+Steffi",
+        "Manuel+Finnja",
+        "Josua+Walentina",
+        "Alexander+Melina",
+        "Danilo+Aurelia",
+        "Eugen+Jacky",
+        "Jamie+Sarah",
+        "Tommy+Melina",
+        "Josua+Kathleen",
+        "Josua+Steffi",
+        "Josua+Jacky",
+        "Josua+Finnja",
+        "Josua+Jill",
+        "Josua+Melina",
+        "Josua+Sarah",
+        "Salvatore+Aurelia",
+        "Tommy+Aurelia",
+        "Manuel+Aurelia",
+        "Alexander+Aurelia",
+        "Eugen+Aurelia",
+        "Jamie+Aurelia"
     ],
     "matching_nights":{
         "1":{
@@ -177,6 +202,21 @@
                 "Jamie+Steffi"
             ],
             "spots":4
+        },
+        "10":{
+            "pairs":[
+                "Josua+Aurelia",
+                "Salvatore+Jacky",
+                "Tommy+Finnja",
+                "Manuel+Kathleen",
+                "Francesco+Julia",
+                "Alexander+Vanessa",
+                "Diogo+Jill",
+                "Danilo+Sarah",
+                "Eugen+Walentina",
+                "Jamie+Steffi"
+            ],
+            "spots":7
         }
     }
 }
