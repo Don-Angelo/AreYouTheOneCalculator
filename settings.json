@@ -1,6 +1,6 @@
 {
-    "logging":"debug",
-    "season_name":"season3-2021",
-    "matching_night_data":"mn10",
+    "logging":"info",
+    "season_name":"vipSeason2-2022",
+    "matching_night_data":"mn1",
     "multiprocessing":true
 }

@@ -1,0 +1,42 @@
+{
+    "men":[
+        "Calvin",
+        "Lukas",
+        "Maurice",
+        "Amadu",
+        "Martin",
+        "Pharrell",
+        "Fabio",
+        "Max",
+        "Michael",
+        "Luca"
+    ],
+    "women":[
+        "Cecilia",
+        "Karina",
+        "Isabelle",
+        "Anna",
+        "Gina",
+        "Luisa",
+        "Celina",
+        "Ricarda",
+        "Zoe",
+        "Franziska"
+    ],
+    "additional_men":[
+
+    ],
+    "additional_women":[
+        
+    ],
+    "perfect_matches":[
+        
+    ],
+   
+    "no_matches":[
+        "Martin+Zoe"
+    ],
+    "matching_nights":{
+        
+    }
+}
