@@ -37,6 +37,20 @@
         "Martin+Zoe"
     ],
     "matching_nights":{
-        
+        "1":{
+            "pairs":[
+                "Calvin+Gina",
+                "Lukas+Isabelle",
+                "Maurice+Ricarda",
+                "Amadu+Cecilia",
+                "Martin+Celina",
+                "Pharrell+Karina",
+                "Fabio+Luisa",
+                "Max+Franziska",
+                "Michael+Anna",
+                "Luca+Zoe"
+            ],
+            "spots":3
+        }
     }
 }
