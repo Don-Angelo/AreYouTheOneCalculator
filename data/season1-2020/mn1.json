@@ -1,0 +1,55 @@
+{
+    "men":[
+        "Aleks",
+        "Axel",
+        "Dominic",
+        "René",
+        "Elisha",
+        "Ferhat",
+        "Juliano",
+        "Kevin",
+        "Laurin",
+        "Mo"
+    ],
+    "women":[
+        "Aline",
+        "Ivana",
+        "Katharina",
+        "Laura",
+        "Luisa",
+        "Madleine",
+        "Melissa",
+        "Michelle",
+        "Nadine",
+        "Sabrina"        
+    ],
+    "additional_men":[
+        
+    ],
+    "additional_women":[
+
+    ],
+    "perfect_matches":[
+        
+    ],
+    "no_matches":[
+        "Mo+Ivana"
+    ],
+    "matching_nights":{
+        "1":{
+            "pairs":[
+                "Aleks+Sabrina",
+                "Axel+Luisa",
+                "Dominic+Melissa",
+                "René+Katharina",
+                "Elisha+Nadine",
+                "Ferhat+Laura",
+                "Juliano+Ivana",
+                "Kevin+Aline",
+                "Laurin+Madleine",
+                "Mo+Michelle"
+            ],
+            "spots":1
+        }
+    }
+}
