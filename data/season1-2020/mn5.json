@@ -30,7 +30,8 @@
 
     ],
     "perfect_matches":[
-        "Mo+Aline"
+        "Mo+Aline",
+        "Laurin+Melissa"
     ],
     "no_matches":[
         "Mo+Ivana",
@@ -52,7 +53,31 @@
         "Juliano+Aline",
         "Kevin+Aline",
         "Laurin+Aline",
-        "Ferhat+Michelle"
+        "Ferhat+Michelle",
+        "Laurin+Ivana",
+        "Laurin+Katharina",
+        "Laurin+Laura",
+        "Laurin+Madleine",
+        "Laurin+Michelle",
+        "Laurin+Nadine",
+        "Laurin+Sabrina",
+        "Laurin+Luisa",
+        "Aleks+Melissa",
+        "Axel+Melissa",
+        "René+Melissa",
+        "Elisha+Melissa",
+        "Ferhat+Melissa",
+        "Juliano+Melissa",
+        "Kevin+Melissa",
+        "Aleks+Sabrina",
+        "Axel+Ivana",
+        "Dominic+Nadine",
+        "René+Luisa",
+        "Elisha+Michelle",
+        "Ferhat+Madleine",
+        "Juliano+Katharina",
+        "Kevin+Laura",
+        "Elisha+Ivana"
     ],
     "matching_nights":{
         "1":{
@@ -99,6 +124,36 @@
                 "Mo+Aline"
             ],
             "spots":3
+        },
+        "4":{
+            "pairs":[
+                "Aleks+Sabrina",
+                "Axel+Ivana",
+                "Dominic+Nadine",
+                "René+Luisa",
+                "Elisha+Michelle",
+                "Ferhat+Madleine",
+                "Juliano+Katharina",
+                "Kevin+Laura",
+                "Laurin+Melissa",
+                "Mo+Aline"
+            ],
+            "spots":2
+        },
+        "5":{
+            "pairs":[
+                "Aleks+Madleine",
+                "Axel+Michelle",
+                "Dominic+Ivana",
+                "René+Nadine",
+                "Elisha+Sabrina",
+                "Ferhat+Luisa",
+                "Juliano+Laura",
+                "Kevin+Katharina",
+                "Laurin+Melissa",
+                "Mo+Aline"
+            ],
+            "spots":5
         }
     }
 }

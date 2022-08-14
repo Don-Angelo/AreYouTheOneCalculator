@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 287280
+Possible combinations: 16682
+
+             Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
+  Aleks       NM       8,28 %     8,14 %     8,00 %     8,34 %     8,25 %     9,59 %    12,19 %    23,72 %    13,49 %
+   Axel       NM       8,38 %     8,12 %     8,08 %    13,52 %    23,70 %     9,63 %    12,31 %     8,40 %     7,86 %
+Dominic       NM       9,66 %     9,59 %     9,45 %     9,66 %     9,59 %       NM      14,07 %     9,63 %    28,37 %
+   René       NM       8,32 %    13,87 %     8,01 %    23,73 %     8,19 %     9,59 %    12,24 %     8,28 %     7,77 %
+ Elisha       NM      23,71 %     8,21 %     8,04 %     8,38 %     8,35 %     9,66 %    12,29 %    13,51 %     7,85 %
+ Ferhat       NM      11,35 %    11,31 %    18,58 %    11,43 %    11,35 %    13,57 %       NM      11,43 %    10,99 %
+Juliano       NM      13,52 %     8,18 %    23,62 %     8,35 %     8,28 %     9,63 %    12,26 %     8,27 %     7,89 %
+  Kevin       NM       8,86 %    24,87 %     8,67 %     8,82 %     8,78 %    10,04 %    12,76 %     8,85 %     8,36 %
+ Laurin       NM       7,92 %     7,71 %     7,55 %     7,78 %    13,51 %    28,29 %    11,89 %     7,92 %     7,42 %
+     Mo       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+
+
+11 Pair calculation
+Checked  combinations: 0
+Possible combinations: 0
+
+             Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
+  Aleks       NM          X          X          X          X          X          X          X          X          X  
+   Axel       NM          X          X          X          X          X          X          X          X          X  
+Dominic       NM          X          X          X          X          X         NM          X          X          X  
+   René       NM          X          X          X          X          X          X          X          X          X  
+ Elisha       NM          X          X          X          X          X          X          X          X          X  
+ Ferhat       NM          X          X          X          X          X          X         NM          X          X  
+Juliano       NM          X          X          X          X          X          X          X          X          X  
+  Kevin       NM          X          X          X          X          X          X          X          X          X  
+ Laurin       NM          X          X          X          X          X          X          X          X          X  
+     Mo       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+
+
