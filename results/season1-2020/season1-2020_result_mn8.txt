@@ -1,0 +1,36 @@
+10 Pair calculation
+Checked  combinations: 2000
+Possible combinations: 3
+
+             Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
+  Aleks       NM          X          X      33,33 %        X      66,67 %       NM         NM          X         NM  
+   Axel       NM         NM      66,67 %        X      33,33 %        X         NM         NM          X         NM  
+Dominic       NM     100,00 %        X          X          X          X         NM         NM         NM          X  
+   René       NM         NM         NM         NM         NM         NM         NM         PM         NM         NM  
+ Elisha       NM         NM          X          X          X          X         NM         NM      66,67 %    33,33 %
+ Ferhat       NM          X          X          X          X         NM         NM         NM      33,33 %    66,67 %
+Juliano       NM          X         NM      66,67 %        X      33,33 %       NM         NM          X          X  
+  Kevin       NM          X      33,33 %       NM      33,33 %        X         NM         NM          X          X  
+ Laurin       NM         NM         NM         NM         NM         NM         PM         NM         NM         NM  
+     Mo       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+   Edin       NM         NM          X          X      33,33 %        X         NM         NM          X          X  
+
+
+11 Pair calculation
+Checked  combinations: 9006
+Possible combinations: 10
+
+             Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
+  Aleks       NM          X          X      50,00 %        X      50,00 %       NM         NM          X         NM  
+   Axel       NM         NM      50,00 %        X      50,00 %        X         NM         NM          X         NM  
+Dominic       NM     100,00 %        X          X          X          X         NM         NM         NM          X  
+   René       NM         NM         NM         NM         NM         NM         NM         PM         NM         NM  
+ Elisha       NM         NM          X          X          X          X         NM         NM      50,00 %    50,00 %
+ Ferhat       NM          X          X          X          X         NM         NM         NM      50,00 %    50,00 %
+Juliano       NM          X         NM      50,00 %        X      50,00 %       NM         NM          X          X  
+  Kevin       NM          X      50,00 %       NM      50,00 %        X         NM         NM          X          X  
+ Laurin       NM         NM         NM         NM         NM         NM         PM         NM         NM         NM  
+     Mo       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+   Edin       NM         NM      20,00 %        X      20,00 %    20,00 %       NM         NM      20,00 %    20,00 %
+
+

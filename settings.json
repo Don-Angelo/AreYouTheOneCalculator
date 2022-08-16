@@ -1,6 +1,6 @@
 {
     "logging":"info",
     "season_name":"season1-2020",
-    "matching_night_data":"mn7",
+    "matching_night_data":"mn8",
     "multiprocessing":true
 }
