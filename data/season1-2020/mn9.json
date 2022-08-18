@@ -94,7 +94,8 @@
         "Edin+Melissa",
         "Edin+Michelle",
         "Edin+Ivana",
-        "Axel+Sabrina"
+        "Axel+Sabrina",
+        "Ferhat+Luisa"
     ],
     "matching_nights":{
         "1":{
@@ -216,6 +217,21 @@
                 "René+Michelle"
             ],
             "spots":6
+        },
+        "9":{
+            "pairs":[
+                "Kevin+Madleine",
+                "Axel+Luisa",
+                "Elisha+Sabrina",
+                "Juliano+Laura",
+                "Ferhat+Nadine",
+                "Dominic+Ivana",
+                "Aleks+Katharina",
+                "Laurin+Melissa",
+                "Mo+Aline",
+                "René+Michelle"
+            ],
+            "spots":7
         }
     }
 }

@@ -32,7 +32,8 @@
     "perfect_matches":[
         "Mo+Aline",
         "Laurin+Melissa",
-        "René+Michelle"
+        "René+Michelle",
+        "Kevin+Katharina"
     ],
     "no_matches":[
         "Mo+Ivana",
@@ -94,7 +95,18 @@
         "Edin+Melissa",
         "Edin+Michelle",
         "Edin+Ivana",
-        "Axel+Sabrina"
+        "Axel+Sabrina",
+        "Ferhat+Luisa",
+        "Kevin+Ivana",
+        "Kevin+Luisa",
+        "Kevin+Madleine",
+        "Kevin+Nadine",
+        "Kevin+Sabrina",
+        "Aleks+Katharina",
+        "Axel+Katharina",
+        "Dominic+Katharina",
+        "Elisha+Katharina",
+        "Ferhat+Katharina"
     ],
     "matching_nights":{
         "1":{
@@ -216,6 +228,36 @@
                 "René+Michelle"
             ],
             "spots":6
+        },
+        "9":{
+            "pairs":[
+                "Kevin+Madleine",
+                "Axel+Luisa",
+                "Elisha+Sabrina",
+                "Juliano+Laura",
+                "Ferhat+Nadine",
+                "Dominic+Ivana",
+                "Aleks+Katharina",
+                "Laurin+Melissa",
+                "Mo+Aline",
+                "René+Michelle"
+            ],
+            "spots":7
+        },
+        "10":{
+            "pairs":[
+                "Juliano+Madleine",
+                "Axel+Luisa",
+                "Elisha+Sabrina",
+                "Aleks+Laura",
+                "Ferhat+Nadine",
+                "Dominic+Ivana",
+                "Kevin+Katharina",
+                "Laurin+Melissa",
+                "Mo+Aline",
+                "René+Michelle"
+            ],
+            "spots":10
         }
     }
 }

@@ -1,5 +1,5 @@
 10 Pair calculation
-Checked  combinations: 2000
+Checked  combinations: 1694
 Possible combinations: 0
 
              Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
@@ -8,7 +8,7 @@ Possible combinations: 0
 Dominic       NM          X          X          X          X          X         NM         NM         NM          X  
    René       NM         NM         NM         NM         NM         NM         NM         PM         NM         NM  
  Elisha       NM         NM          X          X          X          X         NM         NM          X          X  
- Ferhat       NM          X          X          X          X         NM         NM         NM          X          X  
+ Ferhat       NM          X          X          X         NM         NM         NM         NM          X          X  
 Juliano       NM          X         NM          X          X          X         NM         NM          X          X  
   Kevin       NM          X          X         NM          X          X         NM         NM          X          X  
  Laurin       NM         NM         NM         NM         NM         NM         PM         NM         NM         NM  
@@ -17,7 +17,7 @@ Juliano       NM          X         NM          X          X          X         
 
 
 11 Pair calculation
-Checked  combinations: 9006
+Checked  combinations: 7788
 Possible combinations: 1
 
              Aline      Ivana  Katharina      Laura      Luisa   Madleine    Melissa   Michelle     Nadine    Sabrina
@@ -26,7 +26,7 @@ Possible combinations: 1
 Dominic       NM     100,00 %        X          X          X          X         NM         NM         NM          X  
    René       NM         NM         NM         NM         NM         NM         NM         PM         NM         NM  
  Elisha       NM         NM          X          X          X          X         NM         NM          X     100,00 %
- Ferhat       NM          X          X          X          X         NM         NM         NM     100,00 %        X  
+ Ferhat       NM          X          X          X         NM         NM         NM         NM     100,00 %        X  
 Juliano       NM          X         NM          X          X     100,00 %       NM         NM          X          X  
   Kevin       NM          X     100,00 %       NM          X          X         NM         NM          X          X  
  Laurin       NM         NM         NM         NM         NM         NM         PM         NM         NM         NM  
