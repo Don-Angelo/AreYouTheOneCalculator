@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 3265920
+Possible combinations: 608153
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria
+     Aaron    8,69 %    8,86 %   19,51 %    8,86 %    8,86 %    8,86 %    8,86 %    9,76 %    8,86 %    8,86 %
+     Dario    8,69 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %    9,76 %    8,86 %   19,51 %
+   Dominik    8,69 %    8,86 %    8,86 %    8,86 %    8,86 %   19,51 %    8,86 %    9,76 %    8,86 %    8,86 %
+   Germain    8,69 %    8,86 %    8,86 %    8,86 %   19,51 %    8,86 %    8,86 %    9,76 %    8,86 %    8,86 %
+      Marc    8,69 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %   19,51 %    9,76 %    8,86 %    8,86 %
+    Marcel    8,69 %    8,86 %    8,86 %   19,51 %    8,86 %    8,86 %    8,86 %    9,76 %    8,86 %    8,86 %
+     Marko    8,54 %    8,69 %    8,69 %    8,69 %    8,69 %    8,69 %    8,69 %   21,95 %    8,69 %    8,69 %
+    Marvin    8,69 %   19,51 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %    9,76 %    8,86 %    8,86 %
+Maximilian   21,95 %    9,76 %    9,76 %    9,76 %    9,76 %    9,76 %    9,76 %      NM      9,76 %    9,76 %
+    Sascha    8,69 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %    8,86 %    9,76 %   19,51 %    8,86 %
+
+
+11 Pair calculation
+Checked  combinations: 0
+Possible combinations: 0
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria
+     Aaron       X         X         X         X         X         X         X         X         X         X  
+     Dario       X         X         X         X         X         X         X         X         X         X  
+   Dominik       X         X         X         X         X         X         X         X         X         X  
+   Germain       X         X         X         X         X         X         X         X         X         X  
+      Marc       X         X         X         X         X         X         X         X         X         X  
+    Marcel       X         X         X         X         X         X         X         X         X         X  
+     Marko       X         X         X         X         X         X         X         X         X         X  
+    Marvin       X         X         X         X         X         X         X         X         X         X  
+Maximilian       X         X         X         X         X         X         X        NM         X         X  
+    Sascha       X         X         X         X         X         X         X         X         X         X  
+
+
