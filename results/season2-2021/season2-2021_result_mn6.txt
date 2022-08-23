@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 2943360
+Possible combinations: 239
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria  VanessaM
+     Aaron    8,37 %       X        NM         X        NM     77,41 %       X      5,86 %       X         X      8,37 %
+     Dario    2,51 %       X      1,26 %       X        NM         X      7,53 %    5,86 %       X     81,17 %    1,67 %
+   Dominik    1,67 %    7,95 %    4,60 %       X        NM         X      3,35 %    2,93 %   75,31 %    0,84 %    3,35 %
+   Germain   35,15 %   15,48 %   11,30 %   10,88 %      NM      6,28 %    5,86 %    5,86 %    0,84 %       X      8,37 %
+      Marc    9,21 %   11,72 %   10,88 %    7,95 %      NM         X     44,77 %       X      5,02 %    2,51 %    7,95 %
+    Marcel      NM        NM        NM        NM        PM        NM        NM        NM        NM        NM        NM  
+     Marko    8,37 %    7,11 %    9,21 %    5,86 %      NM      4,60 %       X     53,97 %    2,51 %    2,93 %    5,44 %
+    Marvin       X     18,83 %       X     45,61 %      NM         X     11,72 %   10,46 %       X         X     13,39 %
+Maximilian    1,26 %   22,59 %   28,03 %    2,93 %      NM         X      9,21 %      NM     10,04 %    5,02 %   20,92 %
+    Sascha   19,25 %       X     19,67 %   14,64 %      NM      6,28 %   10,46 %    8,37 %       X      2,93 %   18,41 %
+
+
+11 Pair calculation
+Checked  combinations: 2585520
+Possible combinations: 299
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria  VanessaM
+     Aaron   14,72 %    1,34 %      NM      6,02 %      NM     65,55 %       X     11,04 %    1,00 %    0,33 %    9,70 %
+     Dario    3,34 %       X      2,68 %       X        NM         X      9,36 %    9,36 %    0,67 %   74,58 %   27,09 %
+   Dominik    3,34 %   12,37 %    4,01 %    1,34 %      NM         X      3,68 %    4,01 %   70,90 %    0,33 %    9,70 %
+   Germain   38,46 %   13,38 %   12,04 %   10,03 %      NM     10,37 %    5,35 %    8,36 %    2,01 %       X      9,70 %
+      Marc    5,02 %    9,03 %   12,04 %   10,70 %      NM         X     53,18 %    1,00 %    6,02 %    3,01 %    9,70 %
+    Marcel      NM        NM        NM        NM        PM        NM        NM        NM        NM        NM        NM  
+     Marko   10,37 %    7,69 %   11,37 %   11,04 %      NM      7,02 %    1,00 %   43,81 %    1,67 %    6,02 %    5,02 %
+    Marvin    2,68 %   25,42 %    8,03 %   36,45 %      NM      5,02 %   10,70 %   11,71 %       X         X      9,70 %
+Maximilian    3,01 %   30,77 %   29,10 %    3,01 %      NM      2,01 %    4,01 %      NM     17,73 %   10,37 %    9,70 %
+    Sascha   19,06 %       X     20,74 %   21,40 %      NM     10,03 %   12,71 %   10,70 %       X      5,35 %    9,70 %
+
+
