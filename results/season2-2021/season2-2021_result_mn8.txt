@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 906129
+Possible combinations: 4
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria  VanessaM
+     Aaron       X         X        NM         X        NM    100,00 %       X         X        NM         X         X  
+     Dario       X         X         X        NM        NM         X         X    100,00 %       X        NM         X  
+   Dominik       X         X         X         X        NM        NM         X         X    100,00 %       X         X  
+   Germain  100,00 %      NM         X         X        NM         X         X         X         X         X         X  
+      Marc       X         X         X         X        NM         X    100,00 %       X         X         X        NM  
+    Marcel      NM        NM        NM        NM        PM        NM        NM        NM        NM        NM        NM  
+     Marko       X         X    100,00 %      NM        NM         X         X        NM         X         X         X  
+    Marvin       X    100,00 %      NM         X        NM         X         X         X         X         X         X  
+Maximilian       X         X         X         X        NM         X        NM        NM         X     50,00 %   50,00 %
+    Sascha       X         X         X     50,00 %      NM         X         X        NM         X     25,00 %   25,00 %
+
+
+11 Pair calculation
+Checked  combinations: 686104
+Possible combinations: 5
+
+            Christin      Jill  Kathleen     Laura    Leonie   Melissa    Mirjam   Sabrina   Vanessa  Victoria  VanessaM
+     Aaron       X         X        NM         X        NM    100,00 %       X         X        NM         X     20,00 %
+     Dario       X         X         X        NM        NM         X         X    100,00 %       X        NM         X  
+   Dominik       X         X         X         X        NM        NM         X         X    100,00 %       X     20,00 %
+   Germain  100,00 %      NM         X         X        NM         X         X         X         X         X         X  
+      Marc       X         X         X         X        NM         X    100,00 %       X         X         X        NM  
+    Marcel      NM        NM        NM        NM        PM        NM        NM        NM        NM        NM        NM  
+     Marko       X         X    100,00 %      NM        NM         X         X        NM         X         X         X  
+    Marvin       X    100,00 %      NM         X        NM         X         X         X         X         X     20,00 %
+Maximilian       X         X         X         X        NM         X        NM        NM         X    100,00 %   20,00 %
+    Sascha       X         X         X    100,00 %      NM         X         X        NM         X         X     20,00 %
+
+
