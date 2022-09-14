@@ -34,3 +34,39 @@ Pharrell     4,65 %       NM      15,49 %    16,37 %    17,70 %       NM      12
    Felix    10,84 %    10,84 %    10,84 %    10,84 %    13,27 %    10,84 %    10,84 %       NM      10,84 %    10,84 %
 
 
+10 Pair calculation
+Checked  combinations: 356640
+Possible combinations: 108
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin     1,85 %    22,22 %    11,11 %     6,48 %    24,07 %       NM      10,19 %        X      10,19 %    13,89 %
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice        X       1,85 %     1,85 %        X       0,93 %       NM          X      92,59 %     1,85 %     0,93 %
+   Amadu    81,48 %        X       4,63 %     2,78 %     0,93 %       NM       0,93 %        X       1,85 %     7,41 %
+  Martin     2,78 %    24,07 %    22,22 %    13,89 %     9,26 %       NM      13,89 %     0,93 %       NM      12,96 %
+Pharrell     3,70 %       NM      14,81 %    17,59 %    19,44 %       NM      11,11 %     2,78 %    10,19 %    20,37 %
+   Fabio     0,93 %    18,52 %     6,48 %     8,33 %    10,19 %       NM      37,04 %     0,93 %     7,41 %    10,19 %
+     Max     4,63 %    11,11 %     8,33 %     5,56 %    15,74 %       NM       9,26 %        X      29,63 %    15,74 %
+ Michael     0,93 %    10,19 %     9,26 %    42,59 %     9,26 %       NM      10,19 %        X       9,26 %     8,33 %
+    Luca     1,85 %    12,04 %    13,89 %     2,78 %    10,19 %       NM       7,41 %     2,78 %    29,63 %    10,19 %
+   Felix     1,85 %        X       7,41 %        X          X         NM          X         NM          X          X  
+
+
+11 Pair calculation
+Checked  combinations: 2298240
+Possible combinations: 806
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin     2,23 %    25,56 %    11,29 %     6,33 %    24,07 %       NM       9,31 %     0,25 %     8,93 %    12,03 %
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice        X       1,74 %     1,74 %        X       1,36 %       NM       0,25 %    92,06 %     1,74 %     1,12 %
+   Amadu    80,15 %     0,74 %     4,34 %     2,85 %     1,49 %       NM       1,24 %        X       2,36 %     6,82 %
+  Martin     3,47 %    18,49 %    22,46 %    16,50 %     8,81 %       NM      16,38 %     1,12 %       NM      12,78 %
+Pharrell     4,71 %       NM      15,51 %    16,13 %    17,62 %       NM      12,78 %     2,98 %    11,79 %    18,49 %
+   Fabio     1,61 %    19,48 %     7,82 %     9,80 %     9,31 %       NM      32,13 %     0,99 %     8,93 %     9,93 %
+     Max     4,47 %     9,93 %     9,31 %     6,33 %    15,38 %       NM       9,31 %        X      25,68 %    19,60 %
+ Michael     1,24 %    10,42 %    10,55 %    38,34 %    10,92 %       NM      10,30 %        X      11,17 %     7,07 %
+    Luca     2,11 %    13,65 %    17,00 %     3,72 %    11,04 %       NM       8,31 %     2,61 %    29,40 %    12,16 %
+   Felix    12,16 %    12,16 %    12,16 %    12,16 %    14,89 %       NM      12,16 %       NM      12,16 %    12,16 %
+
+
