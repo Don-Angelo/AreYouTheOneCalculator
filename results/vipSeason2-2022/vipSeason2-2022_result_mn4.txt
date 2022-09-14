@@ -1,0 +1,34 @@
+10 Pair calculation
+Checked  combinations: 287280
+Possible combinations: 300
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin     3,33 %    31,33 %     8,00 %     7,00 %    25,67 %       NM       8,33 %     0,67 %     7,33 %     8,33 %
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice        X       0,67 %     1,00 %        X       2,00 %       NM       0,67 %    93,33 %     0,67 %     1,67 %
+   Amadu    68,67 %     5,33 %     5,67 %     3,33 %     2,67 %       NM       3,00 %        X       4,67 %     6,67 %
+  Martin     5,00 %    13,67 %    17,33 %    17,33 %     9,33 %       NM      25,00 %     1,00 %       NM      11,33 %
+Pharrell     9,00 %       NM      14,00 %    13,33 %    15,00 %       NM      15,00 %     2,67 %    15,67 %    15,33 %
+   Fabio     5,00 %    19,67 %     9,00 %    11,00 %    10,33 %       NM      23,67 %     0,67 %    10,33 %    10,33 %
+     Max     3,33 %    10,00 %     9,00 %     6,67 %    10,67 %       NM       9,33 %     0,67 %    24,67 %    25,67 %
+ Michael     2,67 %     8,33 %     9,67 %    36,33 %    14,67 %       NM       8,67 %        X      11,33 %     8,33 %
+    Luca     3,00 %    11,00 %    26,33 %     5,00 %     9,67 %       NM       6,33 %     1,00 %    25,33 %    12,33 %
+
+
+11 Pair calculation
+Checked  combinations: 0
+Possible combinations: 0
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin        X          X          X          X          X         NM          X          X          X          X  
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice        X          X          X          X          X         NM          X          X          X          X  
+   Amadu        X          X          X          X          X         NM          X          X          X          X  
+  Martin        X          X          X          X          X         NM          X          X         NM          X  
+Pharrell        X         NM          X          X          X         NM          X          X          X          X  
+   Fabio        X          X          X          X          X         NM          X          X          X          X  
+     Max        X          X          X          X          X         NM          X          X          X          X  
+ Michael        X          X          X          X          X         NM          X          X          X          X  
+    Luca        X          X          X          X          X         NM          X          X          X          X  
+
+

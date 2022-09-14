@@ -24,15 +24,15 @@
         "Franziska"
     ],
     "additional_men":[
-
+        "Felix"
     ],
     "additional_women":[
-        
+
     ],
     "perfect_matches":[
         "Lukas+Luisa"
     ],
-   
+
     "no_matches":[
         "Martin+Zoe",
         "Pharrell+Karina",
@@ -54,7 +54,8 @@
         "Fabio+Luisa",
         "Max+Luisa",
         "Michael+Luisa",
-        "Luca+Luisa"
+        "Luca+Luisa",
+        "Felix+Ricarda"
     ],
     "matching_nights":{
         "1":{
@@ -99,6 +100,21 @@
                 "Max+Zoe",
                 "Michael+Gina",
                 "Luca+Isabelle"
+            ],
+            "spots":3
+        },
+        "4":{
+            "pairs":[
+                "Amadu+Cecilia",
+                "Martin+Karina",
+                "Maurice+Isabelle",
+                "Pharrell+Anna",
+                "Felix+Gina",
+                "Lukas+Luisa",
+                "Fabio+Celina",
+                "Max+Ricarda",
+                "Luca+Zoe",
+                "Michael+Franziska"
             ],
             "spots":3
         }
