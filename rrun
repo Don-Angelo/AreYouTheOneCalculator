@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rustc ./src/are_you_the_one_calculator.rs -o ./build/are_you_the_one_calculator && ./build/are_you_the_one_calculator
