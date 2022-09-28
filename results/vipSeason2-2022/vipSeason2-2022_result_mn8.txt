@@ -1,0 +1,36 @@
+10 Pair calculation
+Checked  combinations: 4056
+Possible combinations: 0
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin       NM          X          X         NM          X         NM          X          X          X          X  
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice       NM          X          X         NM          X         NM          X          X          X          X  
+   Amadu       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+  Martin       NM          X          X         NM          X         NM          X          X         NM          X  
+Pharrell       NM         NM         NM         NM          X         NM          X          X          X          X  
+   Fabio       NM          X          X         NM          X         NM          X          X          X          X  
+     Max       NM          X          X         NM          X         NM          X          X          X          X  
+ Michael       NM         NM         NM         PM         NM         NM         NM         NM         NM         NM  
+    Luca       NM          X          X         NM          X         NM          X          X          X          X  
+   Felix        X          X          X          X          X         NM          X         NM          X          X  
+
+
+11 Pair calculation
+Checked  combinations: 24960
+Possible combinations: 1
+
+            Cecilia     Karina   Isabelle       Anna       Gina      Luisa     Celina    Ricarda        Zoe  Franziska
+  Calvin       NM          X          X         NM          X         NM          X          X          X     100,00 %
+   Lukas       NM         NM         NM         NM         NM         PM         NM         NM         NM         NM  
+ Maurice       NM          X          X         NM          X         NM          X     100,00 %        X          X  
+   Amadu       PM         NM         NM         NM         NM         NM         NM         NM         NM         NM  
+  Martin       NM          X          X         NM     100,00 %       NM          X          X         NM          X  
+Pharrell       NM         NM         NM         NM          X         NM          X          X     100,00 %        X  
+   Fabio       NM          X          X         NM          X         NM     100,00 %        X          X          X  
+     Max       NM          X     100,00 %       NM          X         NM          X          X          X          X  
+ Michael       NM         NM         NM         PM         NM         NM         NM         NM         NM         NM  
+    Luca       NM     100,00 %        X         NM          X         NM          X          X          X          X  
+   Felix        X          X     100,00 %        X          X         NM          X         NM          X          X  
+
+
