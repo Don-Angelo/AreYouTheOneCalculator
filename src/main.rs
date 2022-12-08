@@ -1,13 +1,22 @@
 use itertools::Itertools;
 // use std::ops::Range;
-use std::fs::File;
+use std::{fs::File};
 use std::io::Read;
 use std::io;
+use log::{info};
+use env_logger;
 
 fn main(){
-    println!("are you the one calculator main");
-    let mut text = read_file("./data/vipSeason2-2022.json");
-    println!("file: {:?}", text);
+    /* Logger Config:
+        Windos: $Env:RUST_log="info"; cargo run
+    */
+    env_logger::init();    
+    info!("Are You The One Calculator started");
+
+
+    info!("Reading the config");
+    let text = read_file("./config.json");
+    // println!("file: {:?}", text);
 
 
     let mut m = Vec::new();
@@ -15,7 +24,7 @@ fn main(){
     m.push("Men0".to_string());
     m.push("Men1".to_string());
     m.push("Men2".to_string());
-    m.push("Men3".to_string());
+    // m.push("Men3".to_string());
     // m.push("Men4".to_string());
     
     n.push("Women0".to_string());
