@@ -1,0 +1,30 @@
+{
+    "men": [
+        "Men0",
+        "Men1",
+        "Men2"
+    ],
+    "women": [
+        "Women0",
+        "Women1",
+        "Women2"
+    ],
+    "update": {
+        "2022-09-23": {
+            "pm": [
+
+            ],
+            "nm": [
+
+            ],
+            "matchbox": {
+                "0": {
+                    "combinations": [
+
+                    ],
+                    "spots": 0
+                }
+            }
+        }
+    }
+}

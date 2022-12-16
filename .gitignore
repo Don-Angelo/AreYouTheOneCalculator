@@ -2,3 +2,7 @@
 *.log
 **/logs
 *.cache
+
+# Added by cargo
+
+/target
