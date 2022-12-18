@@ -1,10 +1,8 @@
 use itertools::{Itertools};
 // use std::ops::Range;
-use std::{fs::File};
-use std::io::Read;
-use std::io;
 use log::{info};
 use env_logger;
+use filehandler::read_file;
 
 pub mod filehandler;
 
@@ -17,8 +15,14 @@ fn main(){
 
 
     info!("Reading the config");
-    let text = read_file("./config.json");
-    // println!("file: {:?}", text);
+    let text = match read_file("./aconfig.json"){
+        Ok(text) => text,
+        Err(err) => {
+            panic!("Error reading the config: {:?}", err)
+        },
+    };
+ 
+    println!("file: {:?}", text);
 
 
     let mut m = Vec::new();
@@ -41,6 +45,7 @@ fn main(){
     }
 }
 
+
 #[cfg(test)]
 mod tests {
     #[test]
@@ -48,13 +53,6 @@ mod tests {
         let result = 2 + 2;
         assert_eq!(result, 4);
     }
-}
-
-fn read_file(filename: &str) -> io::Result<String> {
-    let mut file = File::open(filename)?;
-    let mut text = String::new();
-    file.read_to_string(&mut text)?;
-    Ok(text)
 }
 
 fn process(smaller_len:&usize, desired_len:&usize) {
