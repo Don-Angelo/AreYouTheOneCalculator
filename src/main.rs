@@ -6,6 +6,8 @@ use std::io;
 use log::{info};
 use env_logger;
 
+pub mod filehandler;
+
 fn main(){
     /* Logger Config:
         Windos: $Env:RUST_log="info"; cargo run
