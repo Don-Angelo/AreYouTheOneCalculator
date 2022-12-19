@@ -12,27 +12,27 @@ pub fn read_file(filename: &str) -> io::Result<String> {
 // ===========
 // == Tests ==
 // ===========
-
 #[cfg(test)]
 mod tests {
+    use std::io::ErrorKind;
     use super::*;
-    // === Testing: read_file ===
+
     #[test]
     fn reading_file() {
-        let text = read_file("./config.json");
+        match read_file("./config.json") {
+            Ok(_) => assert!(true),
+            Err(_) => assert!(false),
+        };
     }
 
     #[test]
     fn read_missing_file() {
-        fn reading_file() {
-            let text = read_file("./missing-config.json");
-        }
-    }
-
-    #[test]
-    fn read_file_is_empty() {
-        fn reading_file() {
-            let text = read_file("./config.json");
-        }
+        match read_file("./missing-config.json") {
+            Ok(_) => assert!(false),
+            Err(err) => match err.kind() {
+                ErrorKind::NotFound => assert!(true),
+                _ => assert!(false), // catch all other errors
+            },
+        };
     }
 }
