@@ -1,0 +1,16 @@
+{
+    "women": [
+        "W1",
+        "W2"
+    ],
+    "men": [
+        "M1",
+        "M2"
+    ],
+    "additional_women": [],
+    "additional_men": [
+        "M3"
+    ],
+    "matchbox_results" : [],
+    "matching_nights": []
+}

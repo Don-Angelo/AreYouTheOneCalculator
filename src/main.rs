@@ -1,48 +1,56 @@
 use clap::Parser;
 use itertools::{Itertools};
-// use std::ops::Range;
-use log::{info};
+use log::{info,debug};
 use env_logger;
 use filehandler::read_file;
+use std::io::ErrorKind;
 
 pub mod filehandler;
 
+
+// ============================
+// == Command line arguments ==
+// ============================
 #[derive(Parser)]
 #[command(next_line_help = true)]
-struct Args {
+pub struct Args {
     #[arg(short, long)]
     /// Rel path to season data file
-    season: Option<String>
-
+    season: String // if the parameter is optional: season: Option<String>
 }
 
+
+
 fn main(){
-    /* Run with logger:
-        Windos: $Env:RUST_log="info"; cargo run
-    */
-    env_logger::init();    
+    env_logger::init();
     info!("Are You The One Calculator started");
     let args = Args::parse();
 
-    if args.season.is_some() {
-        println!("Season {}", args.season.unwrap()); 
-    }
-    
-    // println!("In file {}", args.s);
+    info!("Reading data: {}", args.season);
 
-
-    info!("Reading the config");
-    let text = match read_file("./config.json"){
+    let text = match read_file(&args.season) {
         Ok(text) => text,
-        Err(err) => {
-            panic!("Error reading the config: {:?}", err)
-        },
+        Err(err) => match err.kind() {
+            ErrorKind::NotFound => {
+                panic!("Error: File not found");
+            },
+            _ => panic!("Error reading the data: {:?}", err), // catch all other errors
+        }
     };
- 
-    println!("file: {:?}", text);
+    debug!("Read data: {}", text);
+   
 
+
+    // let season_data: SeasonData = match serde_json::from_str(&text)? {
+    //     Ok(season_data) => season_data,
+    //     Err(err) => panic!("Error: {}",err)
+    // };
+
+    // debug!("Data: {}", season_data);
+    // println!("Type {}", season_data["men"]);
 
     let mut m = Vec::new();
+    // let mut m = season_data["men"].as_array();
     let mut n = Vec::new();
     m.push("Men0".to_string());
     m.push("Men1".to_string());
