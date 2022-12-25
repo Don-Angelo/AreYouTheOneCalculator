@@ -1,3 +1,4 @@
+use clap::Parser;
 use itertools::{Itertools};
 // use std::ops::Range;
 use log::{info};
@@ -6,16 +7,32 @@ use filehandler::read_file;
 
 pub mod filehandler;
 
+#[derive(Parser)]
+#[command(next_line_help = true)]
+struct Args {
+    #[arg(short, long)]
+    /// Rel path to season data file
+    season: Option<String>
+
+}
+
 fn main(){
-    /* Logger Config:
+    /* Run with logger:
         Windos: $Env:RUST_log="info"; cargo run
     */
     env_logger::init();    
     info!("Are You The One Calculator started");
+    let args = Args::parse();
+
+    if args.season.is_some() {
+        println!("Season {}", args.season.unwrap()); 
+    }
+    
+    // println!("In file {}", args.s);
 
 
     info!("Reading the config");
-    let text = match read_file("./aconfig.json"){
+    let text = match read_file("./config.json"){
         Ok(text) => text,
         Err(err) => {
             panic!("Error reading the config: {:?}", err)
@@ -45,7 +62,9 @@ fn main(){
     }
 }
 
-
+// ===========
+// == Tests ==
+// ===========
 #[cfg(test)]
 mod tests {
     #[test]
