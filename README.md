@@ -7,6 +7,6 @@
     cargo run -- --season 2022
 
 ### Run with debug info
-#### Windowos
+#### WIndows
 
     $Env:RUST_log="info"; cargo run
