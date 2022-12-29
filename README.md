@@ -2,7 +2,11 @@
 
 ## How To Run 
 ### Dependencies
-This program is written in rust, to build the executable you have to install the Rust language pack and the cargo packet manager. https://www.rust-lang.org/
+The following dependencies are nessesary to build and run the program:
+
+- The Rust language pack https://www.rust-lang.org/ (Tested with Rust v1.66.0) 
+- Docker https://docs.docker.com/get-docker/
+- Docker Compose https://docs.docker.com/compose/install/
 
 ### Run the program
 
