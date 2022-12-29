@@ -2,8 +2,10 @@ use clap::Parser;
 use itertools::{Itertools};
 use log::{info,debug};
 use env_logger;
-use filehandler::read_file;
+use filehandler::{read_file, parse_data};
 use std::io::ErrorKind;
+
+use filehandler::SeasonData;
 
 pub mod filehandler;
 
@@ -38,8 +40,14 @@ fn main(){
         }
     };
     debug!("Read data: {}", text);
-   
-
+    
+    let season_data: SeasonData = match parse_data(text) {
+        Ok(season_data) => season_data,
+        Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
+        
+    };
+    
+    debug!("Parsed data: {:?}", season_data);
 
     // let season_data: SeasonData = match serde_json::from_str(&text)? {
     //     Ok(season_data) => season_data,
