@@ -1,0 +1,14 @@
+services:
+  database:
+    hostname: database
+    image: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - dbData:/data
+
+volumes:
+  dbData:
+
+

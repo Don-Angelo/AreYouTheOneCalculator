@@ -27,7 +27,6 @@ pub struct GamePairs {
     pairs: Vec<Pair>
 }
 
-
 #[derive(Debug, Serialize, Deserialize)]
 pub struct SeasonData {
     women: Vec<String>,
