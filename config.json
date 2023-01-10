@@ -1,0 +1,8 @@
+{
+    "dbconfig": {
+        "host":"123.123.123.123",
+        "port":123,
+        "username":"test",
+        "password":"Passw0rd"
+    }
+}

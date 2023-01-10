@@ -2,13 +2,11 @@ use clap::Parser;
 use itertools::{Itertools};
 use log::{info,debug};
 use env_logger;
-use filehandler::{read_file, parse_data};
 use std::io::ErrorKind;
-
-use filehandler::SeasonData;
+use filehandler::{Config, SeasonData};
+use filehandler::{read_file, parse_config, parse_data};
 
 pub mod filehandler;
-
 
 // ============================
 // == Command line arguments ==
@@ -18,44 +16,56 @@ pub mod filehandler;
 pub struct Args {
     #[arg(short, long)]
     /// Rel path to season data file
-    season: String // if the parameter is optional: season: Option<String>
+    season: Option<String> // if the parameter is optional: season: Option<String>
 }
-
-
 
 fn main(){
     env_logger::init();
     info!("Are You The One Calculator started");
     let args = Args::parse();
 
-    info!("Reading data: {}", args.season);
+    if args.season.is_some(){
 
-    let text = match read_file(&args.season) {
-        Ok(text) => text,
-        Err(err) => match err.kind() {
-            ErrorKind::NotFound => {
-                panic!("Error: File not found");
-            },
-            _ => panic!("Error reading the data: {:?}", err), // catch all other errors
-        }
-    };
-    debug!("Read data: {}", text);
-    
-    let season_data: SeasonData = match parse_data(text) {
-        Ok(season_data) => season_data,
-        Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
-        
-    };
-    
-    debug!("Parsed data: {:?}", season_data);
+        info!("Reading config");
+        let config_text = match read_file("./config.json") {
+            Ok(text) => text,
+            Err(err) => match err.kind() {
+                ErrorKind::NotFound => {
+                    panic!("Error: File not found");
+                },
+                _ => panic!("Error reading the data: {:?}", err), // catch all other errors
+            }
+        };
+        debug!("Read config text: {}", config_text);
+        let config: Config = match parse_config(config_text) {
+            Ok(season_data) => season_data,
+            Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
+        };
+        debug!("Parsed config: {:?}", config);
 
-    // let season_data: SeasonData = match serde_json::from_str(&text)? {
-    //     Ok(season_data) => season_data,
-    //     Err(err) => panic!("Error: {}",err)
-    // };
 
-    // debug!("Data: {}", season_data);
-    // println!("Type {}", season_data["men"]);
+        info!("Reading data: {:?}", args.season);        
+        let text = match read_file(&args.season.unwrap()) {
+            Ok(text) => text,
+            Err(err) => match err.kind() {
+                ErrorKind::NotFound => {
+                    panic!("Error: File not found");
+                },
+                _ => panic!("Error reading the data: {:?}", err), // catch all other errors
+            }
+        };
+        debug!("Read data: {}", text);
+        let season_data: SeasonData = match parse_data(text) {
+            Ok(season_data) => season_data,
+            Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
+        };
+        debug!("Parsed data: {:?}", season_data);
+    } else {
+        println!("Exiting program: The following arguments were not provided: -S <SEASON> or --season <SEASON> ");
+        println!("Help with argument: -H or --Help");
+    }
+
+ 
 
     let mut m = Vec::new();
     // let mut m = season_data["men"].as_array();

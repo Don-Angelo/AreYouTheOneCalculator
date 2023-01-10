@@ -23,11 +23,6 @@ pub struct MatchingNight {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct GamePairs {
-    pairs: Vec<Pair>
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub struct SeasonData {
     women: Vec<String>,
     men: Vec<String>,
@@ -38,6 +33,19 @@ pub struct SeasonData {
     game_selections: HashMap<u8,Vec<Pair>>
 }
 
+#[derive(Debug, Serialize, Deserialize)]
+pub struct DBConfig {
+    host: String,
+    port: u16,
+    username: String,
+    password: String
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Config {
+    dbconfig: DBConfig
+}
+
 pub fn read_file(filename: &str) -> io::Result<String> {
     let mut file = File::open(filename)?;
     let mut text = String::new();
@@ -45,9 +53,13 @@ pub fn read_file(filename: &str) -> io::Result<String> {
     Ok(text)
 }
 
+pub fn parse_config(data: String) -> io::Result<Config> {
+    let config: Config = serde_json::from_str(&data)?;
+    Ok(config)
+}
+
 pub fn parse_data(data: String) -> io::Result<SeasonData> {
     let season_data: SeasonData = serde_json::from_str(&data)?;
-    
     Ok(season_data)
 }
 
@@ -62,7 +74,7 @@ mod tests {
     // == tests for fn read_file ==
     #[test]
     fn reading_file() {
-        match read_file("./data/test/test1.json") {
+        match read_file("./config.json") {
             Ok(_) => assert!(true),
             Err(_) => assert!(false),
         };
@@ -75,6 +87,24 @@ mod tests {
                 ErrorKind::NotFound => assert!(true),
                 _ => assert!(false), // catch all other errors
             },
+        };
+    }
+
+    // == tests for fn parse_config ==
+    #[test]
+    fn parse_valid_config() {
+        let valid_json :String = String::from("{\"dbconfig\": {\"host\":\"0.0.0.0\",\"port\":123,\"username\":\"test\",\"password\":\"Passw0rd\"}}");
+        match parse_config(valid_json) {
+            Ok(_) => assert!(true),
+            Err(_) => assert!(false)
+        };
+    }
+    #[test]
+    fn parse_invalid_config() {
+        let invalid_json :String = String::from("{\"dbconfig\": {\"port\":123,\"username\":\"test\",\"password\":\"Passw0rd\"}}");
+        match parse_config(invalid_json) {
+            Ok(_) => assert!(false),
+            Err(_) => assert!(true)
         };
     }
 
