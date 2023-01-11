@@ -5,45 +5,45 @@ use std::io;
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize)]
-pub struct Pair {
-    women: String,
-    men: String
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct MatchboxResult {
-    perfect_match: Vec<Pair>,
-    no_match: Vec<Pair>,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct MatchingNight {
-    pairs: Vec<Pair>,
-    spots: u8
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct SeasonData {
-    women: Vec<String>,
-    men: Vec<String>,
-    additional_women: Vec<String>,
-    additional_men: Vec<String>,
-    matchbox_results: HashMap<u8,MatchboxResult>,
-    matching_nights: HashMap<u8,MatchingNight>,
-    game_selections: HashMap<u8,Vec<Pair>>
-}
-
-#[derive(Debug, Serialize, Deserialize)]
 pub struct DBConfig {
-    host: String,
-    port: u16,
-    username: String,
-    password: String
+    pub host: String,
+    pub port: u16,
+    pub username: String,
+    pub password: String
 }
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Config {
-    dbconfig: DBConfig
+    pub dbconfig: DBConfig
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Pair {
+    pub women: String,
+    pub men: String
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MatchboxResult {
+    pub perfect_match: Vec<Pair>,
+    pub no_match: Vec<Pair>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct MatchingNight {
+    pub pairs: Vec<Pair>,
+    pub spots: u8
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct SeasonData {
+    pub women: Vec<String>,
+    pub men: Vec<String>,
+    pub additional_women: Vec<String>,
+    pub additional_men: Vec<String>,
+    pub matchbox_results: HashMap<u8,MatchboxResult>,
+    pub matching_nights: HashMap<u8,MatchingNight>,
+    pub game_selections: HashMap<u8,Vec<Pair>>
 }
 
 pub fn read_file(filename: &str) -> io::Result<String> {

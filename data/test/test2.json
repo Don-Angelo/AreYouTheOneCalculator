@@ -1,11 +1,13 @@
 {
     "women": [
         "W1",
-        "W2"
+        "W2",
+        "W3"
     ],
     "men": [
         "M1",
-        "M2"
+        "M2",
+        "M3"
     ],
     "additional_women": [],
     "additional_men": [

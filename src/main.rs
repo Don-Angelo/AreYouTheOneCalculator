@@ -5,8 +5,11 @@ use env_logger;
 use std::io::ErrorKind;
 use filehandler::{Config, SeasonData};
 use filehandler::{read_file, parse_config, parse_data};
+use are_you_the_one_calculator::calculate_possibilities;
+
 
 pub mod filehandler;
+pub mod are_you_the_one_calculator;
 
 // ============================
 // == Command line arguments ==
@@ -60,32 +63,16 @@ fn main(){
             Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
         };
         debug!("Parsed data: {:?}", season_data);
+
+        calculate_possibilities(season_data);
     } else {
         println!("Exiting program: The following arguments were not provided: -S <SEASON> or --season <SEASON> ");
         println!("Help with argument: -H or --Help");
     }
 
- 
+    test();
 
-    let mut m = Vec::new();
-    // let mut m = season_data["men"].as_array();
-    let mut n = Vec::new();
-    m.push("Men0".to_string());
-    m.push("Men1".to_string());
-    m.push("Men2".to_string());
-    m.push("Men3".to_string());
-    // m.push("Men4".to_string());
-    
-    n.push("Women0".to_string());
-    n.push("Women1".to_string());
-    n.push("Women2".to_string());
-    // n.push("Women3".to_string());
-
-    if m.len() >= n.len() {
-        process(&n.len(), &m.len());
-    } else {
-        process(&m.len(), &n.len());
-    }
+   
 }
 
 // ===========
@@ -123,7 +110,7 @@ fn create_permutations(to_permut:&Vec<usize>, smaller_len:&usize, desired_len:&u
 }
 
 fn add_repetition(perm:&Vec<&usize>, smaller_len:&usize, desired_len:&usize) {
-    println!("add_repetition, current permutation: {:?}, smaller len: {:?}, desired len: {:?}", perm, smaller_len, desired_len);
+    // println!("add_repetition, current permutation: {:?}, smaller len: {:?}, desired len: {:?}", perm, smaller_len, desired_len);
     for i in 0..*smaller_len {
         let mut extended_perm = perm.clone();
         extended_perm.push(&i);
@@ -132,5 +119,27 @@ fn add_repetition(perm:&Vec<&usize>, smaller_len:&usize, desired_len:&usize) {
         } else {
             println!("{:?}", extended_perm);
         }
+    }
+}
+
+fn test(){
+    let mut m = Vec::new();
+    // let mut m = season_data["men"].as_array();
+    let mut n = Vec::new();
+    m.push("Men0".to_string());
+    m.push("Men1".to_string());
+    m.push("Men2".to_string());
+    // m.push("Men3".to_string());
+    // m.push("Men4".to_string());
+    
+    n.push("Women0".to_string());
+    n.push("Women1".to_string());
+    // n.push("Women2".to_string());
+    // n.push("Women3".to_string());
+
+    if m.len() >= n.len() {
+        process(&n.len(), &m.len());
+    } else {
+        process(&m.len(), &n.len());
     }
 }
