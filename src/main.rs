@@ -64,7 +64,7 @@ fn main(){
         };
         debug!("Parsed data: {:?}", season_data);
 
-        calculate_possibilities(season_data);
+        calculate_possibilities(&season_data);
     } else {
         println!("Exiting program: The following arguments were not provided: -S <SEASON> or --season <SEASON> ");
         println!("Help with argument: -H or --Help");
