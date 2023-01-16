@@ -129,12 +129,12 @@ fn test(){
     m.push("Men0".to_string());
     m.push("Men1".to_string());
     m.push("Men2".to_string());
-    // m.push("Men3".to_string());
+    m.push("Men3".to_string());
     // m.push("Men4".to_string());
     
     n.push("Women0".to_string());
     n.push("Women1".to_string());
-    // n.push("Women2".to_string());
+    n.push("Women2".to_string());
     // n.push("Women3".to_string());
 
     if m.len() >= n.len() {
