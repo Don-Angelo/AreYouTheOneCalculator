@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::ptr::eq;
 use std::{fs::File};
 use std::io::Read;
 use std::io;
@@ -23,6 +24,7 @@ pub struct Pair {
     pub men: String
 }
 
+
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MatchboxResult {
     pub perfect_match: Vec<Pair>,
@@ -43,7 +45,9 @@ pub struct SeasonData {
     pub additional_men: Vec<String>,
     pub matchbox_results: HashMap<u8,MatchboxResult>,
     pub matching_nights: HashMap<u8,MatchingNight>,
-    pub game_selections: HashMap<u8,Vec<Pair>>
+    pub game_selections: HashMap<u8,Vec<Pair>>,
+    pub perfect_match: Vec<Pair>,
+    pub no_match: Vec<Pair>
 }
 
 pub fn read_file(filename: &str) -> io::Result<String> {
@@ -111,7 +115,7 @@ mod tests {
     // == tests for fn parse_data ==
     #[test]
     fn parse_valid_json() {
-        let valid_json :String = String::from("{\"women\": [\"W1\",\"W2\"],\"men\":[\"M1\",\"M2\"],\"additional_women\": [],\"additional_men\": [\"M3\"],\"matchbox_results\":{\"1\":{\"perfect_match\": [],\"no_match\": [{\"women\":\"W2\", \"men\": \"M3\"}]}},\"matching_nights\": {\"1\": {\"pairs\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}],\"spots\": 1}},\"game_selections\": {\"1\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}]}}");
+        let valid_json :String = String::from("{\"women\": [\"W1\",\"W2\"],\"men\":[\"M1\",\"M2\"],\"additional_women\": [],\"additional_men\": [\"M3\"],\"matchbox_results\":{\"1\":{\"perfect_match\": [],\"no_match\": [{\"women\":\"W2\", \"men\": \"M3\"}]}},\"matching_nights\": {\"1\": {\"pairs\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}],\"spots\": 1}},\"game_selections\": {\"1\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}]},\"perfect_match\":[],\"no_match\":[]}");
         match parse_data(valid_json) {
             Ok(_) => assert!(true),
             Err(_) => assert!(false)
@@ -119,7 +123,7 @@ mod tests {
     }
     #[test]
     fn parse_invalid_json() {
-        let invalid_json :String = String::from("{\"women\": [\"W1\",\"W2\"]\"men\":[\"M1\",\"M2\"],\"additional_women\": [],\"additional_men\": [\"M3\"],\"matchbox_results\":{\"1\":{\"perfect_match\": [],\"no_match\": [{\"women\":\"W2\", \"men\": \"M3\"}]}},\"matching_nights\": {\"1\": {\"pairs\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}],\"spots\": 1}},\"game_selections\": {\"1\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}]}}");
+        let invalid_json :String = String::from("{\"women\": [\"W1\",\"W2\"]\"men\":[\"M1\",\"M2\"],\"additional_women\": [],\"additional_men\": [\"M3\"],\"matchbox_results\":{\"1\":{\"perfect_match\": [],\"no_match\": [{\"women\":\"W2\", \"men\": \"M3\"}]}},\"matching_nights\": {\"1\": {\"pairs\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}],\"spots\": 1}},\"game_selections\": {\"1\": [{\"women\":\"W1\", \"men\": \"M1\"},{\"women\":\"W2\", \"men\": \"M2\"}]},\"perfect_match\":[],\"no_match\":[]}");
         match parse_data(invalid_json) {
             Ok(_) => assert!(false),
             Err(_) => assert!(true)

@@ -1,10 +1,7 @@
 use log::{debug, info};
 use itertools::{Itertools};
-use crate::filehandler::SeasonData;
+use crate::filehandler::{SeasonData, Pair};
 
-
-
-// fn add_repetition()
 
 fn get_mn(data: &SeasonData) -> (Vec::<usize>, Vec::<usize>, Vec::<usize>, Vec::<usize>){
     let mut m= Vec::<usize>::new(); // Vector of the greater number of people
@@ -45,16 +42,50 @@ fn get_mn(data: &SeasonData) -> (Vec::<usize>, Vec::<usize>, Vec::<usize>, Vec::
     return (m,n,add_m,add_n);
 }
 
-fn get_mn_names(data: &SeasonData) {
+fn get_mn_names(data: &SeasonData) -> (Vec::<&String>, Vec::<&String>) {
+    let mut m:Vec::<&String> = Vec::<&String>::new(); // Vector of the greater number of people
+    let mut n:Vec::<&String> = Vec::<&String>::new(); // Vector of the smaller number of people
 
+    debug!("Men: {:?}", data.men);
+    debug!("Women: {:?}", data.women);
+
+    if data.men.len() >= data.women.len() {
+        for i in 0..data.men.len() {
+            m.push(&data.men[i]);
+        }
+        for i in 0..data.women.len() {
+            n.push(&data.women[i]);
+        }
+        for i in 0..data.additional_men.len() {
+            m.push(&data.additional_men[i]);
+        }
+        for i in 0..data.additional_women.len() {
+            n.push(&data.additional_women[i]);
+        }
+    } else {
+        for i in 0..data.men.len() {
+            m.push(&data.women[i]);
+        }
+        for i in 0..data.women.len() {
+            n.push(&data.men[i]);
+        }
+        for i in 0..data.additional_men.len() {
+            m.push(&data.additional_women[i]);
+        }
+        for i in 0..data.additional_women.len() {
+            n.push(&data.additional_men[i]);
+        }
+    }
+    return (m,n);
 }
 
-fn get_matching_night_mn(data: &SeasonData) {
-    for k in data.matching_nights.keys() {
-        
+fn men_are_primary(data: &SeasonData) -> bool {
+    if data.men.len() >= data.women.len() {
+        return true;
+    } else {
+        return false;
     }
 }
-
 
 pub fn calculate_possibilities(data: &SeasonData){
     let (m, n, add_m, add_n):(Vec<usize>, Vec<usize>, Vec<usize>, Vec<usize>) = get_mn(data);
@@ -62,7 +93,6 @@ pub fn calculate_possibilities(data: &SeasonData){
     debug!("Men: {:?}", data.men);
     debug!("Women: {:?}", data.women);
 
-    
     let mut to_permut:Vec<usize> = Vec::<usize>::new();
     for i in 0..n.len() {
         to_permut.push(i);
@@ -108,7 +138,6 @@ fn create_permutations(to_permut:&Vec<usize>, m:&Vec<usize>, add_m:&Vec<usize>, 
 }
 
 fn add_repetition(m:&Vec<usize>, perm:&Vec<&usize>, add_m:&Vec<usize>, add_n:&Vec<usize>, data: &SeasonData) {
-    // println!("add_repetition m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
     let mut complete_m = Vec::<usize>::new();
     let mut complete_n = Vec::<&usize>::new();
     for i in 0..m.len() {
@@ -127,10 +156,8 @@ fn add_repetition(m:&Vec<usize>, perm:&Vec<&usize>, add_m:&Vec<usize>, add_n:&Ve
             check_possible_combination(&complete_m, &complete_n, data);
             complete_n.pop();
         }
-        // info!("Adding {} repetitions of m", add_m.len());
     }
     if add_n.len() > 0 {
-        // info!("Adding {} repetitions of n", add_n.len());
         for i in 0..add_n.len() {
             complete_n.push(&add_n[i])
         }
@@ -142,8 +169,32 @@ fn add_repetition(m:&Vec<usize>, perm:&Vec<&usize>, add_m:&Vec<usize>, add_n:&Ve
     }
 }
 
-fn check_possible_combination(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) {
+fn create_pairs_from_permutations(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) {
+    let (m_names, n_names) = get_mn_names(data);
+    let mut pairs: Vec<Pair> = Vec::<Pair>::new();
+    for i in 0..m.len() {
+        if men_are_primary(data) {
+            pairs.push(Pair{ 
+                women: n_names[*n[i]].to_string(), 
+                men: m_names[m[i]].to_string()
+            });
+        } else {
+            pairs.push(Pair{ 
+                women: m_names[m[i]].to_string(), 
+                men: n_names[*n[i]].to_string()
+            });
+        }
+        
+    }
+    debug!("pairs from permuts: {:?}", pairs);
+    Ok(pairs);
+}
+
+fn check_possible_combination(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) -> bool {
     println!("m:{:?} n:{:?}", m, n);
+    let pairs: &Vec<Pair> = &create_pairs_from_permutations(m, n, data);
+    
+    return true;
 }
 
 // fn calculate_affection()
