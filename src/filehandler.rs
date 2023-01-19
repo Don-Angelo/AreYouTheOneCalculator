@@ -24,6 +24,33 @@ pub struct Pair {
     pub men: String
 }
 
+impl Pair {
+    pub fn is_no_match(&self, data: &SeasonData) -> bool {
+        for i in 0..data.no_match.len() {
+            if eq(self, &data.no_match[i]) {
+                return true; 
+            }
+        }
+        return false;
+    }
+    pub fn is_perfect_match(&self, data: &SeasonData) -> bool {
+        for i in 0..data.perfect_match.len() {
+            if eq(self, &data.perfect_match[i]) {
+                return true; 
+            }
+        }
+        return false;
+    }
+    pub fn eq(&self, otherPair: &Pair) -> bool {
+        (self.men == otherPair.men) && (self.women == otherPair.women)
+    }
+}
+
+impl PartialEq for Pair {
+    fn eq(&self, other: &Self) -> bool {
+        (self.men == other.men) && (self.women == other.women)
+    }
+}
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct MatchboxResult {
