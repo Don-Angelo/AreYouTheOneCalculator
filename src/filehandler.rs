@@ -41,8 +41,8 @@ impl Pair {
         }
         return false;
     }
-    pub fn eq(&self, otherPair: &Pair) -> bool {
-        (self.men == otherPair.men) && (self.women == otherPair.women)
+    pub fn eq(&self, other: &Pair) -> bool {
+        (self.men == other.men) && (self.women == other.women)
     }
 }
 

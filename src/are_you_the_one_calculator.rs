@@ -1,3 +1,4 @@
+
 use log::{debug, info};
 use itertools::{Itertools};
 use crate::filehandler::{SeasonData, Pair};
@@ -46,9 +47,6 @@ fn get_mn_names(data: &SeasonData) -> (Vec::<&String>, Vec::<&String>) {
     let mut m:Vec::<&String> = Vec::<&String>::new(); // Vector of the greater number of people
     let mut n:Vec::<&String> = Vec::<&String>::new(); // Vector of the smaller number of people
 
-    debug!("Men: {:?}", data.men);
-    debug!("Women: {:?}", data.women);
-
     if data.men.len() >= data.women.len() {
         for i in 0..data.men.len() {
             m.push(&data.men[i]);
@@ -89,10 +87,6 @@ fn men_are_primary(data: &SeasonData) -> bool {
 
 pub fn calculate_possibilities(data: &SeasonData){
     let (m, n, add_m, add_n):(Vec<usize>, Vec<usize>, Vec<usize>, Vec<usize>) = get_mn(data);
-
-    debug!("Men: {:?}", data.men);
-    debug!("Women: {:?}", data.women);
-
     let mut to_permut:Vec<usize> = Vec::<usize>::new();
     for i in 0..n.len() {
         to_permut.push(i);
@@ -169,31 +163,59 @@ fn add_repetition(m:&Vec<usize>, perm:&Vec<&usize>, add_m:&Vec<usize>, add_n:&Ve
     }
 }
 
-fn create_pairs_from_permutations(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) {
+fn create_pairs_from_permutations(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) -> Result<Vec<Pair>, &'static str> {
     let (m_names, n_names) = get_mn_names(data);
+    // let mut pairs: Result<Vec<Pair>, Err>;
     let mut pairs: Vec<Pair> = Vec::<Pair>::new();
     for i in 0..m.len() {
         if men_are_primary(data) {
-            pairs.push(Pair{ 
+            let p = Pair{ 
                 women: n_names[*n[i]].to_string(), 
                 men: m_names[m[i]].to_string()
-            });
+            };
+            if p.is_no_match(data) {
+                return Err("Pair is no match!");
+            }
+            pairs.push(p);
         } else {
-            pairs.push(Pair{ 
+            let p = Pair{ 
                 women: m_names[m[i]].to_string(), 
                 men: n_names[*n[i]].to_string()
-            });
+            };
+            if p.is_no_match(data) {
+                return Err("Pair is no match!");
+            }
+            pairs.push(p);
         }
         
     }
-    debug!("pairs from permuts: {:?}", pairs);
-    Ok(pairs);
+    return Ok(pairs);
 }
 
 fn check_possible_combination(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) -> bool {
     println!("m:{:?} n:{:?}", m, n);
-    let pairs: &Vec<Pair> = &create_pairs_from_permutations(m, n, data);
-    
+    let pairs = match create_pairs_from_permutations(m, n, data) {
+        Ok(p) => p,
+        Err(err) => {
+            debug!("Err creating pairs: {}", err);
+            drop(err);
+            println!("NOT Possible");
+            return false;
+        }
+    };
+    for mnk in data.matching_nights.keys() {
+        let mut matches: u8 = 0;
+        for i in 0..pairs.len() {
+            if data.matching_nights[mnk].pairs.contains(&pairs[i]) {
+                matches += 1;
+            }
+        }
+        if matches > data.matching_nights[mnk].spots {
+            println!("NOT Possible");
+            return false;
+        }
+    }
+    println!("Possible");
     return true;
 }
 
