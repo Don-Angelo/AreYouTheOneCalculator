@@ -1,8 +1,16 @@
+use std::thread::JoinHandle;
+use std::{thread};
+use std::{collections::HashMap, sync::Mutex};
 
 use log::{debug, info};
-use itertools::{Itertools};
+use itertools::{Itertools, Permutations};
 use crate::filehandler::{SeasonData, Pair};
 
+#[derive(Debug)]
+pub struct PossibilityResult {
+    pub general_possibilitys: u32,
+    pub possible_pairs: HashMap<Pair, u32>
+}
 
 fn get_mn(data: &SeasonData) -> (Vec::<usize>, Vec::<usize>, Vec::<usize>, Vec::<usize>){
     let mut m= Vec::<usize>::new(); // Vector of the greater number of people
@@ -120,15 +128,16 @@ pub fn calculate_possibilities(data: &SeasonData){
 fn create_permutations(to_permut:&Vec<usize>, m:&Vec<usize>, add_m:&Vec<usize>, add_n:&Vec<usize>, data: &SeasonData) {
     let len: usize = to_permut.len();
     let permuts = to_permut.into_iter().permutations(len);
-    for perm in permuts {
-        if (add_m.len() > 0) || (add_n.len() > 0){
-            // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
-            add_repetition(m, &perm, add_m, add_n, data);
-        } else {
-            // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
-            check_possible_combination(&m,  &perm, data);
-        }
-    }
+    process_in_threads(&permuts);
+    // for perm in permuts {
+    //     if (add_m.len() > 0) || (add_n.len() > 0){
+    //         // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
+    //         add_repetition(m, &perm, add_m, add_n, data);
+    //     } else {
+    //         // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
+    //         check_possible_combination(&m,  &perm, data);
+    //     }
+    // }
 }
 
 fn add_repetition(m:&Vec<usize>, perm:&Vec<&usize>, add_m:&Vec<usize>, add_n:&Vec<usize>, data: &SeasonData) {
@@ -218,5 +227,21 @@ fn check_possible_combination(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) 
     println!("Possible");
     return true;
 }
+
+
+fn process_in_threads(permuts: &Permutations<core::slice::Iter<usize>>) {
+    let result_data = Mutex::new(PossibilityResult{general_possibilitys: 0, possible_pairs:HashMap::new()});
+    let max_threads = thread::available_parallelism().unwrap(); // returns the number of recomended threads
+    info!("Using {:?} threads to calculate.", max_threads);
+    let threads = Vec::<JoinHandle<()>>::new();
+    let handle = thread::spawn(|| {
+        println!("spawned")
+    });
+    for tid in 0..max_threads.get() {
+    
+    }
+    // return result_data;
+}
+
 
 // fn calculate_affection()
