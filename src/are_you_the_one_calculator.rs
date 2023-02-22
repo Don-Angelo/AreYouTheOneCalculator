@@ -1,5 +1,6 @@
-use std::thread::JoinHandle;
-use std::{thread};
+use threadpool::ThreadPool;
+use std::thread;
+use std::sync::mpsc::channel;
 use std::{collections::HashMap, sync::Mutex};
 
 use log::{debug, info};
@@ -128,7 +129,7 @@ pub fn calculate_possibilities(data: &SeasonData){
 fn create_permutations(to_permut:&Vec<usize>, m:&Vec<usize>, add_m:&Vec<usize>, add_n:&Vec<usize>, data: &SeasonData) {
     let len: usize = to_permut.len();
     let permuts = to_permut.into_iter().permutations(len);
-    process_in_threads(&permuts);
+    process_in_threadpool(permuts, m, add_m, add_n, data);
     // for perm in permuts {
     //     if (add_m.len() > 0) || (add_n.len() > 0){
     //         // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
@@ -229,18 +230,51 @@ fn check_possible_combination(m:&Vec<usize>, n:&Vec<&usize>, data: &SeasonData) 
 }
 
 
-fn process_in_threads(permuts: &Permutations<core::slice::Iter<usize>>) {
-    let result_data = Mutex::new(PossibilityResult{general_possibilitys: 0, possible_pairs:HashMap::new()});
-    let max_threads = thread::available_parallelism().unwrap(); // returns the number of recomended threads
-    info!("Using {:?} threads to calculate.", max_threads);
-    let threads = Vec::<JoinHandle<()>>::new();
-    let handle = thread::spawn(|| {
-        println!("spawned")
-    });
-    for tid in 0..max_threads.get() {
+fn process_in_threadpool(permuts: Permutations<core::slice::Iter<usize>>, m:&Vec<usize>, add_m:&Vec<usize>, add_n:&Vec<usize>, data: &SeasonData) {
     
+    // #TODO: calculate num of permutations
+    let mut calculations = 0;
+    let result_data = PossibilityResult{general_possibilitys: 0, possible_pairs:HashMap::new()};
+    let max_threads = thread::available_parallelism().unwrap(); // returns the number of recomended threads used as number of worker threads
+    info!("Using {:?} threads to calculate.", max_threads);
+
+    
+    let mut num_of_threds:u32 = 0;
+
+
+    let n_jobs = 8;
+    let pool = ThreadPool::new(usize::from(max_threads));
+
+    let (tx, rx) = channel();
+    for perm in permuts {
+        calculations += 1;
+        let tx = tx.clone();
+        let m_clone = m.clone();
+        let add_m_clone = add_m.clone();
+        let add_n_clone = add_n.clone();
+        let data_clone = data.clone();
+        pool.execute(move|| {
+            
+                //  if (add_m.len() > 0) || (add_n.len() > 0){
+                //         // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
+                //         add_repetition(m, &perm, add_m, add_n, data);
+                //     } else {
+                //         // println!("m:{:?} n:{:?} add_m:{:?} add_n:{:?}", m, perm, add_m, add_n);
+                //         check_possible_combination(&m,  &perm, data);
+                //     }
+            
+            tx.send("test").expect("channel will be there waiting for the pool");
+        });
     }
+
+    //blocks until all work is done   
+    for _ in 0..calculations {
+        debug!("Result from thread: {:?}", rx.recv().unwrap());
+    }
+    info!("All threads finished their work.");
     // return result_data;
+
+
 }
 
 
