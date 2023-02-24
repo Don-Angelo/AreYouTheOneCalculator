@@ -2,7 +2,7 @@ use std::collections::HashMap;
 use std::ptr::eq;
 use std::{fs::File};
 use std::io::Read;
-use std::io;
+use std::{io};
 use serde::{Serialize, Deserialize};
 
 #[derive(Debug, Serialize, Deserialize)]
@@ -18,7 +18,7 @@ pub struct Config {
     pub dbconfig: DBConfig
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Pair {
     pub women: String,
     pub men: String
@@ -52,19 +52,19 @@ impl PartialEq for Pair {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct MatchboxResult {
     pub perfect_match: Vec<Pair>,
     pub no_match: Vec<Pair>,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct MatchingNight {
     pub pairs: Vec<Pair>,
     pub spots: u8
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct SeasonData {
     pub women: Vec<String>,
     pub men: Vec<String>,

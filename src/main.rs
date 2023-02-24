@@ -5,7 +5,8 @@ use env_logger;
 use std::io::ErrorKind;
 use filehandler::{Config, SeasonData};
 use filehandler::{read_file, parse_config, parse_data};
-use are_you_the_one_calculator::calculate_possibilities;
+
+use crate::are_you_the_one_calculator::AytoCalculator;
 
 
 pub mod filehandler;
@@ -27,48 +28,51 @@ fn main(){
     info!("Are You The One Calculator started");
     let args = Args::parse();
 
-    if args.season.is_some(){
-
-        info!("Reading config");
-        let config_text = match read_file("./config.json") {
-            Ok(text) => text,
-            Err(err) => match err.kind() {
-                ErrorKind::NotFound => {
-                    panic!("Error: File not found");
-                },
-                _ => panic!("Error reading the data: {:?}", err), // catch all other errors
-            }
-        };
-        debug!("Read config text: {}", config_text);
-        let config: Config = match parse_config(config_text) {
-            Ok(season_data) => season_data,
-            Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
-        };
-        debug!("Parsed config: {:?}", config);
-
-
-        info!("Reading data: {:?}", args.season);        
-        let text = match read_file(&args.season.unwrap()) {
-            Ok(text) => text,
-            Err(err) => match err.kind() {
-                ErrorKind::NotFound => {
-                    panic!("Error: File not found");
-                },
-                _ => panic!("Error reading the data: {:?}", err), // catch all other errors
-            }
-        };
-        debug!("Read data: {}", text);
-        let season_data: SeasonData = match parse_data(text) {
-            Ok(season_data) => season_data,
-            Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
-        };
-        debug!("Parsed data: {:?}", season_data);
-
-        calculate_possibilities(&season_data);
-    } else {
+    if args.season.is_none(){
         println!("Exiting program: The following arguments were not provided: -S <SEASON> or --season <SEASON> ");
         println!("Help with argument: -H or --Help");
+        return;
     }
+
+    info!("Reading config");
+    let config_text = match read_file("./config.json") {
+        Ok(text) => text,
+        Err(err) => match err.kind() {
+            ErrorKind::NotFound => {
+                panic!("Error: File not found");
+            },
+            _ => panic!("Error reading the data: {:?}", err), // catch all other errors
+        }
+    };
+    debug!("Read config text: {}", config_text);
+
+    let config: Config = match parse_config(config_text) {
+        Ok(season_data) => season_data,
+        Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
+    };
+    debug!("Parsed config: {:?}", config);
+
+    info!("Reading data: {:?}", args.season);        
+    let text = match read_file(&args.season.unwrap()) {
+        Ok(text) => text,
+        Err(err) => match err.kind() {
+            ErrorKind::NotFound => {
+                panic!("Error: File not found");
+            },
+            _ => panic!("Error reading the data: {:?}", err), // catch all other errors
+        }
+    };
+    debug!("Read data: {}", text);
+
+    let season_data: SeasonData = match parse_data(text) {
+        Ok(season_data) => season_data,
+        Err(err) => panic!("Error parsing the data: {:?}", err), // catch all errors
+    };
+    debug!("Parsed data: {:?}", season_data);
+
+    let calculator: AytoCalculator = AytoCalculator::new(&season_data);
+    // calculate_possibilities(&season_data);
+    
 
     test();
 
