@@ -38,7 +38,7 @@ impl Pair {
         }
         return false;
     }
-    
+
     pub fn eq(&self, other: &Pair) -> bool {
         (self.men == other.men) && (self.women == other.women)
     }
@@ -72,7 +72,9 @@ pub struct SeasonData {
     pub matching_nights: HashMap<u8,MatchingNight>,
     pub game_selections: HashMap<u8,Vec<Pair>>,
     pub perfect_match: Vec<Pair>,
-    pub no_match: Vec<Pair>
+    pub no_match: Vec<Pair>,
+    pub kissed_outside_of_game: HashMap<u8,Vec<Pair>>,
+    pub kissed_in_game: HashMap<u8,Vec<Pair>>
 }
 
 pub fn read_file(filename: &str) -> io::Result<String> {

@@ -1,5 +1,4 @@
 use threadpool::ThreadPool;
-use std::num::NonZeroUsize;
 use std::thread;
 use std::sync::mpsc::channel;
 use std::{collections::HashMap};
@@ -82,7 +81,7 @@ impl AytoCalculator {
         return calculator;
     }
 
-    pub fn calculate_possibilities(&mut self) {
+    pub fn calculate_possibilities(&mut self) -> &PossibilityResult {
         let mut to_permut:Vec<usize> = Vec::<usize>::new();
         for i in 0..self.n.len() {
             to_permut.push(i);
@@ -93,6 +92,7 @@ impl AytoCalculator {
         } else {
             let mut j;
             for i in 0..self.n.len() {
+                println!("{:?}/{:?}", i+1, self.n.len());
                 let mut extended_to_permuts = Vec::<usize>::new();
                 for i in 0..to_permut.len() {
                     extended_to_permuts.push(to_permut[i]);
@@ -107,10 +107,6 @@ impl AytoCalculator {
                 self.create_permutations(extended_to_permuts);
             }   
         }
-        return;
-    }
-
-    pub fn result(&mut self) -> &PossibilityResult {
         return &self.possibility_result;
     }
 
@@ -134,13 +130,13 @@ impl AytoCalculator {
         let perm_len = Factorial::factorial(&self.m.len());
         // let max_threads: NonZeroUsize = NonZeroUsize::new(1).unwrap();
         let max_threads = thread::available_parallelism().unwrap(); // returns the number of recomended threads used as number of worker threads
-        println!("Using {:?} threads to calculate.", max_threads);
+        // println!("Using {:?} threads to calculate.", max_threads);
         println!("Processing {:?} permutations.", perm_len);
-        
-    
-        let pool = ThreadPool::new(usize::from(max_threads));
+        let mut next_10_pourcent = perm_len/10; 
+        let pool = ThreadPool::new(usize::from(max_threads)-1);
     
         let (tx, rx) = channel();
+        let mut cnt = 0;
         for perm in permuts {
             let tx = tx.clone();
             let mut perm_clone  = Vec::<usize>::new();
@@ -162,16 +158,31 @@ impl AytoCalculator {
                    
                 tx.send(result_data).expect("channel will be there waiting for the pool");
             });
+            cnt += 1;
+            if cnt == next_10_pourcent {
+                print!("#");
+                // println!("{:?}",&cnt);
+                next_10_pourcent += perm_len/10; 
+            }
         }
-    
+        print!("\n");
+
+        cnt = 0;
+        next_10_pourcent = perm_len/10;
         //blocks until all work is done   
         for _ in 0..perm_len {
+
             let recv_result = rx.recv().unwrap();
             self.possibility_result.add_result(recv_result);
+            cnt += 1;
+            if cnt == next_10_pourcent {
+                print!("#");
+                // println!("{:?}",&cnt);
+                next_10_pourcent += perm_len/10; 
+            }
         }
-    
         println!("All threads finished their work.");
-        println!("Result: {:?}", &self.possibility_result);
+        // println!("Result: {:?}", &self.possibility_result);
         // return result_data;
     }
 
@@ -215,19 +226,19 @@ impl AytoCalculator {
         let pairs = match self.create_pairs_from_permutations(perm_m, perm_n) {
             Ok(p) => p,
             Err(err) => {
-                drop(err);
-                return result_data;
+                drop(err); // combination not possible, at least one of the pairs is a no match
+                return result_data; 
             }
         };
         for mnk in self.data.matching_nights.keys() {
-            let mut matches: u8 = 0;
+            let mut matches: u8 = 0; // number of pairs that match wiht the pairs of the specifig matching night
             for i in 0..pairs.len() {
                 if self.data.matching_nights[mnk].pairs.contains(&pairs[i]) {
                     matches += 1;
                 }
             }
             if matches > self.data.matching_nights[mnk].spots {
-                return result_data;
+                return result_data; // combination not possible, number of pairs in the combination exceeds the number of spots of the matching night
             }
         }
         

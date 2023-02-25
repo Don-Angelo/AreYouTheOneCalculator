@@ -1,0 +1,47 @@
+{
+    "women": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+    ],
+    "men": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I"
+    ],
+    "additional_women": [],
+    "additional_men": [
+        
+    ],
+    "matchbox_results" : {
+        
+    },
+    "matching_nights": {
+        
+    },
+    "game_selections": {
+        
+    },
+    "perfect_match":[],
+    "no_match":[
+        
+    ],
+    "kissed_outside_of_game": {
+        
+    },
+    "kissed_in_game": {
+        
+    }
+}

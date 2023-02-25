@@ -23,33 +23,41 @@
         "Nadine",
         "Sabrina"        
     ],
-    "additional_men":[
-        
-    ],
-    "additional_women":[
-
-    ],
-    "perfect_matches":[
-        
-    ],
-    "no_matches":[
-        "Mo+Ivana"
-    ],
+    "additional_women":[],
+    "additional_men":[],
+    "matchbox_results" : {},
     "matching_nights":{
         "1":{
             "pairs":[
-                "Aleks+Sabrina",
-                "Axel+Luisa",
-                "Dominic+Melissa",
-                "René+Katharina",
-                "Elisha+Nadine",
-                "Ferhat+Laura",
-                "Juliano+Ivana",
-                "Kevin+Aline",
-                "Laurin+Madleine",
-                "Mo+Michelle"
+                {"women":"Sabrina", "men": "Aleks"},
+                {"women":"Luisa", "men": "Axel"},
+                {"women":"Melissa", "men": "Dominic"},
+                {"women":"Katharina", "men": "René"},
+                {"women":"Nadine", "men": "Elisha"},
+                {"women":"Laura", "men": "Ferhat"},
+                {"women":"Ivana", "men": "Juliano"},
+                {"women":"Aline", "men": "Kevin"},
+                {"women":"Madleine", "men": "Laurin"},
+                {"women":"Michelle", "men": "Mo"}
             ],
             "spots":1
         }
+    },
+    "game_selections": {
+        "1": [
+            {"women":"1", "men": "A"},
+            {"women":"2", "men": "B"},
+            {"women":"3", "men": "C"}
+        ]
+    },
+    "perfect_match":[],
+    "no_match":[
+        {"women":"Ivana", "men": "Mo"}
+    ],
+    "kissed_outside_of_game": {
+        
+    },
+    "kissed_in_game": {
+        
     }
 }

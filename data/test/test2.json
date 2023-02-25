@@ -41,5 +41,11 @@
     "perfect_match":[],
     "no_match":[
         {"women":"W2", "men": "M3"}
-    ]
+    ],
+    "kissed_outside_of_game": {
+        "1": [{"women":"2", "men": "C"}]
+    },
+    "kissed_in_game": {
+        "1": [{"women":"2", "men": "C"}]
+    }
 }

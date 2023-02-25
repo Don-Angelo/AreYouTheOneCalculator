@@ -3,7 +3,7 @@ use std::io::ErrorKind;
 use filehandler::{Config, SeasonData};
 use filehandler::{read_file, parse_config, parse_data};
 
-use crate::are_you_the_one_calculator::AytoCalculator;
+use crate::are_you_the_one_calculator::{AytoCalculator, PossibilityResult};
 
 
 pub mod filehandler;
@@ -61,7 +61,8 @@ fn main(){
     };
 
     let mut calculator: AytoCalculator = AytoCalculator::new(&season_data);
-    calculator.calculate_possibilities();   
+    let possibility_result: &PossibilityResult = calculator.calculate_possibilities();  
+    println!("Result: {:?}", &possibility_result);
 }
 
 // ===========
