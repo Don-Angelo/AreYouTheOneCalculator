@@ -1,17 +1,17 @@
 {
     "women": [
-        "W1",
-        "W2",
-        "W3"
+        "1",
+        "2",
+        "3"
     ],
     "men": [
-        "M1",
-        "M2",
-        "M3"
+        "A",
+        "B",
+        "C"
     ],
     "additional_women": [],
     "additional_men": [
-        "M3"
+        "D"
     ],
     "matchbox_results" : {
         "1": {
@@ -25,7 +25,8 @@
         "1": {
             "pairs": [
                 {"women":"W1", "men": "M1"},
-                {"women":"W2", "men": "M2"}
+                {"women":"W2", "men": "M2"},
+                {"women":"W3", "men": "M3"}
             ],
             "spots": 1
         }
@@ -33,7 +34,8 @@
     "game_selections": {
         "1": [
             {"women":"W1", "men": "M1"},
-            {"women":"W2", "men": "M2"}
+            {"women":"W2", "men": "M2"},
+            {"women":"W3", "men": "M3"}
         ]
     },
     "perfect_match":[],

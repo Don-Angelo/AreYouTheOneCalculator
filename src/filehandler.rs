@@ -18,7 +18,7 @@ pub struct Config {
     pub dbconfig: DBConfig
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, Hash, Eq)]
 pub struct Pair {
     pub women: String,
     pub men: String
@@ -26,21 +26,19 @@ pub struct Pair {
 
 impl Pair {
     pub fn is_no_match(&self, data: &SeasonData) -> bool {
-        for i in 0..data.no_match.len() {
-            if eq(self, &data.no_match[i]) {
-                return true; 
-            }
+        if data.no_match.contains(self) {
+            return true;
         }
         return false;
     }
+
     pub fn is_perfect_match(&self, data: &SeasonData) -> bool {
-        for i in 0..data.perfect_match.len() {
-            if eq(self, &data.perfect_match[i]) {
-                return true; 
-            }
+        if data.perfect_match.contains(self) {
+            return true;
         }
         return false;
     }
+    
     pub fn eq(&self, other: &Pair) -> bool {
         (self.men == other.men) && (self.women == other.women)
     }
